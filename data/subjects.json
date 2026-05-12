@@ -1,0 +1,68 @@
+[
+  {
+    "id": "power-bi",
+    "title": "Power BI",
+    "description": "Business intelligence and data visualization mastery.",
+    "icon": "BarChart2",
+    "units": [
+      {
+        "id": "unit1",
+        "title": "Introduction to Power BI",
+        "topics": [
+          { "id": "overview", "title": "Overview", "path": "content/power-bi/unit1/overview.md" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "machine-learning-techniques",
+    "title": "Machine Learning Techniques",
+    "description": "Advanced algorithms and predictive modeling.",
+    "icon": "Brain",
+    "units": [
+      {
+        "id": "unit1",
+        "title": "Introduction to ML",
+        "topics": [
+          { "id": "basics", "title": "ML Basics", "path": "content/machine-learning-techniques/unit1/basics.md" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "research-methodology",
+    "title": "Research Methodology",
+    "description": "Scientific research methods and techniques.",
+    "icon": "Search",
+    "units": []
+  },
+  {
+    "id": "software-testing-quality-assurance",
+    "title": "Software Testing & QA",
+    "description": "Ensuring software reliability and excellence.",
+    "icon": "CheckSquare",
+    "units": []
+  },
+  {
+    "id": "optimization-techniques",
+    "title": "Optimization Techniques",
+    "description": "Mathematical optimization for problem solving.",
+    "icon": "Target",
+    "units": []
+  },
+  {
+    "id": "java-programming",
+    "title": "Java Programming",
+    "description": "Deep dive into enterprise Java development.",
+    "icon": "Code2",
+    "units": [
+      {
+        "id": "unit1",
+        "title": "Java Fundamentals",
+        "topics": [
+          { "id": "oop-concepts", "title": "OOP Concepts", "path": "content/java-programming/unit1/oop-concepts.md" }
+        ]
+      }
+    ]
+  }
+]
