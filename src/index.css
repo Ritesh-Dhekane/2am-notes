@@ -181,12 +181,12 @@
 
 /* Callout Blocks (Admonitions) */
 .callout {
-  @apply p-4 rounded-xl border-l-4 mb-6 shadow-sm;
+  @apply p-5 rounded-2xl border-l-4 mb-8 shadow-sm transition-theme;
 }
-.callout-info { @apply bg-blue-500/5 border-blue-500/50 text-blue-700 dark:text-blue-300; }
-.callout-warning { @apply bg-yellow-500/5 border-yellow-500/50 text-yellow-700 dark:text-yellow-300; }
-.callout-tip { @apply bg-emerald-500/5 border-emerald-500/50 text-emerald-700 dark:text-emerald-300; }
-.callout-pyq { @apply bg-purple-500/5 border-purple-500/50 text-purple-700 dark:text-purple-300; }
+.callout-info { @apply bg-blue-500/10 border-blue-500/50 text-blue-900 dark:text-blue-100; }
+.callout-warning { @apply bg-amber-500/10 border-amber-500/50 text-amber-900 dark:text-amber-100; }
+.callout-tip { @apply bg-emerald-500/10 border-emerald-500/50 text-emerald-900 dark:text-emerald-100; }
+.callout-pyq { @apply bg-purple-500/10 border-purple-500/50 text-purple-900 dark:text-purple-100; }
 
 /* Transitions */
 .transition-theme {

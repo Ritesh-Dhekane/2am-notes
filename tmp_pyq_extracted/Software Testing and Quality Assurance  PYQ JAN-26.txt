@@ -1,0 +1,187 @@
+Total No. of Questions :5]
+
+SEAT No. :
+
+PE4199
+
+[Total No. of Pages : 2
+
+b)
+
+OR
+
+[5]
+[5]
+
+control.
+
+[Max. Marks : 50
+
+IM
+
+Illustrate ISO 9000 standards in  SQA
+
+Time : 2½ Hours]
+Instructions to the candidates:
+
+Q1) a) Describe software Quality Assurance and its challenges.
+
+1) All questions are compulsory.
+2) Figures to the right indicate full marks.
+3) Draw diagrams wherever necessary.
+
+MP021191
+
+[6554]-2003
+ F.Y.M.C.A. (Management)
+STQ-553-MJ: SOFTWARE TESTING & QUALITY ASSURANCE
+(2024 Pattern) (Semester-II)
+
+c) Distinguish  between  software  quality    assurance  and  software  quality
+[5]
+d) Define Reliability and explain the measures Availability, ROCOF, POFOD
+[5]
+[5]
+[5]
+
+103.97.165.178 07/01/2026 13:46:19 
+103.97.165.178 07/01/2026 13:46:19 
+103.97.165.178 07/01/2026 13:46:19 
+
+[5]
+Determine  the  number  of  test  cases  required  to  test  the  above
+functionality.
+Specify  the  test  cases,  including  representative  values  and  their
+expected  outcomes.
+
+Q3) a) You are asked with testing an  Age Verification system that accepts the
+age of a person. The system allows users who are between 18 and 60
+years old to access certain features.
+Using the Boundry value Analysis technique.
+i)
+
+MP021191
+
+MP021191
+
+c) Discuss any five non-functional testing types.
+d) Differentiate between Re-testing and  Regression Testing.
+
+Explain the Testing Principles.
+Illustrate V model phases.
+
+b) Describe static analysis tools and explain its importance.
+
+IM
+
+IM
+
+Q2) a)
+b)
+
+[5]
+[5]
+
+OR
+
+OR
+
+[5]
+
+ii)
+
+P.T.O.
+P.T.O.
+
+c)
+
+For the given code, calculate the cyclomatic complexity.
+
+[5]
+
+Read A
+
+i)
+
+End If
+
+End If
+
+Print “Key”
+
+If A>0 Then
+
+If A=21 Then
+
+IM
+
+d) Differentiate between black box and white box testing.
+
+a) Write a test plan for the following sections of the IEEE 829 test plan
+[10]
+
+template for the above application.
+
+Q4) An online learning platform, Knowledge provides interactive courses, video
+lectures and quizes. It supports user roles such as students, instructors and
+administrators.The  platform  includes  features  like  personalized    learning
+recommendations, discussion forum, progress tracking and integration with
+third party tools like payment gateways.
+
+[5]
+
+Scope of testing
+
+MP021191
+
+103.97.165.178 07/01/2026 13:46:19 
+103.97.165.178 07/01/2026 13:46:19 
+103.97.165.178 07/01/2026 13:46:19 
+
+MP021191
+
+MP021191
+
+IM
+
+IM
+
+[10]
+
+OR
+
+OR
+
+[5]
+
+[5]
+
+[5]
+
+Q5)  a) How can a testing tool be successfully introduced and integrated into an
+[5]
+
+organizations workflow?
+
+b) Discuss the selenium components-WebDriver and TestNG.
+
+c) Explain the benefits of JIRA in software Test management.
+
+d) Narrate the stages of  Defect Life cycle with a diagram.
+
+b) Write suitable test cases for the above application.
+
+ii) Objectives
+
+v) Approach
+
+iv) Strategy
+
+iii) Risks
+
+[6554]-2003
+
+
+2
+
+

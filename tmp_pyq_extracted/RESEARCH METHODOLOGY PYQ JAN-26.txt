@@ -1,0 +1,198 @@
+Total No. of Questions : 5]
+
+SEAT No. :
+
+PE-4200
+
+Time : 2½ Hours]
+Instructions to the candidates:
+
+Q1) a) Define Research Methodology and explain its significance in academic
+[5]
+
+[Total No. of Pages : 2
+
+OR
+
+[Max. Marks : 50
+
+and professional contexts.
+
+Scientific  calculator  is  allowed.
+
+IM
+
+c) Describe Research Process and Steps explain with diagram.
+
+b) Compare Qualitative and Quantitative research with suitable example.[5]
+
+1)
+All  questions  carries  equal  marks.
+2) Draw  neat  diagrams  wherever  necessary.
+3)
+
+MP021191
+
+[6554]-2004
+F.Y.  M.C.A.  (Management)
+RMW-554  MJ  :  RESEARCH  METHODOLOGY
+(2024  Pattern)  (Semester  -  II)
+
+103.97.165.178 08/01/2026 13:32:41 
+103.97.165.178 08/01/2026 13:32:41 
+103.97.165.178 08/01/2026 13:32:41 
+
+MP021191
+
+MP021191
+
+Calculate the sample size for a population of 100000. Take confidence
+[10]
+level as 95% and margin of error as 5%.
+
+b) Elaborate  Probability  sampling  techniques  with  advantages  and
+[10]
+
+d) Explain  common  research  methods  used  in  computer  applications,
+[5]
+
+b) Explain Data Collection methods with suitable example.
+
+d) Define research design with suitable diagram.
+
+Elaborate types of research with example.
+
+c) Write note on Ethics in Research.
+
+providing relevant examples.
+
+IM
+
+IM
+
+disadvantages.
+
+OR
+
+OR
+
+[5]
+
+[5]
+
+[5]
+
+[5]
+
+[5]
+
+Q3) a) What is sampling discuss the process of sampling.
+
+Q2) a)
+
+P.T.O.
+
+Q4) a) Discuss Chi - square test.
+
+b) Two  types  of  drugs  were  used  on  6  and  5  patients  for  reducing  their
+
+Treatment
+
+New
+
+Conventional
+
+Total
+
+For  the  above  example  Formulate  null  and  alternate  hypothesis  and  apply
+Chi-square test.
+
+(consider: chi - squared value 0.05 significance level at degree of freedom
+[10]
+1 is = 3.84)
+
+20
+
+80
+
+30
+
+50
+
+60
+
+OR
+
+200
+
+170
+
+140
+
+250
+
+Total
+
+weight.
+
+Favourable
+
+Non- Favourable
+
+IM
+
+after using the drugs for 90 days was given below.
+
+Drug A was imported & Drug B was Local. The decrease in weight (in kg)
+
+MP021191
+
+From  the  data  given  below  about  treatment  of  250  patients  suffering
+from  a  diseases,  state  whether  the  new  treatment  is  superior  to  the
+conventional treatment.
+
+103.97.165.178 08/01/2026 13:32:41 
+103.97.165.178 08/01/2026 13:32:41 
+103.97.165.178 08/01/2026 13:32:41 
+
+Prepare an outline for a research on topic “Role of Al in Education “
+with proper title , objectives , hypothesis , Research Gap , Data Collection
+[10]
+sampling, Result and Discussion and Conclusion.
+
+MP021191
+
+MP021191
+
+Apply two sample t - test for the above example (consider t value at 0.05
+
+Is there significant difference in effectiveness of Drug?
+
+IM
+
+IM
+
+Drug A: 8,10,12,9,14,13
+
+significance = 2.262).
+
+Drug B: 7,9, 14,12,8
+
+[10]
+
+OR
+
+Q5) a) A MCA student is writing his research report on “Cybersecurity trends
+and threats”. He has completed his research but is unsure how to structure
+report. Based on the standard structure of a research report, suggest an
+[10]
+appropriate structure for finalizing his research report.
+
+b)
+
+[6554]-2004
+
+
+2
+
+

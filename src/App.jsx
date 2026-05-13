@@ -4,6 +4,7 @@ import MainLayout from './layouts/MainLayout';
 import HomePage from './pages/HomePage';
 import SubjectPage from './pages/SubjectPage';
 import TopicPage from './pages/TopicPage';
+import ContentViewer from './pages/ContentViewer';
 import SearchPage from './pages/SearchPage';
 import NotFoundPage from './pages/NotFoundPage';
 
@@ -15,6 +16,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="subject/:subjectId" element={<SubjectPage />} />
           <Route path="subject/:subjectId/topic/:topicId" element={<TopicPage />} />
+          <Route path="subject/:subjectId/viewer" element={<ContentViewer />} />
           <Route path="search" element={<SearchPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>

@@ -1,0 +1,176 @@
+Total No. of Questions : 5]
+
+PD2857
+
+SEAT No. :
+
+[Total No. of Pages : 2
+
+[6432]-2012
+F.Y. M.C.A. (Management)
+RMW 554 MJ - RM21 : RESEARCH METHODOLOGY
+(2024 Pattern) (Semester - II)
+
+Time : 2½ Hours]
+
+Instructions to the candidates:
+
+1) Draw neat diagram wherever necessary.
+
+2) All Questions carries equal marks.
+
+3)
+
+Scientific calculator is allowed.
+
+[Max. Marks : 50
+
+Q1) a) Describe research process with suitable diagram in detail.
+b) Explain importance of Literature review in research.
+
+[5]
+[5]
+
+OR
+
+c) Differentiate qualitative and quantitative research methods with suitable
+[5]
+[5]
+
+d) What is Research Methodology? Explain objectives of research.
+
+example.
+
+Q2) a)
+
+Elaborate types of research with example.
+
+b) What is hypothesis?
+
+OR
+
+[10]
+
+[5]
+
+Prepare a hypothesis (null & alternate) for following situations.
+i)
+
+Researcher wants to understand the impact of social media usage
+on children’s behaviour.
+
+ii) Researcher wants to understand the lectures attended by first-year
+
+students and its effect on final exam scores.
+
+c) What are the key components of a well-structured research design? [5]
+
+Q3) a)
+
+Explain Probability and Non-probability Sampling methods with suitable
+[10]
+examples.
+
+OR
+
+b)
+
+Suppose you are asked to select a sample for is conducting a survey on
+students’ learning habits. Which sampling method would be most suitable
+[10]
+and why? What will be sample size for the same?
+P.T.O.
+
+Q4) a) Discuss Chi - square test.
+
+[10]
+
+From the following data, find out whether there is any relationship between
+Gender( Male/Female) & Colour Preferences:
+
+Colour
+
+Males
+
+Females
+
+Total
+
+Pink
+
+Black
+
+Yellow
+
+Total
+
+10
+
+70
+
+30
+
+110
+
+40
+
+30
+
+20
+
+90
+
+50
+
+100
+
+50
+
+200
+
+For the above example Formulate null and alternate hypothesis and apply
+Chi-square test.
+
+(consider : chi - squared value 0.05 significance level at degree of freedom
+2 is = 5.99)
+
+OR
+
+b) What is t-test, When it is used?
+
+[10]
+
+Determine  whether  the  average  weight  of  sample  of  20  mangoes  is
+significantly different from population average weight of 70 gms. The
+sample  mean  weight  is  70.55gms  &  sample  standard  deviation  is
+2.82 gm.
+
+Apply one sample t test for the above example (consider t value at 0.05
+significance =2.093).
+
+Q5) a)
+
+Select a research topic within a domain of your choice (e.g., Artificial
+Intelligence, Machine Learning, Cloud Computing, Internet of Things
+(IOT), Block Chain, Social Media, Cybersecurity, etc. or any topic).
+
+Prepare a research outline which includes a Title, abstract, introduction,
+literature  review,  Objectives,  Hypothesis,  methodology,  results  &
+[10]
+discussion, conclusion, and references.
+
+OR
+
+b)
+
+Prepare an outline for a research on topic “Impact of Social Media on
+Indian Youth” with proper title, objectives, hypothesis, Research Gap,
+Data Collection, sampling, Result and Discussion and Conclusion. [10]
+
+
+
+[6432]-2012
+
+2
+
+

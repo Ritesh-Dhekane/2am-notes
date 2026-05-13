@@ -1,0 +1,145 @@
+Total No. of Questions : 5]
+
+PD-2847
+
+SEAT No. :
+
+[Total No. of Pages : 3
+
+[6432]-2002
+M.C.A.
+MANAGEMENT
+STQ - 553 MJ : Software Testing and Quality Assurance
+(2024  Pattern)  (Semester  -  II)
+
+Time : 2½ Hours]
+Instructions to the candidates :
+
+1) All questions are compulsory.
+2) Figures to the right indicate full marks.
+3) Draw daigram wherever necessary.
+
+[Max. Marks : 50
+
+Q1) a) Describe software quality assurance and outline its key activities.
+b) Explain the metrics used to assess and measure reliability.
+
+ [5]
+[5]
+
+OR
+
+c) Explain the term quality in the context of software engineering and describe
+[5]
+[5]
+
+d) Describe the significance of ISO 9000 standards in SQA.
+
+product revision factors.
+
+Q2) a) Outline the steps in software testing life cycle, highlighting the sequence
+[5]
+b) Differentiate between fault, defect and failure and describe the common
+[5]
+
+causes of software failure.
+
+of testing phases.
+
+OR
+
+c)
+
+Illustrate the concept of performance testing and detail any three specific
+[5]
+performance test categories.
+[5]
+
+d) Discuss the Integration test approaches.
+
+Q3) a)
+
+In an examination, a candidate must score at least 24 marks to pass, with
+the maximum possible score being 40 marks.
+Using the Equivalence partitioning technique:
+i)
+ii)
+
+identify the equivalence partitions for the marks field.
+determine the minimun number of test cases required to effectively
+test the field.
+Specify  the  test  cases,  including  representative  values  and  their
+[5]
+expected  outcomes.
+
+iii)
+
+P.T.O.
+
+b) Differentiate between static and dynamic testing.
+
+[5]
+
+c) Given the following flow chart diagram:
+
+OR
+
+What is the minimum number of test cases required for 100% statement
+[5]
+coverage and 100% decision coverage? Justify the answer.
+
+d) Discuss inspection process in detail.
+
+[5]
+
+Q4) a) Cloud kitchen aggregator app, smoke & spice lists and promotes cloud
+kitchens, making them accessible to customers for online food ordering
+It enables cloud kitchens to manage their menus, orders, and promotions
+while integrating with third party delivery partners and payment gateways.
+The  app  challenges  are  handling  high-order  volumes,  real  time  order
+updates, semless third-party integrations, and secure transactions.
+A Write a test plan for the following sections of the IEEE 829 test plan
+[10]
+template for the above application.
+i)
+ii)
+iii)
+iv)
+v)
+
+scope of testing
+objectives
+risks
+strategy
+approach
+
+b) Write suitable test case for the above application.
+
+[10]
+
+OR
+
+[6432]-2002
+
+2
+
+Q5) a) Define CAST and explain its benefits in software testing.
+
+[5
+b) Describe the steps in introducing a testing tool into an organization. [5]
+
+c) Explain the purpose of postman in API testing.
+d) Discuss defect life cycle.
+
+[5]
+[5]
+
+OR
+
+JJJ
+
+[6432]-2002
+
+3
+
+
