@@ -1,0 +1,194 @@
+[
+  {
+    "title": "Java Programming",
+    "id": "java-programming",
+    "href": "/subject/java-programming",
+    "items": [
+      {
+        "title": "Unit 1",
+        "id": "unit1",
+        "href": "/subject/java-programming/topic/topic-1"
+      },
+      {
+        "title": "Unit 2",
+        "id": "unit2",
+        "href": "/subject/java-programming/topic/topic-1"
+      },
+      {
+        "title": "Unit 3",
+        "id": "unit3",
+        "href": "/subject/java-programming/topic/topic-1"
+      },
+      {
+        "title": "Unit 4",
+        "id": "unit4",
+        "href": "/subject/java-programming/topic/topic-1"
+      },
+      {
+        "title": "Unit 5",
+        "id": "unit5",
+        "href": "/subject/java-programming/topic/topic-1"
+      }
+    ]
+  },
+  {
+    "title": "Software Testing & QA",
+    "id": "software-testing-quality-assurance",
+    "href": "/subject/software-testing-quality-assurance",
+    "items": [
+      {
+        "title": "Unit 1",
+        "id": "unit1",
+        "href": "/subject/software-testing-quality-assurance/topic/topic-1"
+      },
+      {
+        "title": "Unit 2",
+        "id": "unit2",
+        "href": "/subject/software-testing-quality-assurance/topic/topic-1"
+      },
+      {
+        "title": "Unit 3",
+        "id": "unit3",
+        "href": "/subject/software-testing-quality-assurance/topic/topic-1"
+      },
+      {
+        "title": "Unit 4",
+        "id": "unit4",
+        "href": "/subject/software-testing-quality-assurance/topic/topic-1"
+      },
+      {
+        "title": "Unit 5",
+        "id": "unit5",
+        "href": "/subject/software-testing-quality-assurance/topic/topic-1"
+      }
+    ]
+  },
+  {
+    "title": "Research Methodology",
+    "id": "research-methodology",
+    "href": "/subject/research-methodology",
+    "items": [
+      {
+        "title": "Unit 1",
+        "id": "unit1",
+        "href": "/subject/research-methodology/topic/topic-1"
+      },
+      {
+        "title": "Unit 2",
+        "id": "unit2",
+        "href": "/subject/research-methodology/topic/topic-1"
+      },
+      {
+        "title": "Unit 3",
+        "id": "unit3",
+        "href": "/subject/research-methodology/topic/topic-1"
+      },
+      {
+        "title": "Unit 4",
+        "id": "unit4",
+        "href": "/subject/research-methodology/topic/topic-1"
+      },
+      {
+        "title": "Unit 5",
+        "id": "unit5",
+        "href": "/subject/research-methodology/topic/topic-1"
+      }
+    ]
+  },
+  {
+    "title": "Machine Learning Techniques",
+    "id": "machine-learning-techniques",
+    "href": "/subject/machine-learning-techniques",
+    "items": [
+      {
+        "title": "Unit 1",
+        "id": "unit1",
+        "href": "/subject/machine-learning-techniques/topic/topic-1"
+      },
+      {
+        "title": "Unit 2",
+        "id": "unit2",
+        "href": "/subject/machine-learning-techniques/topic/topic-1"
+      },
+      {
+        "title": "Unit 3",
+        "id": "unit3",
+        "href": "/subject/machine-learning-techniques/topic/topic-1"
+      },
+      {
+        "title": "Unit 4",
+        "id": "unit4",
+        "href": "/subject/machine-learning-techniques/topic/topic-1"
+      },
+      {
+        "title": "Unit 5",
+        "id": "unit5",
+        "href": "/subject/machine-learning-techniques/topic/topic-1"
+      }
+    ]
+  },
+  {
+    "title": "Optimization Techniques",
+    "id": "optimization-techniques",
+    "href": "/subject/optimization-techniques",
+    "items": [
+      {
+        "title": "Unit 1",
+        "id": "unit1",
+        "href": "/subject/optimization-techniques/topic/topic-1"
+      },
+      {
+        "title": "Unit 2",
+        "id": "unit2",
+        "href": "/subject/optimization-techniques/topic/topic-1"
+      },
+      {
+        "title": "Unit 3",
+        "id": "unit3",
+        "href": "/subject/optimization-techniques/topic/topic-1"
+      },
+      {
+        "title": "Unit 4",
+        "id": "unit4",
+        "href": "/subject/optimization-techniques/topic/topic-1"
+      },
+      {
+        "title": "Unit 5",
+        "id": "unit5",
+        "href": "/subject/optimization-techniques/topic/topic-1"
+      }
+    ]
+  },
+  {
+    "title": "Power BI",
+    "id": "power-bi",
+    "href": "/subject/power-bi",
+    "items": [
+      {
+        "title": "Unit 1",
+        "id": "unit1",
+        "href": "/subject/power-bi/topic/topic-1"
+      },
+      {
+        "title": "Unit 2",
+        "id": "unit2",
+        "href": "/subject/power-bi/topic/topic-1"
+      },
+      {
+        "title": "Unit 3",
+        "id": "unit3",
+        "href": "/subject/power-bi/topic/topic-1"
+      },
+      {
+        "title": "Unit 4",
+        "id": "unit4",
+        "href": "/subject/power-bi/topic/topic-1"
+      },
+      {
+        "title": "Unit 5",
+        "id": "unit5",
+        "href": "/subject/power-bi/topic/topic-1"
+      }
+    ]
+  }
+]

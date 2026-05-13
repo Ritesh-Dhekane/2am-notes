@@ -1,68 +1,600 @@
 [
   {
-    "id": "power-bi",
-    "title": "Power BI",
-    "description": "Business intelligence and data visualization mastery.",
-    "icon": "BarChart2",
+    "id": "java-programming",
+    "title": "Java Programming",
+    "icon": "Code2",
+    "description": "Comprehensive study materials for Java Programming.",
+    "unitCount": 5,
     "units": [
       {
         "id": "unit1",
-        "title": "Introduction to Power BI",
+        "title": "Unit 1",
         "topics": [
-          { "id": "overview", "title": "Overview", "path": "content/power-bi/unit1/overview.md" }
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/java-programming/units/unit1/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/java-programming/units/unit1/topics/topic-2/notes.md"
+          }
         ]
-      }
-    ]
-  },
-  {
-    "id": "machine-learning-techniques",
-    "title": "Machine Learning Techniques",
-    "description": "Advanced algorithms and predictive modeling.",
-    "icon": "Brain",
-    "units": [
+      },
       {
-        "id": "unit1",
-        "title": "Introduction to ML",
+        "id": "unit2",
+        "title": "Unit 2",
         "topics": [
-          { "id": "basics", "title": "ML Basics", "path": "content/machine-learning-techniques/unit1/basics.md" }
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/java-programming/units/unit2/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/java-programming/units/unit2/topics/topic-2/notes.md"
+          }
+        ]
+      },
+      {
+        "id": "unit3",
+        "title": "Unit 3",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/java-programming/units/unit3/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/java-programming/units/unit3/topics/topic-2/notes.md"
+          }
+        ]
+      },
+      {
+        "id": "unit4",
+        "title": "Unit 4",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/java-programming/units/unit4/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/java-programming/units/unit4/topics/topic-2/notes.md"
+          }
+        ]
+      },
+      {
+        "id": "unit5",
+        "title": "Unit 5",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/java-programming/units/unit5/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/java-programming/units/unit5/topics/topic-2/notes.md"
+          }
         ]
       }
-    ]
-  },
-  {
-    "id": "research-methodology",
-    "title": "Research Methodolog y",
-    "description": "Scientific research methods and techniques.",
-    "icon": "Search",
-    "units": []
+    ],
+    "sourceMapping": {
+      "syllabus": [
+        "source-material\\java-programming\\syllabus\\Java Programming Syllabus.pdf"
+      ],
+      "pyqs": [
+        "source-material\\java-programming\\pyqs\\Java Programming PYQ APR-25.pdf"
+      ],
+      "references": [
+        "source-material\\java-programming\\references\\Java_QA_Complete.docx"
+      ],
+      "books": [],
+      "handwritten": []
+    }
   },
   {
     "id": "software-testing-quality-assurance",
     "title": "Software Testing & QA",
-    "description": "Ensuring software reliability and excellence.",
     "icon": "CheckSquare",
-    "units": []
+    "description": "Comprehensive study materials for Software Testing & QA.",
+    "unitCount": 5,
+    "units": [
+      {
+        "id": "unit1",
+        "title": "Unit 1",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/software-testing-quality-assurance/units/unit1/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/software-testing-quality-assurance/units/unit1/topics/topic-2/notes.md"
+          }
+        ]
+      },
+      {
+        "id": "unit2",
+        "title": "Unit 2",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/software-testing-quality-assurance/units/unit2/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/software-testing-quality-assurance/units/unit2/topics/topic-2/notes.md"
+          }
+        ]
+      },
+      {
+        "id": "unit3",
+        "title": "Unit 3",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/software-testing-quality-assurance/units/unit3/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/software-testing-quality-assurance/units/unit3/topics/topic-2/notes.md"
+          }
+        ]
+      },
+      {
+        "id": "unit4",
+        "title": "Unit 4",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/software-testing-quality-assurance/units/unit4/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/software-testing-quality-assurance/units/unit4/topics/topic-2/notes.md"
+          }
+        ]
+      },
+      {
+        "id": "unit5",
+        "title": "Unit 5",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/software-testing-quality-assurance/units/unit5/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/software-testing-quality-assurance/units/unit5/topics/topic-2/notes.md"
+          }
+        ]
+      }
+    ],
+    "sourceMapping": {
+      "syllabus": [
+        "source-material\\software-testing-quality-assurance\\syllabus\\Software Testing and Quality Assurance Syllabus.pdf"
+      ],
+      "pyqs": [
+        "source-material\\software-testing-quality-assurance\\pyqs\\Software Testing and Quality Assurance  PYQ APR-25.pdf",
+        "source-material\\software-testing-quality-assurance\\pyqs\\Software Testing and Quality Assurance  PYQ JAN-26.pdf"
+      ],
+      "references": [],
+      "books": [],
+      "handwritten": []
+    }
+  },
+  {
+    "id": "research-methodology",
+    "title": "Research Methodology",
+    "icon": "Search",
+    "description": "Comprehensive study materials for Research Methodology.",
+    "unitCount": 5,
+    "units": [
+      {
+        "id": "unit1",
+        "title": "Unit 1",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/research-methodology/units/unit1/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/research-methodology/units/unit1/topics/topic-2/notes.md"
+          }
+        ]
+      },
+      {
+        "id": "unit2",
+        "title": "Unit 2",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/research-methodology/units/unit2/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/research-methodology/units/unit2/topics/topic-2/notes.md"
+          }
+        ]
+      },
+      {
+        "id": "unit3",
+        "title": "Unit 3",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/research-methodology/units/unit3/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/research-methodology/units/unit3/topics/topic-2/notes.md"
+          }
+        ]
+      },
+      {
+        "id": "unit4",
+        "title": "Unit 4",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/research-methodology/units/unit4/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/research-methodology/units/unit4/topics/topic-2/notes.md"
+          }
+        ]
+      },
+      {
+        "id": "unit5",
+        "title": "Unit 5",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/research-methodology/units/unit5/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/research-methodology/units/unit5/topics/topic-2/notes.md"
+          }
+        ]
+      }
+    ],
+    "sourceMapping": {
+      "syllabus": [
+        "source-material\\research-methodology\\syllabus\\Research Methodology Syllabus.pdf"
+      ],
+      "pyqs": [
+        "source-material\\research-methodology\\pyqs\\RESEARCH METHODOLOGY PYQ APR-25.pdf",
+        "source-material\\research-methodology\\pyqs\\RESEARCH METHODOLOGY PYQ JAN-26.pdf"
+      ],
+      "references": [
+        "source-material\\research-methodology\\references\\Assignment-1_Literature Review_MC25001.docx",
+        "source-material\\research-methodology\\references\\Assignment-1_Literature Review_MC25075.docx",
+        "source-material\\research-methodology\\references\\Reference Research Papers Aakanksha",
+        "source-material\\research-methodology\\references\\Reference Research Papers Rit",
+        "source-material\\research-methodology\\references\\Research Project Topics for MCA.docx"
+      ],
+      "books": [],
+      "handwritten": []
+    }
+  },
+  {
+    "id": "machine-learning-techniques",
+    "title": "Machine Learning Techniques",
+    "icon": "Brain",
+    "description": "Comprehensive study materials for Machine Learning Techniques.",
+    "unitCount": 5,
+    "units": [
+      {
+        "id": "unit1",
+        "title": "Unit 1",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/machine-learning-techniques/units/unit1/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/machine-learning-techniques/units/unit1/topics/topic-2/notes.md"
+          }
+        ]
+      },
+      {
+        "id": "unit2",
+        "title": "Unit 2",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/machine-learning-techniques/units/unit2/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/machine-learning-techniques/units/unit2/topics/topic-2/notes.md"
+          }
+        ]
+      },
+      {
+        "id": "unit3",
+        "title": "Unit 3",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/machine-learning-techniques/units/unit3/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/machine-learning-techniques/units/unit3/topics/topic-2/notes.md"
+          }
+        ]
+      },
+      {
+        "id": "unit4",
+        "title": "Unit 4",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/machine-learning-techniques/units/unit4/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/machine-learning-techniques/units/unit4/topics/topic-2/notes.md"
+          }
+        ]
+      },
+      {
+        "id": "unit5",
+        "title": "Unit 5",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/machine-learning-techniques/units/unit5/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/machine-learning-techniques/units/unit5/topics/topic-2/notes.md"
+          }
+        ]
+      }
+    ],
+    "sourceMapping": {
+      "syllabus": [],
+      "pyqs": [],
+      "references": [],
+      "books": [],
+      "handwritten": []
+    }
   },
   {
     "id": "optimization-techniques",
     "title": "Optimization Techniques",
-    "description": "Mathematical optimization for problem solving.",
     "icon": "Target",
-    "units": []
-  },
-  {
-    "id": "java-programming",
-    "title": "Java Programming",
-    "description": "Deep dive into enterprise Java development.",
-    "icon": "Code2",
+    "description": "Comprehensive study materials for Optimization Techniques.",
+    "unitCount": 5,
     "units": [
       {
         "id": "unit1",
-        "title": "Java Fundamentals",
+        "title": "Unit 1",
         "topics": [
-          { "id": "oop-concepts", "title": "OOP Concepts", "path": "content/java-programming/unit1/oop-concepts.md" }
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/optimization-techniques/units/unit1/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/optimization-techniques/units/unit1/topics/topic-2/notes.md"
+          }
+        ]
+      },
+      {
+        "id": "unit2",
+        "title": "Unit 2",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/optimization-techniques/units/unit2/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/optimization-techniques/units/unit2/topics/topic-2/notes.md"
+          }
+        ]
+      },
+      {
+        "id": "unit3",
+        "title": "Unit 3",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/optimization-techniques/units/unit3/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/optimization-techniques/units/unit3/topics/topic-2/notes.md"
+          }
+        ]
+      },
+      {
+        "id": "unit4",
+        "title": "Unit 4",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/optimization-techniques/units/unit4/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/optimization-techniques/units/unit4/topics/topic-2/notes.md"
+          }
+        ]
+      },
+      {
+        "id": "unit5",
+        "title": "Unit 5",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/optimization-techniques/units/unit5/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/optimization-techniques/units/unit5/topics/topic-2/notes.md"
+          }
         ]
       }
-    ]
+    ],
+    "sourceMapping": {
+      "syllabus": [],
+      "pyqs": [],
+      "references": [],
+      "books": [],
+      "handwritten": []
+    }
+  },
+  {
+    "id": "power-bi",
+    "title": "Power BI",
+    "icon": "BarChart2",
+    "description": "Comprehensive study materials for Power BI.",
+    "unitCount": 5,
+    "units": [
+      {
+        "id": "unit1",
+        "title": "Unit 1",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/power-bi/units/unit1/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/power-bi/units/unit1/topics/topic-2/notes.md"
+          }
+        ]
+      },
+      {
+        "id": "unit2",
+        "title": "Unit 2",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/power-bi/units/unit2/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/power-bi/units/unit2/topics/topic-2/notes.md"
+          }
+        ]
+      },
+      {
+        "id": "unit3",
+        "title": "Unit 3",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/power-bi/units/unit3/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/power-bi/units/unit3/topics/topic-2/notes.md"
+          }
+        ]
+      },
+      {
+        "id": "unit4",
+        "title": "Unit 4",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/power-bi/units/unit4/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/power-bi/units/unit4/topics/topic-2/notes.md"
+          }
+        ]
+      },
+      {
+        "id": "unit5",
+        "title": "Unit 5",
+        "topics": [
+          {
+            "id": "topic-1",
+            "title": "Topic 1",
+            "path": "content/power-bi/units/unit5/topics/topic-1/notes.md"
+          },
+          {
+            "id": "topic-2",
+            "title": "Topic 2",
+            "path": "content/power-bi/units/unit5/topics/topic-2/notes.md"
+          }
+        ]
+      }
+    ],
+    "sourceMapping": {
+      "syllabus": [],
+      "pyqs": [],
+      "references": [],
+      "books": [],
+      "handwritten": []
+    }
   }
 ]

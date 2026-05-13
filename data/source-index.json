@@ -1,0 +1,66 @@
+{
+  "java-programming": {
+    "syllabus": [
+      "source-material\\java-programming\\syllabus\\Java Programming Syllabus.pdf"
+    ],
+    "pyqs": [
+      "source-material\\java-programming\\pyqs\\Java Programming PYQ APR-25.pdf"
+    ],
+    "references": [
+      "source-material\\java-programming\\references\\Java_QA_Complete.docx"
+    ],
+    "books": [],
+    "handwritten": []
+  },
+  "software-testing-quality-assurance": {
+    "syllabus": [
+      "source-material\\software-testing-quality-assurance\\syllabus\\Software Testing and Quality Assurance Syllabus.pdf"
+    ],
+    "pyqs": [
+      "source-material\\software-testing-quality-assurance\\pyqs\\Software Testing and Quality Assurance  PYQ APR-25.pdf",
+      "source-material\\software-testing-quality-assurance\\pyqs\\Software Testing and Quality Assurance  PYQ JAN-26.pdf"
+    ],
+    "references": [],
+    "books": [],
+    "handwritten": []
+  },
+  "research-methodology": {
+    "syllabus": [
+      "source-material\\research-methodology\\syllabus\\Research Methodology Syllabus.pdf"
+    ],
+    "pyqs": [
+      "source-material\\research-methodology\\pyqs\\RESEARCH METHODOLOGY PYQ APR-25.pdf",
+      "source-material\\research-methodology\\pyqs\\RESEARCH METHODOLOGY PYQ JAN-26.pdf"
+    ],
+    "references": [
+      "source-material\\research-methodology\\references\\Assignment-1_Literature Review_MC25001.docx",
+      "source-material\\research-methodology\\references\\Assignment-1_Literature Review_MC25075.docx",
+      "source-material\\research-methodology\\references\\Reference Research Papers Aakanksha",
+      "source-material\\research-methodology\\references\\Reference Research Papers Rit",
+      "source-material\\research-methodology\\references\\Research Project Topics for MCA.docx"
+    ],
+    "books": [],
+    "handwritten": []
+  },
+  "machine-learning-techniques": {
+    "syllabus": [],
+    "pyqs": [],
+    "references": [],
+    "books": [],
+    "handwritten": []
+  },
+  "optimization-techniques": {
+    "syllabus": [],
+    "pyqs": [],
+    "references": [],
+    "books": [],
+    "handwritten": []
+  },
+  "power-bi": {
+    "syllabus": [],
+    "pyqs": [],
+    "references": [],
+    "books": [],
+    "handwritten": []
+  }
+}

@@ -20,8 +20,19 @@ This separation ensures that:
 - **Dynamic Loading**: Content is fetched at runtime, allowing for a massive knowledge base without a massive initial bundle.
 - **Academic Precision**: Specialized rendering for code, math, and diagrams.
 
-### 4. Rendering Flow
-1. User navigates to a route (e.g., `/subject/java/unit1`).
-2. The System looks up the content path in `subjects.json`.
-3. The System fetches the remote `.md` file from the `content/` folder.
-4. The `MarkdownRenderer` parses and renders the content with syntax highlighting.
+### 5. Source Material Philosophy
+To maintain academic integrity and data provenance, we follow a strict separation:
+- **`source-material/`**: The ground truth. Contains original PDFs, images, and documents. Never modified by the system.
+- **`public/content/`**: The rendered reality. AI-processed markdown derived from the source material.
+
+### 6. Markdown Conversion Pipeline
+1. **Extraction**: AI agents read raw PDFs/DOCX from `source-material`.
+2. **Structuring**: Content is mapped to the standard 5-unit syllabus structure.
+3. **Enhancement**: AI generates PYQ solutions, revision notes, and viva questions.
+4. **Validation**: Metadata is updated in `data/` to reflect new content availability.
+
+### 7. Scalability & Future-Proofing
+The folder-per-topic structure (`topics/topic-name/`) allows for:
+- Asset localization (diagrams/images stay with their notes).
+- Multi-modal support (audio scripts, quizzes in the same folder).
+- Atomic updates (update one topic without affecting the rest of the unit).
