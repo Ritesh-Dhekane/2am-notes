@@ -46,29 +46,91 @@
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 221.2 83.2% 53.3%;
-    --radius: 0.5rem;
+    --radius: 0.75rem;
   }
 
-  .dark {
+  /* Midnight Theme */
+  [data-theme='midnight'] {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
+    --card: 222.2 84% 6.5%;
     --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
     --primary: 217.2 91.2% 59.8%;
     --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
     --ring: 224.3 76.3% 48%;
+  }
+
+  /* Dracula Theme */
+  [data-theme='dracula'] {
+    --background: 231 15% 18%;
+    --foreground: 60 30% 96%;
+    --card: 231 15% 22%;
+    --card-foreground: 60 30% 96%;
+    --primary: 265 89% 78%;
+    --primary-foreground: 231 15% 18%;
+    --muted: 231 15% 30%;
+    --muted-foreground: 60 30% 70%;
+    --border: 231 15% 30%;
+    --ring: 265 89% 78%;
+  }
+
+  /* Emerald Theme */
+  [data-theme='emerald'] {
+    --background: 160 50% 5%;
+    --foreground: 160 20% 98%;
+    --card: 160 50% 8%;
+    --card-foreground: 160 20% 98%;
+    --primary: 160 80% 45%;
+    --primary-foreground: 160 50% 5%;
+    --muted: 160 40% 15%;
+    --muted-foreground: 160 20% 70%;
+    --border: 160 40% 15%;
+    --ring: 160 80% 45%;
+  }
+
+  /* Sunset Theme */
+  [data-theme='sunset'] {
+    --background: 20 20% 6%;
+    --foreground: 20 20% 98%;
+    --card: 20 20% 10%;
+    --card-foreground: 20 20% 98%;
+    --primary: 20 90% 55%;
+    --primary-foreground: 20 20% 6%;
+    --muted: 20 20% 18%;
+    --muted-foreground: 20 20% 70%;
+    --border: 20 20% 18%;
+    --ring: 20 90% 55%;
+  }
+
+  /* Obsidian Theme */
+  [data-theme='obsidian'] {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 70%;
+    --border: 0 0% 12%;
+    --ring: 0 0% 100%;
+  }
+
+  /* Minimal Light Theme */
+  [data-theme='minimal-light'] {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 0%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 40%;
+    --border: 0 0% 90%;
+    --ring: 0 0% 0%;
   }
 }
 
@@ -78,27 +140,55 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
 }
 ::-webkit-scrollbar-track {
   @apply bg-transparent;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/30 transition-colors;
+  @apply bg-muted-foreground/20 rounded-full border-4 border-transparent bg-clip-padding hover:bg-muted-foreground/30 transition-colors;
 }
 
-/* Markdown Specific Styles */
+/* Typography & Prose */
+.prose {
+  @apply max-w-none;
+}
+.prose h1 { @apply text-4xl font-extrabold tracking-tight mb-8 mt-12; }
+.prose h2 { @apply text-2xl font-bold tracking-tight mb-6 mt-10 border-b pb-2; }
+.prose h3 { @apply text-xl font-semibold tracking-tight mb-4 mt-8; }
+.prose p { @apply leading-relaxed mb-6 text-foreground/90; }
+.prose ul, .prose ol { @apply mb-6 pl-6; }
+.prose li { @apply mb-2; }
+.prose table { @apply w-full border-collapse mb-8; }
+.prose th { @apply bg-muted/50 p-3 text-left font-bold border; }
+.prose td { @apply p-3 border; }
+
+/* Code Block Styling */
 .prose pre {
-  @apply !bg-zinc-900 !rounded-lg !border !border-zinc-800 !p-0;
+  @apply !bg-[#1e1e1e] !rounded-xl !border !border-border !p-4 !my-8 shadow-2xl overflow-hidden;
 }
 
-.prose code {
-  @apply font-mono text-sm;
+.prose code:not(pre code) {
+  @apply bg-muted px-1.5 py-0.5 rounded-md text-sm font-mono text-primary font-medium;
+}
+
+/* Callout Blocks (Admonitions) */
+.callout {
+  @apply p-4 rounded-xl border-l-4 mb-6 shadow-sm;
+}
+.callout-info { @apply bg-blue-500/5 border-blue-500/50 text-blue-700 dark:text-blue-300; }
+.callout-warning { @apply bg-yellow-500/5 border-yellow-500/50 text-yellow-700 dark:text-yellow-300; }
+.callout-tip { @apply bg-emerald-500/5 border-emerald-500/50 text-emerald-700 dark:text-emerald-300; }
+.callout-pyq { @apply bg-purple-500/5 border-purple-500/50 text-purple-700 dark:text-purple-300; }
+
+/* Transitions */
+.transition-theme {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
 }
