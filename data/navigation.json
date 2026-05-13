@@ -216,6 +216,18 @@
         "category": "pyq-solutions"
       },
       {
+        "id": "solved-dec-2022",
+        "title": "Solved Dec 2022",
+        "path": "content/software-testing-quality-assurance/pyq-solutions/solved-dec-2022.md",
+        "category": "pyq-solutions"
+      },
+      {
+        "id": "solved-may-2023",
+        "title": "Solved May 2023",
+        "path": "content/software-testing-quality-assurance/pyq-solutions/solved-may-2023.md",
+        "category": "pyq-solutions"
+      },
+      {
         "id": "cheatsheet",
         "title": "Cheatsheet",
         "path": "content/software-testing-quality-assurance/revision/cheatsheet.md",
@@ -337,6 +349,18 @@
         "id": "README",
         "title": "README",
         "path": "content/research-methodology/pyq-solutions/README.md",
+        "category": "pyq-solutions"
+      },
+      {
+        "id": "solved-dec-2022",
+        "title": "Solved Dec 2022",
+        "path": "content/research-methodology/pyq-solutions/solved-dec-2022.md",
+        "category": "pyq-solutions"
+      },
+      {
+        "id": "solved-may-2023",
+        "title": "Solved May 2023",
+        "path": "content/research-methodology/pyq-solutions/solved-may-2023.md",
         "category": "pyq-solutions"
       },
       {

@@ -215,6 +215,18 @@
   },
   {
     "subjectId": "software-testing-quality-assurance",
+    "title": "solved-dec-2022",
+    "path": "content/software-testing-quality-assurance/pyq-solutions/solved-dec-2022.md",
+    "type": "pyq-solutions"
+  },
+  {
+    "subjectId": "software-testing-quality-assurance",
+    "title": "solved-may-2023",
+    "path": "content/software-testing-quality-assurance/pyq-solutions/solved-may-2023.md",
+    "type": "pyq-solutions"
+  },
+  {
+    "subjectId": "software-testing-quality-assurance",
     "title": "cheatsheet",
     "path": "content/software-testing-quality-assurance/revision/cheatsheet.md",
     "type": "revision"
@@ -333,6 +345,18 @@
     "subjectId": "research-methodology",
     "title": "README",
     "path": "content/research-methodology/pyq-solutions/README.md",
+    "type": "pyq-solutions"
+  },
+  {
+    "subjectId": "research-methodology",
+    "title": "solved-dec-2022",
+    "path": "content/research-methodology/pyq-solutions/solved-dec-2022.md",
+    "type": "pyq-solutions"
+  },
+  {
+    "subjectId": "research-methodology",
+    "title": "solved-may-2023",
+    "path": "content/research-methodology/pyq-solutions/solved-may-2023.md",
     "type": "pyq-solutions"
   },
   {

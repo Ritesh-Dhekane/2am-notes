@@ -181,7 +181,8 @@
 
 /* Callout Blocks (Admonitions) */
 .callout {
-  @apply p-5 rounded-2xl border-l-4 mb-8 shadow-sm transition-theme;
+  @apply p-5 rounded-2xl border-l-4 mb-8 shadow-sm;
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
 }
 .callout-info { @apply bg-blue-500/10 border-blue-500/50 text-blue-900 dark:text-blue-100; }
 .callout-warning { @apply bg-amber-500/10 border-amber-500/50 text-amber-900 dark:text-amber-100; }
