@@ -163,12 +163,6 @@ const SubjectPage = () => {
             );
           })}
           
-          <div className="rounded-3xl bg-primary p-8 text-primary-foreground shadow-xl shadow-primary/20">
-             <h4 className="font-black text-2xl tracking-tighter mb-4 italic">2AM MODE</h4>
-             <p className="text-sm opacity-90 leading-relaxed">
-                Late-night study sessions are the most productive. Use the **Midnight** theme for maximum focus and minimum eye strain.
-             </p>
-          </div>
         </aside>
       </div>
     </div>
