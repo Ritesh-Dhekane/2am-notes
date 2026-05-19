@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Search as SearchIcon, Book, ChevronRight, FileText, Command, Target, Brain, Code2, Search, BarChart2, CheckSquare } from 'lucide-react';
 import contentIndex from '../../data/content-index.json';
 import subjectsData from '../../data/subjects.json';
+import { trackSearchQuery } from '../utils/analytics';
 
 const SearchPage = () => {
   const [query, setQuery] = useState('');
@@ -47,6 +48,12 @@ const SearchPage = () => {
     }).slice(0, 20); // Limit to 20 results for performance
 
     setResults(filtered);
+
+    const timer = setTimeout(() => {
+      trackSearchQuery(query);
+    }, 1000);
+
+    return () => clearTimeout(timer);
   }, [query]);
 
   return (

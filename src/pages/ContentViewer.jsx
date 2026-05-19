@@ -5,6 +5,7 @@ import ContentSidebar from '../components/ContentSidebar';
 import subjectsData from '../../data/subjects.json';
 import navigationData from '../../data/navigation.json';
 import { Menu, Search, Share2, Printer, Bookmark, ChevronRight } from 'lucide-react';
+import { trackContentOpen } from '../utils/analytics';
 
 const ContentViewer = () => {
   const { subjectId } = useParams();
@@ -58,6 +59,7 @@ const ContentViewer = () => {
         const text = await response.text();
         setContent(text);
         setError(null);
+        trackContentOpen(contentPath, subjectId);
       } catch (err) {
         console.error(err);
         setError('Failed to load study material. Please try again later.');

@@ -1,16 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { trackThemeChange } from '../utils/analytics';
 
 const MainLayout = () => {
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('2am-notes-theme') || 'midnight';
   });
 
+  const isFirstRender = useRef(true);
+
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('2am-notes-theme', theme);
+    
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+    } else {
+      trackThemeChange(theme);
+    }
   }, [theme]);
 
   return (

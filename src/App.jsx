@@ -7,10 +7,12 @@ import TopicPage from './pages/TopicPage';
 import ContentViewer from './pages/ContentViewer';
 import SearchPage from './pages/SearchPage';
 import NotFoundPage from './pages/NotFoundPage';
+import AnalyticsTracker from './components/AnalyticsTracker';
 
 function App() {
   return (
     <Router>
+      <AnalyticsTracker />
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
