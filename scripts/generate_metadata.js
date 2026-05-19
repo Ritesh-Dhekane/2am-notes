@@ -4,8 +4,21 @@ import path from 'path';
 const CONTENT_DIR = 'public/content';
 const DATA_DIR = 'data';
 
+// Helper to check if a file contains real study material
+function isRealContent(filePath) {
+  if (!fs.existsSync(filePath)) return false;
+  const content = fs.readFileSync(filePath, 'utf-8');
+  const size = fs.statSync(filePath).size;
+  // Threshold: size >= 200 bytes and does not contain placeholder strings and length >= 150
+  return size >= 200 && 
+    !content.includes('Coming Soon') && 
+    !content.includes('Placeholder structure') &&
+    content.trim().length >= 150;
+}
+
 // Helper to get all files recursively
 function getFiles(dir, allFiles = []) {
+  if (!fs.existsSync(dir)) return allFiles;
   const files = fs.readdirSync(dir);
   for (const file of files) {
     const name = path.join(dir, file);
@@ -20,7 +33,6 @@ function getFiles(dir, allFiles = []) {
 
 function generateMetadata() {
   const subjects = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'subjects.json'), 'utf-8'));
-  const allContentFiles = getFiles(CONTENT_DIR);
   
   const contentIndex = [];
   const navigation = {};
@@ -39,19 +51,16 @@ function generateMetadata() {
       const unitPath = path.join(CONTENT_DIR, subjectId, 'units', unitId);
       
       if (fs.existsSync(unitPath)) {
-        navigation[subjectId].units[unitId] = {
-          title: `Unit ${i}`,
-          topics: []
-        };
-
         const topicsPath = path.join(unitPath, 'topics');
+        const unitTopics = [];
+
         if (fs.existsSync(topicsPath)) {
           const topics = fs.readdirSync(topicsPath);
           topics.forEach(topicId => {
             const topicNotesPath = path.join(topicsPath, topicId, 'notes.md');
-            if (fs.existsSync(topicNotesPath)) {
+            if (isRealContent(topicNotesPath)) {
               const relativePath = path.relative('public', topicNotesPath).replace(/\\/g, '/');
-              navigation[subjectId].units[unitId].topics.push({
+              unitTopics.push({
                 id: topicId,
                 title: topicId.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
                 path: relativePath
@@ -68,6 +77,14 @@ function generateMetadata() {
             }
           });
         }
+
+        // Only add unit to navigation if it has at least one valid topic notes file
+        if (unitTopics.length > 0) {
+          navigation[subjectId].units[unitId] = {
+            title: `Unit ${i}`,
+            topics: unitTopics
+          };
+        }
       }
     }
 
@@ -78,20 +95,23 @@ function generateMetadata() {
       if (fs.existsSync(extraPath)) {
         const files = fs.readdirSync(extraPath).filter(f => f.endsWith('.md'));
         files.forEach(file => {
-          const relativePath = path.relative('public', path.join(extraPath, file)).replace(/\\/g, '/');
-          navigation[subjectId].extras.push({
-            id: file.replace('.md', ''),
-            title: file.replace('.md', '').split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
-            path: relativePath,
-            category: extra
-          });
+          const filePath = path.join(extraPath, file);
+          if (isRealContent(filePath)) {
+            const relativePath = path.relative('public', filePath).replace(/\\/g, '/');
+            navigation[subjectId].extras.push({
+              id: file.replace('.md', ''),
+              title: file.replace('.md', '').split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
+              path: relativePath,
+              category: extra
+            });
 
-          contentIndex.push({
-            subjectId,
-            title: file.replace('.md', ''),
-            path: relativePath,
-            type: extra
-          });
+            contentIndex.push({
+              subjectId,
+              title: file.replace('.md', ''),
+              path: relativePath,
+              type: extra
+            });
+          }
         });
       }
     });
@@ -105,3 +125,4 @@ function generateMetadata() {
 }
 
 generateMetadata();
+

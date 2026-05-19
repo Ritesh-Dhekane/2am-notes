@@ -6,209 +6,26 @@
         "title": "Unit 1",
         "topics": [
           {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/java-programming/units/unit1/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/java-programming/units/unit1/topics/topic-2/notes.md"
-          }
-        ]
-      },
-      "unit2": {
-        "title": "Unit 2",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/java-programming/units/unit2/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/java-programming/units/unit2/topics/topic-2/notes.md"
-          }
-        ]
-      },
-      "unit3": {
-        "title": "Unit 3",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/java-programming/units/unit3/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/java-programming/units/unit3/topics/topic-2/notes.md"
-          }
-        ]
-      },
-      "unit4": {
-        "title": "Unit 4",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/java-programming/units/unit4/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/java-programming/units/unit4/topics/topic-2/notes.md"
-          }
-        ]
-      },
-      "unit5": {
-        "title": "Unit 5",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/java-programming/units/unit5/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/java-programming/units/unit5/topics/topic-2/notes.md"
+            "id": "oop-concepts",
+            "title": "Oop Concepts",
+            "path": "content/java-programming/units/unit1/topics/oop-concepts/notes.md"
           }
         ]
       }
     },
     "extras": [
-      {
-        "id": "coming-soon",
-        "title": "Coming Soon",
-        "path": "content/java-programming/pyq-solutions/coming-soon.md",
-        "category": "pyq-solutions"
-      },
       {
         "id": "README",
         "title": "README",
         "path": "content/java-programming/pyq-solutions/README.md",
         "category": "pyq-solutions"
-      },
-      {
-        "id": "cheatsheet",
-        "title": "Cheatsheet",
-        "path": "content/java-programming/revision/cheatsheet.md",
-        "category": "revision"
-      },
-      {
-        "id": "important-definitions",
-        "title": "Important Definitions",
-        "path": "content/java-programming/revision/important-definitions.md",
-        "category": "revision"
-      },
-      {
-        "id": "one-night-revision",
-        "title": "One Night Revision",
-        "path": "content/java-programming/revision/one-night-revision.md",
-        "category": "revision"
-      },
-      {
-        "id": "viva-questions",
-        "title": "Viva Questions",
-        "path": "content/java-programming/revision/viva-questions.md",
-        "category": "revision"
-      },
-      {
-        "id": "coming-soon",
-        "title": "Coming Soon",
-        "path": "content/java-programming/mindmaps/coming-soon.md",
-        "category": "mindmaps"
       }
     ]
   },
   "software-testing-quality-assurance": {
     "title": "Software Testing & QA",
-    "units": {
-      "unit1": {
-        "title": "Unit 1",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/software-testing-quality-assurance/units/unit1/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/software-testing-quality-assurance/units/unit1/topics/topic-2/notes.md"
-          }
-        ]
-      },
-      "unit2": {
-        "title": "Unit 2",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/software-testing-quality-assurance/units/unit2/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/software-testing-quality-assurance/units/unit2/topics/topic-2/notes.md"
-          }
-        ]
-      },
-      "unit3": {
-        "title": "Unit 3",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/software-testing-quality-assurance/units/unit3/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/software-testing-quality-assurance/units/unit3/topics/topic-2/notes.md"
-          }
-        ]
-      },
-      "unit4": {
-        "title": "Unit 4",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/software-testing-quality-assurance/units/unit4/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/software-testing-quality-assurance/units/unit4/topics/topic-2/notes.md"
-          }
-        ]
-      },
-      "unit5": {
-        "title": "Unit 5",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/software-testing-quality-assurance/units/unit5/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/software-testing-quality-assurance/units/unit5/topics/topic-2/notes.md"
-          }
-        ]
-      }
-    },
+    "units": {},
     "extras": [
-      {
-        "id": "coming-soon",
-        "title": "Coming Soon",
-        "path": "content/software-testing-quality-assurance/pyq-solutions/coming-soon.md",
-        "category": "pyq-solutions"
-      },
       {
         "id": "README",
         "title": "README",
@@ -228,123 +45,17 @@
         "category": "pyq-solutions"
       },
       {
-        "id": "cheatsheet",
-        "title": "Cheatsheet",
-        "path": "content/software-testing-quality-assurance/revision/cheatsheet.md",
-        "category": "revision"
-      },
-      {
-        "id": "important-definitions",
-        "title": "Important Definitions",
-        "path": "content/software-testing-quality-assurance/revision/important-definitions.md",
-        "category": "revision"
-      },
-      {
         "id": "one-night-revision",
         "title": "One Night Revision",
         "path": "content/software-testing-quality-assurance/revision/one-night-revision.md",
         "category": "revision"
-      },
-      {
-        "id": "viva-questions",
-        "title": "Viva Questions",
-        "path": "content/software-testing-quality-assurance/revision/viva-questions.md",
-        "category": "revision"
-      },
-      {
-        "id": "coming-soon",
-        "title": "Coming Soon",
-        "path": "content/software-testing-quality-assurance/mindmaps/coming-soon.md",
-        "category": "mindmaps"
       }
     ]
   },
   "research-methodology": {
     "title": "Research Methodology",
-    "units": {
-      "unit1": {
-        "title": "Unit 1",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/research-methodology/units/unit1/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/research-methodology/units/unit1/topics/topic-2/notes.md"
-          }
-        ]
-      },
-      "unit2": {
-        "title": "Unit 2",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/research-methodology/units/unit2/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/research-methodology/units/unit2/topics/topic-2/notes.md"
-          }
-        ]
-      },
-      "unit3": {
-        "title": "Unit 3",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/research-methodology/units/unit3/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/research-methodology/units/unit3/topics/topic-2/notes.md"
-          }
-        ]
-      },
-      "unit4": {
-        "title": "Unit 4",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/research-methodology/units/unit4/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/research-methodology/units/unit4/topics/topic-2/notes.md"
-          }
-        ]
-      },
-      "unit5": {
-        "title": "Unit 5",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/research-methodology/units/unit5/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/research-methodology/units/unit5/topics/topic-2/notes.md"
-          }
-        ]
-      }
-    },
+    "units": {},
     "extras": [
-      {
-        "id": "coming-soon",
-        "title": "Coming Soon",
-        "path": "content/research-methodology/pyq-solutions/coming-soon.md",
-        "category": "pyq-solutions"
-      },
       {
         "id": "README",
         "title": "README",
@@ -364,34 +75,10 @@
         "category": "pyq-solutions"
       },
       {
-        "id": "cheatsheet",
-        "title": "Cheatsheet",
-        "path": "content/research-methodology/revision/cheatsheet.md",
-        "category": "revision"
-      },
-      {
-        "id": "important-definitions",
-        "title": "Important Definitions",
-        "path": "content/research-methodology/revision/important-definitions.md",
-        "category": "revision"
-      },
-      {
         "id": "one-night-revision",
         "title": "One Night Revision",
         "path": "content/research-methodology/revision/one-night-revision.md",
         "category": "revision"
-      },
-      {
-        "id": "viva-questions",
-        "title": "Viva Questions",
-        "path": "content/research-methodology/revision/viva-questions.md",
-        "category": "revision"
-      },
-      {
-        "id": "coming-soon",
-        "title": "Coming Soon",
-        "path": "content/research-methodology/mindmaps/coming-soon.md",
-        "category": "mindmaps"
       }
     ]
   },
@@ -402,369 +89,23 @@
         "title": "Unit 1",
         "topics": [
           {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/machine-learning-techniques/units/unit1/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/machine-learning-techniques/units/unit1/topics/topic-2/notes.md"
-          }
-        ]
-      },
-      "unit2": {
-        "title": "Unit 2",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/machine-learning-techniques/units/unit2/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/machine-learning-techniques/units/unit2/topics/topic-2/notes.md"
-          }
-        ]
-      },
-      "unit3": {
-        "title": "Unit 3",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/machine-learning-techniques/units/unit3/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/machine-learning-techniques/units/unit3/topics/topic-2/notes.md"
-          }
-        ]
-      },
-      "unit4": {
-        "title": "Unit 4",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/machine-learning-techniques/units/unit4/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/machine-learning-techniques/units/unit4/topics/topic-2/notes.md"
-          }
-        ]
-      },
-      "unit5": {
-        "title": "Unit 5",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/machine-learning-techniques/units/unit5/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/machine-learning-techniques/units/unit5/topics/topic-2/notes.md"
+            "id": "basics-of-ml",
+            "title": "Basics Of Ml",
+            "path": "content/machine-learning-techniques/units/unit1/topics/basics-of-ml/notes.md"
           }
         ]
       }
     },
-    "extras": [
-      {
-        "id": "coming-soon",
-        "title": "Coming Soon",
-        "path": "content/machine-learning-techniques/pyq-solutions/coming-soon.md",
-        "category": "pyq-solutions"
-      },
-      {
-        "id": "README",
-        "title": "README",
-        "path": "content/machine-learning-techniques/pyq-solutions/README.md",
-        "category": "pyq-solutions"
-      },
-      {
-        "id": "cheatsheet",
-        "title": "Cheatsheet",
-        "path": "content/machine-learning-techniques/revision/cheatsheet.md",
-        "category": "revision"
-      },
-      {
-        "id": "important-definitions",
-        "title": "Important Definitions",
-        "path": "content/machine-learning-techniques/revision/important-definitions.md",
-        "category": "revision"
-      },
-      {
-        "id": "one-night-revision",
-        "title": "One Night Revision",
-        "path": "content/machine-learning-techniques/revision/one-night-revision.md",
-        "category": "revision"
-      },
-      {
-        "id": "viva-questions",
-        "title": "Viva Questions",
-        "path": "content/machine-learning-techniques/revision/viva-questions.md",
-        "category": "revision"
-      },
-      {
-        "id": "coming-soon",
-        "title": "Coming Soon",
-        "path": "content/machine-learning-techniques/mindmaps/coming-soon.md",
-        "category": "mindmaps"
-      }
-    ]
+    "extras": []
   },
   "optimization-techniques": {
     "title": "Optimization Techniques",
-    "units": {
-      "unit1": {
-        "title": "Unit 1",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/optimization-techniques/units/unit1/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/optimization-techniques/units/unit1/topics/topic-2/notes.md"
-          }
-        ]
-      },
-      "unit2": {
-        "title": "Unit 2",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/optimization-techniques/units/unit2/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/optimization-techniques/units/unit2/topics/topic-2/notes.md"
-          }
-        ]
-      },
-      "unit3": {
-        "title": "Unit 3",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/optimization-techniques/units/unit3/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/optimization-techniques/units/unit3/topics/topic-2/notes.md"
-          }
-        ]
-      },
-      "unit4": {
-        "title": "Unit 4",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/optimization-techniques/units/unit4/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/optimization-techniques/units/unit4/topics/topic-2/notes.md"
-          }
-        ]
-      },
-      "unit5": {
-        "title": "Unit 5",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/optimization-techniques/units/unit5/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/optimization-techniques/units/unit5/topics/topic-2/notes.md"
-          }
-        ]
-      }
-    },
-    "extras": [
-      {
-        "id": "coming-soon",
-        "title": "Coming Soon",
-        "path": "content/optimization-techniques/pyq-solutions/coming-soon.md",
-        "category": "pyq-solutions"
-      },
-      {
-        "id": "README",
-        "title": "README",
-        "path": "content/optimization-techniques/pyq-solutions/README.md",
-        "category": "pyq-solutions"
-      },
-      {
-        "id": "cheatsheet",
-        "title": "Cheatsheet",
-        "path": "content/optimization-techniques/revision/cheatsheet.md",
-        "category": "revision"
-      },
-      {
-        "id": "important-definitions",
-        "title": "Important Definitions",
-        "path": "content/optimization-techniques/revision/important-definitions.md",
-        "category": "revision"
-      },
-      {
-        "id": "one-night-revision",
-        "title": "One Night Revision",
-        "path": "content/optimization-techniques/revision/one-night-revision.md",
-        "category": "revision"
-      },
-      {
-        "id": "viva-questions",
-        "title": "Viva Questions",
-        "path": "content/optimization-techniques/revision/viva-questions.md",
-        "category": "revision"
-      },
-      {
-        "id": "coming-soon",
-        "title": "Coming Soon",
-        "path": "content/optimization-techniques/mindmaps/coming-soon.md",
-        "category": "mindmaps"
-      }
-    ]
+    "units": {},
+    "extras": []
   },
   "power-bi": {
     "title": "Power BI",
-    "units": {
-      "unit1": {
-        "title": "Unit 1",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/power-bi/units/unit1/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/power-bi/units/unit1/topics/topic-2/notes.md"
-          }
-        ]
-      },
-      "unit2": {
-        "title": "Unit 2",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/power-bi/units/unit2/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/power-bi/units/unit2/topics/topic-2/notes.md"
-          }
-        ]
-      },
-      "unit3": {
-        "title": "Unit 3",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/power-bi/units/unit3/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/power-bi/units/unit3/topics/topic-2/notes.md"
-          }
-        ]
-      },
-      "unit4": {
-        "title": "Unit 4",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/power-bi/units/unit4/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/power-bi/units/unit4/topics/topic-2/notes.md"
-          }
-        ]
-      },
-      "unit5": {
-        "title": "Unit 5",
-        "topics": [
-          {
-            "id": "topic-1",
-            "title": "Topic 1",
-            "path": "content/power-bi/units/unit5/topics/topic-1/notes.md"
-          },
-          {
-            "id": "topic-2",
-            "title": "Topic 2",
-            "path": "content/power-bi/units/unit5/topics/topic-2/notes.md"
-          }
-        ]
-      }
-    },
-    "extras": [
-      {
-        "id": "coming-soon",
-        "title": "Coming Soon",
-        "path": "content/power-bi/pyq-solutions/coming-soon.md",
-        "category": "pyq-solutions"
-      },
-      {
-        "id": "README",
-        "title": "README",
-        "path": "content/power-bi/pyq-solutions/README.md",
-        "category": "pyq-solutions"
-      },
-      {
-        "id": "cheatsheet",
-        "title": "Cheatsheet",
-        "path": "content/power-bi/revision/cheatsheet.md",
-        "category": "revision"
-      },
-      {
-        "id": "important-definitions",
-        "title": "Important Definitions",
-        "path": "content/power-bi/revision/important-definitions.md",
-        "category": "revision"
-      },
-      {
-        "id": "one-night-revision",
-        "title": "One Night Revision",
-        "path": "content/power-bi/revision/one-night-revision.md",
-        "category": "revision"
-      },
-      {
-        "id": "viva-questions",
-        "title": "Viva Questions",
-        "path": "content/power-bi/revision/viva-questions.md",
-        "category": "revision"
-      },
-      {
-        "id": "coming-soon",
-        "title": "Coming Soon",
-        "path": "content/power-bi/mindmaps/coming-soon.md",
-        "category": "mindmaps"
-      }
-    ]
+    "units": {},
+    "extras": []
   }
 }
