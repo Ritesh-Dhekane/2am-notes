@@ -6,6 +6,7 @@ import subjectsData from '../../data/subjects.json';
 import navigationData from '../../data/navigation.json';
 import { Menu, Search, Share2, Printer, Bookmark, ChevronRight } from 'lucide-react';
 import { trackContentOpen } from '../utils/analytics';
+import { resolveAssetUrl } from '../utils/path';
 
 const ContentViewer = () => {
   const { subjectId } = useParams();
@@ -53,8 +54,8 @@ const ContentViewer = () => {
       try {
         setLoading(true);
         // Path is relative to public, e.g., content/stqa/...
-        // We need to fetch from root
-        const response = await fetch(`/${contentPath}`);
+        // Resolve path dynamically for GitHub Pages and local environments
+        const response = await fetch(resolveAssetUrl(contentPath));
         if (!response.ok) throw new Error('Failed to load content');
         const text = await response.text();
         setContent(text);

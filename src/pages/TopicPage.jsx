@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import MarkdownRenderer from '../renderer/MarkdownRenderer';
 import subjectsData from '../../data/subjects.json';
+import { resolveAssetUrl } from '../utils/path';
 import { ArrowLeft, ChevronRight, Menu, X, Share2, Printer, Bookmark, Search } from 'lucide-react';
 
 const TopicPage = () => {
@@ -38,10 +39,8 @@ const TopicPage = () => {
 
       try {
         setLoading(true);
-        // Correctly handle paths for both local and GitHub Pages
-        // topic.path starts with /content/, so we prepend process.env.BASE_URL if needed
-        // but since we're using relative paths in vite config, a simple fetch should work
-        const response = await fetch(topic.path);
+        // Correctly handle paths for both local and GitHub Pages using resolveAssetUrl
+        const response = await fetch(resolveAssetUrl(topic.path));
         if (!response.ok) throw new Error('Failed to load content');
         const text = await response.text();
         setContent(text);

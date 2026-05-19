@@ -2,6 +2,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import CodeBlock from './CodeBlock';
+import { resolveAssetUrl } from '../utils/path';
 import { Info, AlertTriangle, Lightbulb, GraduationCap, CheckCircle } from 'lucide-react';
 
 const MarkdownRenderer = ({ content }) => {
@@ -75,7 +76,7 @@ const MarkdownRenderer = ({ content }) => {
         td: ({ children }) => <td className="border-b p-4">{children}</td>,
         img: ({ src, alt }) => (
           <div className="my-10 flex flex-col items-center">
-            <img src={src} alt={alt} className="rounded-2xl shadow-2xl max-w-full h-auto border border-border" />
+            <img src={resolveAssetUrl(src)} alt={alt} className="rounded-2xl shadow-2xl max-w-full h-auto border border-border" />
             {alt && <p className="text-sm text-muted-foreground mt-4 italic font-medium">{alt}</p>}
           </div>
         ),
