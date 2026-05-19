@@ -7,7 +7,14 @@
   "software-testing-quality-assurance": {
     "title": "Software Testing & QA",
     "units": {},
-    "extras": []
+    "extras": [
+      {
+        "id": "stqa-question-bank",
+        "title": "Stqa Question Bank",
+        "path": "content/software-testing-quality-assurance/revision/stqa-question-bank.md",
+        "category": "revision"
+      }
+    ]
   },
   "research-methodology": {
     "title": "Research Methodology",
