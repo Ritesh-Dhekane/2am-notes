@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Moon, Sun, BookOpen, GitBranch, Palette, Check } from 'lucide-react';
+import { Moon, Sun, GitBranch, Palette, Check } from 'lucide-react';
 import SearchBar from './SearchBar';
 
 const Navbar = ({ theme, setTheme }) => {
@@ -20,10 +20,10 @@ const Navbar = ({ theme, setTheme }) => {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-2">
           <Link to="/" className="flex items-center gap-2 font-bold text-xl tracking-tight">
-            <div className="bg-primary p-1.5 rounded-lg text-primary-foreground shadow-sm transition-colors">
-              <BookOpen size={20} />
+            <div className="bg-primary px-2.5 py-1 rounded-lg text-primary-foreground font-black text-sm tracking-wider shadow-sm transition-colors">
+              2AM
             </div>
-            <span>2AM <span className="text-primary">Notes</span></span>
+            <span>Notes</span>
           </Link>
         </div>
 

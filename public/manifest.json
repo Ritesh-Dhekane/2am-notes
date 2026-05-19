@@ -1,0 +1,18 @@
+{
+  "short_name": "2AM Notes",
+  "name": "2AM Notes — AI-Native Exam Knowledge Platform",
+  "description": "Master your exams at 2 AM. AI-generated, student-curated academic notes.",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "./",
+  "display": "standalone",
+  "theme_color": "#1d4ed8",
+  "background_color": "#000000",
+  "orientation": "portrait"
+}

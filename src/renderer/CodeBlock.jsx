@@ -48,7 +48,7 @@ const CodeBlock = ({ language, value }) => {
       </div>
 
       {/* Code Content */}
-      <div className="text-sm font-mono leading-relaxed relative overflow-hidden">
+      <div className="text-xs sm:text-sm font-mono leading-relaxed relative overflow-x-auto">
         <SyntaxHighlighter
           language={language}
           style={vscDarkPlus}
@@ -56,8 +56,8 @@ const CodeBlock = ({ language, value }) => {
             margin: 0,
             padding: '1.5rem',
             backgroundColor: 'transparent',
-            fontSize: '0.9rem',
-            lineHeight: '1.6',
+            fontSize: 'inherit',
+            lineHeight: 'inherit',
             maxHeight: '600px', // Prevent excessively long blocks
             overflow: 'auto',
           }}

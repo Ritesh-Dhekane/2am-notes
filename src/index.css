@@ -172,11 +172,18 @@
 
 /* Code Block Styling */
 .prose pre {
-  @apply !bg-[#1e1e1e] !rounded-xl !border !border-border !p-4 !my-8 shadow-2xl overflow-hidden;
+  @apply !bg-[#1e1e1e] !rounded-xl !border !border-border !p-4 !my-8 shadow-2xl overflow-x-auto;
 }
 
 .prose code:not(pre code) {
   @apply bg-muted px-1.5 py-0.5 rounded-md text-sm font-mono text-primary font-medium;
+}
+
+@media (max-width: 640px) {
+  .prose pre, .prose code {
+    font-size: 0.75rem !important;
+    line-height: 1.4 !important;
+  }
 }
 
 /* Callout Blocks (Admonitions) */

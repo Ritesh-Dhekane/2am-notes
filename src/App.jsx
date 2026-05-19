@@ -8,11 +8,13 @@ import ContentViewer from './pages/ContentViewer';
 import SearchPage from './pages/SearchPage';
 import NotFoundPage from './pages/NotFoundPage';
 import AnalyticsTracker from './components/AnalyticsTracker';
+import PWAInstallPrompt from './components/PWAInstallPrompt';
 
 function App() {
   return (
     <Router>
       <AnalyticsTracker />
+      <PWAInstallPrompt />
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
