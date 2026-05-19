@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useLocation, Link } from 'react-router-dom';
+import { useParams, useLocation, Link, Navigate } from 'react-router-dom';
 import MarkdownRenderer from '../renderer/MarkdownRenderer';
 import ContentSidebar from '../components/ContentSidebar';
 import subjectsData from '../../data/subjects.json';
@@ -19,6 +19,27 @@ const ContentViewer = () => {
 
   const subject = subjectsData.find((s) => s.id === subjectId);
   const navigation = navigationData[subjectId];
+
+  // Helper to validate paths against actual navigation metadata
+  const isPathValid = (nav, path) => {
+    if (!nav || !path) return false;
+    const inUnits = Object.values(nav.units || {}).some(unit => 
+      unit.topics && unit.topics.some(topic => topic.path === path)
+    );
+    if (inUnits) return true;
+    const inExtras = nav.extras && nav.extras.some(extra => extra.path === path);
+    return inExtras;
+  };
+
+  const hasActiveUnits = Object.values(navigation?.units || {}).some(
+    (unit) => unit.topics && unit.topics.length > 0
+  );
+  const hasActiveExtras = navigation?.extras && navigation.extras.length > 0;
+  const isEnabled = hasActiveUnits || hasActiveExtras;
+
+  if (!subject || !isEnabled || !isPathValid(navigation, contentPath)) {
+    return <Navigate to="/" replace />;
+  }
 
   useEffect(() => {
     const fetchContent = async () => {

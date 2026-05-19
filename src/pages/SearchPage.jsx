@@ -119,11 +119,11 @@ const SearchPage = () => {
             <p className="text-muted-foreground">We couldn't find anything matching "{query}". Try different keywords.</p>
           </div>
         ) : (
-          <div className="text-center py-24 bg-primary/5 rounded-3xl border border-primary/10">
-            <Book size={64} className="mx-auto text-primary/20 mb-6" />
-            <h3 className="text-2xl font-bold mb-2">Instant Discovery</h3>
-            <p className="text-muted-foreground max-w-sm mx-auto">
-              Access 1000+ solved PYQs, revision summaries, and unit notes across all subjects.
+          <div className="text-center py-24 bg-card border border-border rounded-3xl">
+            <Book size={48} className="mx-auto text-primary/30 mb-6" />
+            <h3 className="text-xl font-bold mb-2">Knowledge Base Search</h3>
+            <p className="text-muted-foreground max-w-sm mx-auto text-sm">
+              Search all indexed study units, revision logs, and solved PYQ solutions once materials are ingested.
             </p>
           </div>
         )}

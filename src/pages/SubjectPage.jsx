@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Navigate } from 'react-router-dom';
 import subjectsData from '../../data/subjects.json';
 import navigationData from '../../data/navigation.json';
 import { ArrowLeft, BookOpen, ChevronRight, GraduationCap, Zap, Brain, FileText, Lock } from 'lucide-react';
@@ -33,18 +33,24 @@ const SubjectPage = () => {
     );
   }
 
-  const sections = [
-    { id: 'pyq-solutions', title: 'Solved PYQs', icon: <GraduationCap size={20} className="text-purple-500" /> },
-    { id: 'revision', title: 'Revision Notes', icon: <Zap size={20} className="text-amber-500" /> },
-    { id: 'mindmaps', title: 'Concept Maps', icon: <Brain size={20} className="text-emerald-500" /> },
-  ];
-
   // Get active units that actually have topics indexed in navigation
   const activeUnits = Object.entries(navigation?.units || {}).filter(
     ([_, unit]) => unit.topics && unit.topics.length > 0
   );
   
   const hasActiveUnits = activeUnits.length > 0;
+  const hasActiveExtras = navigation?.extras && navigation.extras.length > 0;
+  const isEnabled = hasActiveUnits || hasActiveExtras;
+
+  if (!isEnabled) {
+    return <Navigate to="/" replace />;
+  }
+
+  const sections = [
+    { id: 'pyq-solutions', title: 'Solved PYQs', icon: <GraduationCap size={20} className="text-purple-500" /> },
+    { id: 'revision', title: 'Revision Notes', icon: <Zap size={20} className="text-amber-500" /> },
+    { id: 'mindmaps', title: 'Concept Maps', icon: <Brain size={20} className="text-emerald-500" /> },
+  ];
   
   // Total available notes topics
   const totalTopics = activeUnits.reduce((acc, [_, unit]) => acc + (unit.topics?.length || 0), 0);
@@ -95,52 +101,24 @@ const SubjectPage = () => {
             </div>
           ) : (
             <div className="rounded-3xl border border-dashed border-border p-8 md:p-12 bg-muted/10 relative overflow-hidden">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 pb-6 border-b border-border/80">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div>
                   <h3 className="text-xl font-bold mb-1 flex items-center gap-2 text-foreground">
                     <span className="relative flex h-3 w-3">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
                     </span>
-                    Topic Notes Pipeline
+                    Knowledge Pipeline Initializing
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    Chapter-wise detailed notes are currently being processed from the mapped sources.
+                    Study resources are being structured and verified. Notes and PYQ solutions will appear here shortly.
                   </p>
                 </div>
                 <div className="text-xs font-bold uppercase tracking-wider text-amber-500 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 shrink-0 self-start md:self-auto flex items-center gap-1">
                   <Lock size={12} />
-                  Indexing Sources
+                  In Progress
                 </div>
               </div>
-
-              {subject.sourceMapping && Object.values(subject.sourceMapping).some(arr => arr && arr.length > 0) && (
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground/80 mb-4">
-                    Mapped Source Materials
-                  </h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {Object.entries(subject.sourceMapping).map(([key, files]) => {
-                      if (!files || files.length === 0) return null;
-                      return (
-                        <div key={key} className="p-4 rounded-2xl bg-card border border-border/60">
-                          <span className="text-[10px] font-bold uppercase tracking-widest text-primary mb-2 block">
-                            {key}
-                          </span>
-                          <ul className="space-y-1.5">
-                            {files.map((file, idx) => (
-                              <li key={idx} className="text-xs font-mono text-muted-foreground break-all flex items-center gap-1.5">
-                                <span className="h-1 w-1 bg-muted-foreground/45 rounded-full shrink-0"></span>
-                                {file.split('\\').pop().split('/').pop()}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
             </div>
           )}
         </div>

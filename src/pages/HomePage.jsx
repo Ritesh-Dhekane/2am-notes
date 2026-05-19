@@ -3,7 +3,7 @@ import SubjectCard from '../components/SubjectCard';
 import subjectsData from '../../data/subjects.json';
 import contentIndex from '../../data/content-index.json';
 import navigationData from '../../data/navigation.json';
-import { Sparkles, Brain, Clock, Zap } from 'lucide-react';
+import { Terminal, Database } from 'lucide-react';
 
 const HomePage = () => {
   const totalRealItems = contentIndex.length;
@@ -15,76 +15,77 @@ const HomePage = () => {
     return hasTopics || hasExtras;
   }).length;
 
+  const isWorkspaceEmpty = totalRealItems === 0;
+
   return (
-    <div className="container mx-auto px-4 py-20 transition-theme">
-      {/* Hero Section */}
-      <div className="flex flex-col items-center text-center mb-24 relative">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/10 rounded-full blur-3xl -z-10 animate-pulse"></div>
+    <div className="container mx-auto px-6 py-24 transition-theme max-w-6xl">
+      {/* Elegant Header / Hero */}
+      <div className="flex flex-col items-start mb-24 relative max-w-3xl">
+        <div className="absolute top-0 left-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl -z-10 animate-pulse"></div>
         
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted border border-border text-xs font-bold uppercase tracking-widest text-primary mb-8 animate-in fade-in slide-in-from-top-4 duration-1000">
-          <Sparkles size={14} />
-          Powered by Academic AI
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-muted border border-border text-[10px] font-mono uppercase tracking-widest text-muted-foreground/80 mb-6 animate-in fade-in slide-in-from-top-4 duration-700">
+          <Terminal size={12} />
+          {isWorkspaceEmpty ? 'Workspace Initializing' : 'Workspace Ready'}
         </div>
         
-        <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.9] animate-in fade-in slide-in-from-bottom-4 duration-700">
-          MASTER YOUR <br />
-          SYLLABUS AT <span className="text-primary italic">2 AM.</span>
+        <h1 className="text-4xl md:text-7xl font-black tracking-tight mb-6 leading-none animate-in fade-in slide-in-from-bottom-4 duration-700">
+          2AM NOTES.
         </h1>
         
-        <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl leading-relaxed mb-12 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200">
-          Curated markdown notes, solved PYQs, and revision modules designed for high-pressure exam prep.
+        <p className="text-lg md:text-xl text-muted-foreground leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200">
+          A minimalist study platform for high-pressure exam prep. Curated topic logs and verified PYQ solutions, optimized for late-night focus.
         </p>
-
-        <div className="flex flex-wrap justify-center gap-8 text-sm font-medium text-muted-foreground animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500">
-           <div className="flex items-center gap-2"><Brain size={18} className="text-primary" /> Active Recall Ready</div>
-           <div className="flex items-center gap-2"><Clock size={18} className="text-primary" /> Optimized for Speed</div>
-           <div className="flex items-center gap-2"><Zap size={18} className="text-primary" /> Multi-Theme UI</div>
-        </div>
       </div>
 
-      {/* Subject Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+      {/* Grid of Subject Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
         {subjectsData.map((subject, idx) => (
-          <div key={subject.id} className={`animate-in fade-in slide-in-from-bottom-8 duration-700`} style={{ animationDelay: `${idx * 100}ms` }}>
+          <div key={subject.id} className="animate-in fade-in slide-in-from-bottom-4 duration-500" style={{ animationDelay: `${idx * 75}ms` }}>
             <SubjectCard subject={subject} />
           </div>
         ))}
       </div>
 
-      {/* System Status Dashboard Footer */}
-      <div className="mt-32 p-8 md:p-12 rounded-[2rem] bg-card/50 border border-border overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-        
+      {/* Minimal Database OS Dashboard Footer */}
+      <div className="p-8 rounded-2xl bg-card/30 border border-border/80 relative overflow-hidden">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 relative z-10">
           <div>
-            <h2 className="text-2xl font-black tracking-tighter mb-2 uppercase text-foreground">
-              Study OS Database
+            <h2 className="text-sm font-bold uppercase tracking-widest text-foreground flex items-center gap-2 mb-1.5">
+              <Database size={14} className="text-primary" />
+              SYSTEM DASHBOARD
             </h2>
-            <p className="text-sm text-muted-foreground max-w-md">
-              A centralized, theme-aware knowledge platform serving markdown revision logs and verified PYQ solutions.
+            <p className="text-xs text-muted-foreground max-w-md">
+              Centralized index monitoring the status of markdown syllabus materials. Add notes to the ingestion layer to populate the workspace.
             </p>
           </div>
           
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 w-full lg:w-auto">
-            <div className="border border-border/80 bg-muted/30 p-4 rounded-xl">
-              <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground/60 block mb-1">Indexing status</span>
-              <span className="inline-flex items-center gap-1.5 text-sm font-bold text-emerald-500">
-                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                Fully Synced
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full lg:w-auto">
+            <div className="border border-border/60 bg-muted/20 p-4 rounded-xl flex flex-col justify-between min-w-[160px]">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground/60 block mb-1">Indexing status</span>
+              {isWorkspaceEmpty ? (
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-500">
+                  <span className="h-2.5 w-2.5 rounded-full bg-amber-500 animate-pulse"></span>
+                  Awaiting Content
+                </span>
+              ) : (
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-500">
+                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  Active
+                </span>
+              )}
+            </div>
+            
+            <div className="border border-border/60 bg-muted/20 p-4 rounded-xl flex flex-col justify-between min-w-[160px]">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground/60 block mb-1">Active Modules</span>
+              <span className="text-xs font-bold text-foreground">
+                {activeSubjects} / {totalSubjects} Modules
               </span>
             </div>
             
-            <div className="border border-border/80 bg-muted/30 p-4 rounded-xl">
-              <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground/60 block mb-1">Active Modules</span>
-              <span className="text-sm font-bold text-foreground">
-                {activeSubjects} / {totalSubjects} Subjects
-              </span>
-            </div>
-            
-            <div className="border border-border/80 bg-muted/30 p-4 rounded-xl col-span-2 sm:col-span-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground/60 block mb-1">Indexed Items</span>
-              <span className="text-sm font-bold text-foreground">
-                {totalRealItems} Active Logs
+            <div className="border border-border/60 bg-muted/20 p-4 rounded-xl flex flex-col justify-between min-w-[160px]">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground/60 block mb-1">Active Logs</span>
+              <span className="text-xs font-bold text-foreground">
+                {totalRealItems} Files Indexed
               </span>
             </div>
           </div>

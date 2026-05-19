@@ -28,7 +28,7 @@ const SubjectCard = ({ subject }) => {
         {!isEnabled && (
           <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-muted border border-border text-[9px] font-bold uppercase tracking-widest text-muted-foreground/80">
             <Icons.Lock size={10} />
-            In Progress
+            Content In Progress
           </div>
         )}
       </div>
@@ -48,8 +48,8 @@ const SubjectCard = ({ subject }) => {
             <Icons.ArrowRight size={16} className="ml-2 text-primary transition-transform group-hover:translate-x-1" />
           </>
         ) : (
-          <span className="text-muted-foreground/60 flex items-center gap-1">
-            Pipeline Initializing...
+          <span className="text-muted-foreground/60 flex items-center gap-1 text-xs">
+            Preparing notes and PYQ solutions...
           </span>
         )}
       </div>

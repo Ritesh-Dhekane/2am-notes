@@ -1,101 +1,22 @@
 {
   "java-programming": {
     "title": "Java Programming",
-    "units": {
-      "unit1": {
-        "title": "Unit 1",
-        "topics": [
-          {
-            "id": "oop-concepts",
-            "title": "Oop Concepts",
-            "path": "content/java-programming/units/unit1/topics/oop-concepts/notes.md"
-          }
-        ]
-      }
-    },
-    "extras": [
-      {
-        "id": "README",
-        "title": "README",
-        "path": "content/java-programming/pyq-solutions/README.md",
-        "category": "pyq-solutions"
-      }
-    ]
+    "units": {},
+    "extras": []
   },
   "software-testing-quality-assurance": {
     "title": "Software Testing & QA",
     "units": {},
-    "extras": [
-      {
-        "id": "README",
-        "title": "README",
-        "path": "content/software-testing-quality-assurance/pyq-solutions/README.md",
-        "category": "pyq-solutions"
-      },
-      {
-        "id": "solved-dec-2022",
-        "title": "Solved Dec 2022",
-        "path": "content/software-testing-quality-assurance/pyq-solutions/solved-dec-2022.md",
-        "category": "pyq-solutions"
-      },
-      {
-        "id": "solved-may-2023",
-        "title": "Solved May 2023",
-        "path": "content/software-testing-quality-assurance/pyq-solutions/solved-may-2023.md",
-        "category": "pyq-solutions"
-      },
-      {
-        "id": "one-night-revision",
-        "title": "One Night Revision",
-        "path": "content/software-testing-quality-assurance/revision/one-night-revision.md",
-        "category": "revision"
-      }
-    ]
+    "extras": []
   },
   "research-methodology": {
     "title": "Research Methodology",
     "units": {},
-    "extras": [
-      {
-        "id": "README",
-        "title": "README",
-        "path": "content/research-methodology/pyq-solutions/README.md",
-        "category": "pyq-solutions"
-      },
-      {
-        "id": "solved-dec-2022",
-        "title": "Solved Dec 2022",
-        "path": "content/research-methodology/pyq-solutions/solved-dec-2022.md",
-        "category": "pyq-solutions"
-      },
-      {
-        "id": "solved-may-2023",
-        "title": "Solved May 2023",
-        "path": "content/research-methodology/pyq-solutions/solved-may-2023.md",
-        "category": "pyq-solutions"
-      },
-      {
-        "id": "one-night-revision",
-        "title": "One Night Revision",
-        "path": "content/research-methodology/revision/one-night-revision.md",
-        "category": "revision"
-      }
-    ]
+    "extras": []
   },
   "machine-learning-techniques": {
     "title": "Machine Learning Techniques",
-    "units": {
-      "unit1": {
-        "title": "Unit 1",
-        "topics": [
-          {
-            "id": "basics-of-ml",
-            "title": "Basics Of Ml",
-            "path": "content/machine-learning-techniques/units/unit1/topics/basics-of-ml/notes.md"
-          }
-        ]
-      }
-    },
+    "units": {},
     "extras": []
   },
   "optimization-techniques": {
