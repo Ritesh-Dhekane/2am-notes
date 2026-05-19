@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import subjectsData from '../../data/subjects.json';
 import navigationData from '../../data/navigation.json';
 import { ArrowLeft, BookOpen, ChevronRight, GraduationCap, Zap, Brain, FileText, Lock } from 'lucide-react';
+import { buildCleanUrl } from '../utils/path';
+import { updatePageMetadata } from '../utils/seo';
 
 const TopicCard = ({ subjectId, topic }) => (
   <Link
-    to={`/subject/${subjectId}/viewer?path=${topic.path}`}
+    to={buildCleanUrl(topic.path)}
     className="group flex items-center justify-between p-4 rounded-xl border bg-card hover:border-primary/50 hover:shadow-md transition-all active:scale-[0.98]"
   >
     <div className="flex items-center gap-3 overflow-hidden">
@@ -23,6 +25,16 @@ const SubjectPage = () => {
   const { subjectId } = useParams();
   const subject = subjectsData.find((s) => s.id === subjectId);
   const navigation = navigationData[subjectId];
+
+  useEffect(() => {
+    if (subject) {
+      updatePageMetadata({
+        title: subject.title,
+        description: `Unlock high-yield exam preparation keys for "${subject.title}" at 2AM Notes. Revise unit-wise notes, download solved previous year papers (PYQs), and master concept maps.`,
+        subjectTitle: 'Subject Hub'
+      });
+    }
+  }, [subjectId, subject]);
 
   if (!subject) {
     return (
@@ -138,7 +150,7 @@ const SubjectPage = () => {
                   {items.map((item) => (
                     <li key={item.id}>
                       <Link 
-                        to={`/subject/${subject.id}/viewer?path=${item.path}`}
+                        to={buildCleanUrl(item.path)}
                         className="flex items-center justify-between p-3 rounded-xl hover:bg-muted text-sm font-medium transition-all group"
                       >
                         <span className="line-clamp-1 group-hover:text-primary transition-colors text-foreground">{item.title}</span>

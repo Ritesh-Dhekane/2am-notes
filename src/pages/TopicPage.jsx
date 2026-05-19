@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Navigate } from 'react-router-dom';
 import MarkdownRenderer from '../renderer/MarkdownRenderer';
 import subjectsData from '../../data/subjects.json';
 import { resolveAssetUrl } from '../utils/path';
@@ -27,6 +27,11 @@ const TopicPage = () => {
         break;
       }
     }
+  }
+
+  // Redirect to clean route under ContentViewer
+  if (subject && unit && topic) {
+    return <Navigate to={`/subject/${subjectId}/units/${unit.id}/topics/${topicId}`} replace />;
   }
 
   useEffect(() => {

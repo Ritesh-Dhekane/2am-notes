@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronRight, FileText, GraduationCap, Zap, Brain, X, ArrowLeft } from 'lucide-react';
+import { buildCleanUrl } from '../utils/path';
 
 const ContentSidebar = ({ subject, navigation, isOpen, onClose, activePath }) => {
   if (!subject || !navigation) return null;
@@ -45,7 +46,7 @@ const ContentSidebar = ({ subject, navigation, isOpen, onClose, activePath }) =>
                       {unit.topics.map((topic) => (
                         <li key={topic.id}>
                           <Link
-                            to={`/subject/${subject.id}/viewer?path=${topic.path}`}
+                            to={buildCleanUrl(topic.path)}
                             className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-all ${activePath === topic.path ? 'bg-primary/10 text-primary font-semibold border-l-2 border-primary' : 'text-muted-foreground hover:bg-muted hover:text-foreground'}`}
                             onClick={onClose}
                           >
@@ -76,7 +77,7 @@ const ContentSidebar = ({ subject, navigation, isOpen, onClose, activePath }) =>
                   {items.map((item) => (
                     <li key={item.id}>
                       <Link
-                        to={`/subject/${subject.id}/viewer?path=${item.path}`}
+                        to={buildCleanUrl(item.path)}
                         className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-all ${activePath === item.path ? 'bg-primary/10 text-primary font-semibold border-l-2 border-primary' : 'text-muted-foreground hover:bg-muted hover:text-foreground'}`}
                         onClick={onClose}
                       >

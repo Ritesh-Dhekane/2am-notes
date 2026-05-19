@@ -18,8 +18,10 @@ function App() {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
-          <Route path="subject/:subjectId" element={<SubjectPage />} />
+           <Route path="subject/:subjectId" element={<SubjectPage />} />
           <Route path="subject/:subjectId/topic/:topicId" element={<TopicPage />} />
+          <Route path="subject/:subjectId/units/:unitId/topics/:topicId" element={<ContentViewer />} />
+          <Route path="subject/:subjectId/:category/:itemId" element={<ContentViewer />} />
           <Route path="subject/:subjectId/viewer" element={<ContentViewer />} />
           <Route path="search" element={<SearchPage />} />
           <Route path="*" element={<NotFoundPage />} />

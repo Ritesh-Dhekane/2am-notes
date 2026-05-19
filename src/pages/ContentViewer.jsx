@@ -6,13 +6,25 @@ import subjectsData from '../../data/subjects.json';
 import navigationData from '../../data/navigation.json';
 import { Menu, Search, Share2, Printer, Bookmark, ChevronRight } from 'lucide-react';
 import { trackContentOpen } from '../utils/analytics';
-import { resolveAssetUrl } from '../utils/path';
+import { resolveAssetUrl, buildCleanUrl, getMarkdownPathFromParams } from '../utils/path';
+import { updatePageMetadata } from '../utils/seo';
 
 const ContentViewer = () => {
-  const { subjectId } = useParams();
+  const { subjectId, category, itemId, unitId, topicId } = useParams();
   const location = useLocation();
+  
+  // Backward compatibility: If the legacy ?path=... query param is present,
+  // parse it, build the clean URL, and redirect the user immediately!
   const searchParams = new URLSearchParams(location.search);
-  const contentPath = searchParams.get('path');
+  const legacyPath = searchParams.get('path');
+  
+  if (legacyPath) {
+    const cleanUrl = buildCleanUrl(legacyPath);
+    return <Navigate to={cleanUrl} replace />;
+  }
+
+  // Resolve content path from clean parameters
+  const contentPath = getMarkdownPathFromParams({ subjectId, category, itemId, unitId, topicId });
   
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(true);
@@ -39,18 +51,48 @@ const ContentViewer = () => {
   const hasActiveExtras = navigation?.extras && navigation.extras.length > 0;
   const isEnabled = hasActiveUnits || hasActiveExtras;
 
+  // Metadata retrieval function for custom page titles and social share descriptions
+  const getDocumentMetadata = () => {
+    if (!navigation || !subject) return { title: 'Study Notes', description: '' };
+
+    if (unitId && topicId) {
+      // Find the topic title
+      const unit = navigation.units[unitId];
+      const topic = unit?.topics?.find(t => t.id === topicId);
+      if (topic) {
+        return {
+          title: topic.title,
+          description: `Comprehensive exam preparation notes for "${topic.title}" under ${unit.title} of ${subject.title}. Master your syllabus with 2AM Notes.`
+        };
+      }
+    }
+
+    if (category && itemId) {
+      const extra = navigation.extras?.find(e => e.id === itemId);
+      if (extra) {
+        let categoryLabel = 'Revision Notes';
+        if (category === 'pyq-solutions') categoryLabel = 'Solved PYQ Solution';
+        if (category === 'mindmaps') categoryLabel = 'Concept Mindmap';
+
+        return {
+          title: extra.title,
+          description: `Master ${subject.title} with this complete "${extra.title}" (${categoryLabel}) on 2AM Notes. Exam-oriented prep, quick definitions, and key solutions.`
+        };
+      }
+    }
+
+    return { title: 'Study Notes', description: '' };
+  };
+
   if (!subject || !isEnabled || !isPathValid(navigation, contentPath)) {
     return <Navigate to="/" replace />;
   }
 
   useEffect(() => {
-    const fetchContent = async () => {
-      if (!contentPath) {
-        setError('No content path provided');
-        setLoading(false);
-        return;
-      }
+    // Only fetch content if we have a valid path
+    if (!contentPath) return;
 
+    const fetchContent = async () => {
       try {
         setLoading(true);
         // Path is relative to public, e.g., content/stqa/...
@@ -61,6 +103,14 @@ const ContentViewer = () => {
         setContent(text);
         setError(null);
         trackContentOpen(contentPath, subjectId);
+
+        // Update dynamic SEO page metadata
+        const docMeta = getDocumentMetadata();
+        updatePageMetadata({
+          title: docMeta.title,
+          description: docMeta.description,
+          subjectTitle: subject.title
+        });
       } catch (err) {
         console.error(err);
         setError('Failed to load study material. Please try again later.');
@@ -71,9 +121,11 @@ const ContentViewer = () => {
 
     fetchContent();
     window.scrollTo(0, 0);
-  }, [contentPath]);
+  }, [contentPath, subjectId]);
 
   if (!subject) return <div className="p-20 text-center">Subject not found</div>;
+
+  const docMeta = getDocumentMetadata();
 
   return (
     <div className="flex min-h-[calc(100vh-64px)] relative bg-background transition-theme">
@@ -100,13 +152,13 @@ const ContentViewer = () => {
           <div className="flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-wider mb-8">
             <Link to={`/subject/${subject.id}`} className="hover:underline">{subject.title}</Link>
             <ChevronRight size={14} className="text-muted-foreground/40" />
-            <span className="text-muted-foreground/60">Knowledge Base</span>
+            <span className="text-muted-foreground/60">{docMeta.title}</span>
           </div>
 
           {/* Action Bar */}
           <div className="flex items-center gap-4 mb-12 border-b border-border pb-6">
             <h1 className="text-4xl md:text-5xl font-black tracking-tighter m-0 flex-1">
-              Study Material
+              {docMeta.title}
             </h1>
             <div className="flex items-center gap-2">
                <button className="p-2 hover:bg-muted rounded-full transition-colors" title="Save"><Bookmark size={20} /></button>

@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SubjectCard from '../components/SubjectCard';
 import subjectsData from '../../data/subjects.json';
 import contentIndex from '../../data/content-index.json';
 import navigationData from '../../data/navigation.json';
 import { Terminal, Database } from 'lucide-react';
+import { updatePageMetadata } from '../utils/seo';
 
 const HomePage = () => {
+  useEffect(() => {
+    updatePageMetadata({
+      title: 'Late Night Exam Prep',
+      description: 'AI-generated, student-curated academic notes, solved PYQs, and revision materials for university exams. Fast, clean, and built for 2 AM studying.'
+    });
+  }, []);
   const totalRealItems = contentIndex.length;
   const totalSubjects = subjectsData.length;
   const activeSubjects = Object.keys(navigationData).filter(subId => {

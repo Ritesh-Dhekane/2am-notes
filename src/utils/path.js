@@ -36,3 +36,61 @@ export const resolveAssetUrl = (urlPath) => {
 
   return `${basePath}${cleanPath}`;
 };
+
+/**
+ * Builds a clean, human-readable URL from a raw markdown path.
+ * Hides raw directories, extensions, and root prefixes.
+ *
+ * @param {string} mdPath - Raw markdown path (e.g. 'content/stqa/revision/stqa-qb.md')
+ * @returns {string} Clean URL (e.g. '/subject/stqa/revision/stqa-qb')
+ */
+export const buildCleanUrl = (mdPath) => {
+  if (!mdPath) return '#';
+
+  // Normalize path separators
+  const cleanPath = mdPath.replace(/\\/g, '/');
+  const parts = cleanPath.split('/');
+
+  // Check if it is a unit topic path: content/:subjectId/units/:unitId/topics/:topicId/notes.md
+  if (parts.length >= 6 && parts[0] === 'content' && parts[2] === 'units' && parts[4] === 'topics') {
+    const subjectId = parts[1];
+    const unitId = parts[3];
+    const topicId = parts[5];
+    return `/subject/${subjectId}/units/${unitId}/topics/${topicId}`;
+  }
+
+  // Check if it is an extra: content/:subjectId/:category/:itemId.md
+  if (parts.length >= 4 && parts[0] === 'content') {
+    const subjectId = parts[1];
+    const category = parts[2];
+    const itemId = parts[3].replace('.md', '');
+    return `/subject/${subjectId}/${category}/${itemId}`;
+  }
+
+  // Fallback to legacy path if unrecognized format
+  return `/subject/${parts[1] || 'unknown'}/viewer?path=${encodeURIComponent(cleanPath)}`;
+};
+
+/**
+ * Recovers the internal markdown filesystem path from clean route parameters.
+ *
+ * @param {object} params - Router parameters (subjectId, category, itemId, unitId, topicId)
+ * @returns {string|null} The resolved internal markdown file path
+ */
+export const getMarkdownPathFromParams = (params) => {
+  if (!params || !params.subjectId) return null;
+
+  const { subjectId, unitId, topicId, category, itemId } = params;
+
+  // Case 1: Unit topic route
+  if (unitId && topicId) {
+    return `content/${subjectId}/units/${unitId}/topics/${topicId}/notes.md`;
+  }
+
+  // Case 2: Extra route (revision, pyqs, mindmaps)
+  if (category && itemId) {
+    return `content/${subjectId}/${category}/${itemId}.md`;
+  }
+
+  return null;
+};

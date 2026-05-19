@@ -4,6 +4,7 @@ import { Search as SearchIcon, Book, ChevronRight, FileText, Command, Target, Br
 import contentIndex from '../../data/content-index.json';
 import subjectsData from '../../data/subjects.json';
 import { trackSearchQuery } from '../utils/analytics';
+import { buildCleanUrl } from '../utils/path';
 
 const SearchPage = () => {
   const [query, setQuery] = useState('');
@@ -90,7 +91,7 @@ const SearchPage = () => {
               return (
                 <Link
                   key={idx}
-                  to={`/subject/${result.subjectId}/viewer?path=${result.path}`}
+                  to={buildCleanUrl(result.path)}
                   className="block p-6 rounded-2xl border bg-card hover:border-primary/50 hover:shadow-xl hover:-translate-y-0.5 transition-all group"
                 >
                   <div className="flex items-center gap-3 mb-3">
