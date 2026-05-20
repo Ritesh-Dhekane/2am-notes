@@ -64,8 +64,9 @@ const SubjectPage = () => {
     { id: 'mindmaps', title: 'Concept Maps', icon: <Brain size={20} className="text-emerald-500" /> },
   ];
   
-  // Total available notes topics
+  const totalExtraItems = navigation?.extras?.length || 0;
   const totalTopics = activeUnits.reduce((acc, [_, unit]) => acc + (unit.topics?.length || 0), 0);
+  const totalResources = totalTopics + totalExtraItems;
 
   return (
     <div className="container mx-auto px-4 py-12 transition-theme">
@@ -79,7 +80,7 @@ const SubjectPage = () => {
           <div className="space-y-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
               <BookOpen size={14} />
-              {totalTopics} Topic Notes Available
+              {totalResources} Study Resources Available
             </div>
             <h1 className="text-4xl md:text-6xl font-black tracking-tighter">{subject.title}</h1>
             <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">

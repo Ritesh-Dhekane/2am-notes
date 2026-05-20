@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const CONTENT_DIR = 'public/content';
+const CONTENT_DIR = 'content';
 
 function getFiles(dir, allFiles = []) {
   if (!fs.existsSync(dir)) return allFiles;

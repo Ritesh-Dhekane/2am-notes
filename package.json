@@ -4,7 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "generate:metadata": "node scripts/generate_metadata.js",
+    "predev": "npm run generate:metadata",
     "dev": "vite",
+    "prebuild": "npm run generate:metadata",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"

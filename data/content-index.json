@@ -1,8 +1,128 @@
 [
   {
+    "subjectId": "java-programming",
+    "title": "PYQ APR 2025",
+    "path": "content/java-programming/pyq-solutions/java-pyq-apr-2025.md",
+    "type": "pyq-solutions",
+    "sourceTitle": "JAVA PYQ - APR 2025"
+  },
+  {
+    "subjectId": "java-programming",
+    "title": "PYQ JAN 2026",
+    "path": "content/java-programming/pyq-solutions/java-pyq-jan-2026.md",
+    "type": "pyq-solutions",
+    "sourceTitle": "JAVA PYQ - JAN 2026"
+  },
+  {
     "subjectId": "software-testing-quality-assurance",
-    "title": "stqa-question-bank",
+    "title": "PYQ APR 2025",
+    "path": "content/software-testing-quality-assurance/pyq-solutions/stqa-pyq-apr-2025.md",
+    "type": "pyq-solutions",
+    "sourceTitle": "STQA PYQ - APR 2025"
+  },
+  {
+    "subjectId": "software-testing-quality-assurance",
+    "title": "PYQ JAN 2026",
+    "path": "content/software-testing-quality-assurance/pyq-solutions/stqa-pyq-jan-2026.md",
+    "type": "pyq-solutions",
+    "sourceTitle": "STQA PYQ - JAN 2026"
+  },
+  {
+    "subjectId": "software-testing-quality-assurance",
+    "title": "Unit 1: Software Quality Assurance & Quality Concepts (PYQ Solutions)",
+    "path": "content/software-testing-quality-assurance/pyq-solutions/unit1-pyqs.md",
+    "type": "pyq-solutions",
+    "sourceTitle": "Unit 1: Software Quality Assurance & Quality Concepts (PYQ Solutions)"
+  },
+  {
+    "subjectId": "software-testing-quality-assurance",
+    "title": "Unit 2: Testing Life Cycle & Strategies (PYQ Solutions)",
+    "path": "content/software-testing-quality-assurance/pyq-solutions/unit2-pyqs.md",
+    "type": "pyq-solutions",
+    "sourceTitle": "Unit 2: Testing Life Cycle & Strategies (PYQ Solutions)"
+  },
+  {
+    "subjectId": "software-testing-quality-assurance",
+    "title": "Unit 3: Static & Dynamic Testing Techniques (PYQ Solutions)",
+    "path": "content/software-testing-quality-assurance/pyq-solutions/unit3-pyqs.md",
+    "type": "pyq-solutions",
+    "sourceTitle": "Unit 3: Static & Dynamic Testing Techniques (PYQ Solutions)"
+  },
+  {
+    "subjectId": "software-testing-quality-assurance",
+    "title": "Unit 4: Test Planning & Documentation (PYQ Solutions)",
+    "path": "content/software-testing-quality-assurance/pyq-solutions/unit4-pyqs.md",
+    "type": "pyq-solutions",
+    "sourceTitle": "Unit 4: Test Planning & Documentation (PYQ Solutions)"
+  },
+  {
+    "subjectId": "software-testing-quality-assurance",
+    "title": "Unit 5: Automation & Defect Management (PYQ Solutions)",
+    "path": "content/software-testing-quality-assurance/pyq-solutions/unit5-pyqs.md",
+    "type": "pyq-solutions",
+    "sourceTitle": "Unit 5: Automation & Defect Management (PYQ Solutions)"
+  },
+  {
+    "subjectId": "software-testing-quality-assurance",
+    "title": "Question Bank",
     "path": "content/software-testing-quality-assurance/revision/stqa-question-bank.md",
-    "type": "revision"
+    "type": "revision",
+    "sourceTitle": "STQA Exam Question Bank (Units 1 - 4)"
+  },
+  {
+    "subjectId": "research-methodology",
+    "title": "PYQ APR 2025",
+    "path": "content/research-methodology/pyq-solutions/research-methodology-pyq-apr-2025.md",
+    "type": "pyq-solutions",
+    "sourceTitle": "Research Methodology PYQ - APR 2025"
+  },
+  {
+    "subjectId": "research-methodology",
+    "title": "PYQ JAN 2026",
+    "path": "content/research-methodology/pyq-solutions/research-methodology-pyq-jan-2026.md",
+    "type": "pyq-solutions",
+    "sourceTitle": "Research Methodology PYQ - JAN 2026"
+  },
+  {
+    "subjectId": "research-methodology",
+    "title": "Unit 1: Introduction to Research (PYQ Solutions)",
+    "path": "content/research-methodology/pyq-solutions/unit1-pyqs.md",
+    "type": "pyq-solutions",
+    "sourceTitle": "Unit 1: Introduction to Research (PYQ Solutions)"
+  },
+  {
+    "subjectId": "research-methodology",
+    "title": "Unit 2: Research Problem & Hypothesis (PYQ Solutions)",
+    "path": "content/research-methodology/pyq-solutions/unit2-pyqs.md",
+    "type": "pyq-solutions",
+    "sourceTitle": "Unit 2: Research Problem & Hypothesis (PYQ Solutions)"
+  },
+  {
+    "subjectId": "research-methodology",
+    "title": "Unit 3: Sampling & Data Collection (PYQ Solutions)",
+    "path": "content/research-methodology/pyq-solutions/unit3-pyqs.md",
+    "type": "pyq-solutions",
+    "sourceTitle": "Unit 3: Sampling & Data Collection (PYQ Solutions)"
+  },
+  {
+    "subjectId": "research-methodology",
+    "title": "Unit 4: Data Analysis & Statistical Testing (PYQ Solutions)",
+    "path": "content/research-methodology/pyq-solutions/unit4-pyqs.md",
+    "type": "pyq-solutions",
+    "sourceTitle": "Unit 4: Data Analysis & Statistical Testing (PYQ Solutions)"
+  },
+  {
+    "subjectId": "research-methodology",
+    "title": "Unit 5: Research Reporting & Outline (PYQ Solutions)",
+    "path": "content/research-methodology/pyq-solutions/unit5-pyqs.md",
+    "type": "pyq-solutions",
+    "sourceTitle": "Unit 5: Research Reporting & Outline (PYQ Solutions)"
+  },
+  {
+    "subjectId": "machine-learning-techniques",
+    "title": "PYQ APR 2025",
+    "path": "content/machine-learning-techniques/pyq-solutions/machine-learning-techniques-pyq-apr-2025.md",
+    "type": "pyq-solutions",
+    "sourceTitle": "Machine Learning Techniques PYQ - APR 2025"
   }
 ]
