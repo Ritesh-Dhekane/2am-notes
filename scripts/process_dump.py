@@ -31,25 +31,40 @@ PUBLIC_DUMP_DIR = BASE_DIR / "public" / "dump"
 DATA_INDEX_FILE = BASE_DIR / "data" / "dump-index.json"
 
 SUBJECT_ALIASES = {
+    "awd": "advanced-web-design",
+    "advanced-web-design": "advanced-web-design",
     "java": "java-programming",
     "java-programming": "java-programming",
     "stqa": "software-testing-quality-assurance",
     "software-testing-quality-assurance": "software-testing-quality-assurance",
     "rm": "research-methodology",
     "research-methodology": "research-methodology",
+    "ml": "machine-learning-techniques",
+    "machine-learning-techniques": "machine-learning-techniques",
     "ot": "optimization-techniques",
     "optimization-techniques": "optimization-techniques",
-    "ccms": "ccms",
+    "pbi": "power-bi",
+    "power-bi": "power-bi",
+    "js": "javascript",
+    "javascript": "javascript",
+    "cyber": "cyber-security",
+    "cyber-security": "cyber-security",
+    "info-security": "information-security",
+    "information-security": "information-security",
+    "information security": "information-security",
+    "info": "information-security",
+    "ecc": "eccs",
     "eccs": "eccs",
+    "ccms": "ccms",
 }
 
 CATEGORY_PATTERNS = [
     ("unit-notes", ("unit", "chapter", "notes")),
+    ("question-papers", ("question bank", "question paper", "paper", "pyq", "qb")),
+    ("templates", ("sample", "manual", "mannual", "test case", "test plan", "photo")),
     ("references", ("research paper", "reference", "research", "ethics", "anova", "hypothesis", "distribution")),
-    ("question-papers", ("paper", "pyq", "question bank", "question paper", "qb")),
     ("assignments", ("assignment", "assignmnet", "assignmnets")),
     ("case-studies", ("case study",)),
-    ("templates", ("sample", "manual", "mannual", "test case", "test plan")),
 ]
 
 CATEGORY_ORDER = {

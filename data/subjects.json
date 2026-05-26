@@ -598,6 +598,66 @@
     }
   },
   {
+    "id": "advanced-web-design",
+    "title": "AWD",
+    "icon": "MonitorSmartphone",
+    "description": "Centralized source materials and study documents for Advanced Web Design.",
+    "unitCount": 5,
+    "units": [],
+    "sourceMapping": {
+      "syllabus": [],
+      "pyqs": [],
+      "references": [],
+      "books": [],
+      "handwritten": []
+    }
+  },
+  {
+    "id": "cyber-security",
+    "title": "Cyber Security",
+    "icon": "Shield",
+    "description": "Centralized source materials and study documents for Cyber Security.",
+    "unitCount": 5,
+    "units": [],
+    "sourceMapping": {
+      "syllabus": [],
+      "pyqs": [],
+      "references": [],
+      "books": [],
+      "handwritten": []
+    }
+  },
+  {
+    "id": "information-security",
+    "title": "Information Security",
+    "icon": "LockKeyhole",
+    "description": "Centralized source materials and study documents for Information Security.",
+    "unitCount": 5,
+    "units": [],
+    "sourceMapping": {
+      "syllabus": [],
+      "pyqs": [],
+      "references": [],
+      "books": [],
+      "handwritten": []
+    }
+  },
+  {
+    "id": "javascript",
+    "title": "JavaScript",
+    "icon": "FileCode2",
+    "description": "Centralized source materials and study documents for JavaScript.",
+    "unitCount": 5,
+    "units": [],
+    "sourceMapping": {
+      "syllabus": [],
+      "pyqs": [],
+      "references": [],
+      "books": [],
+      "handwritten": []
+    }
+  },
+  {
     "id": "ccms",
     "title": "CCMS",
     "icon": "Cloud",

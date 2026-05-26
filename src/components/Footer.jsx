@@ -1,5 +1,6 @@
 import React from 'react';
 import { Globe, Share2 } from 'lucide-react';
+import SupportDeveloperCard from './SupportDeveloperCard';
 
 const Footer = () => {
   const handleShare = async () => {
@@ -24,6 +25,9 @@ const Footer = () => {
   return (
     <footer className="border-t bg-muted/30 py-8">
       <div className="container mx-auto px-4 text-center">
+        <div className="mb-6 flex justify-center">
+          <SupportDeveloperCard />
+        </div>
         <p className="text-sm text-muted-foreground">
           &copy; {new Date().getFullYear()} 2AM Notes. Built for students, by AI.
         </p>

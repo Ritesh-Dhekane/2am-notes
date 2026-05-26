@@ -186,6 +186,26 @@
       }
     ]
   },
+  "advanced-web-design": {
+    "title": "AWD",
+    "units": {},
+    "extras": []
+  },
+  "cyber-security": {
+    "title": "Cyber Security",
+    "units": {},
+    "extras": []
+  },
+  "information-security": {
+    "title": "Information Security",
+    "units": {},
+    "extras": []
+  },
+  "javascript": {
+    "title": "JavaScript",
+    "units": {},
+    "extras": []
+  },
   "ccms": {
     "title": "CCMS",
     "units": {},

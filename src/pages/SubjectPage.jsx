@@ -17,15 +17,12 @@ import {
   ExternalLink,
   Copy,
   Check,
-  Eye,
+  TriangleAlert,
+  X,
 } from 'lucide-react';
 import { buildCleanUrl } from '../utils/path';
 import { updatePageMetadata } from '../utils/seo';
-import {
-  buildRawDocumentUrl,
-  getRawDocumentCategoryLabel,
-  RAW_DOCUMENT_NOTICE,
-} from '../utils/rawDocuments';
+import { getRawDocumentCategoryLabel, RAW_DOCUMENT_NOTICE } from '../utils/rawDocuments';
 import { isSubjectEnabled } from '../utils/subjectAvailability';
 
 const DisclaimerBox = () => (
@@ -35,15 +32,13 @@ const DisclaimerBox = () => (
   </div>
 );
 
-const RawDocCard = ({ doc, subjectId }) => {
+const RawDocCard = ({ doc, onOpen }) => {
   const [copied, setCopied] = React.useState(false);
   const fileUrl = `${import.meta.env.BASE_URL || '/'}${doc.path}`;
 
   const handleCopyLink = async () => {
     try {
-      await navigator.clipboard.writeText(
-        `${window.location.origin}${import.meta.env.BASE_URL || '/'}#${buildRawDocumentUrl(subjectId, doc.id)}`
-      );
+      await navigator.clipboard.writeText(`${window.location.origin}${fileUrl}`);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
@@ -61,7 +56,7 @@ const RawDocCard = ({ doc, subjectId }) => {
   return (
     <div className="rounded-xl border bg-card/50 p-4 transition-all hover:border-primary/50 hover:bg-card hover:shadow-md">
       <div className="flex items-start justify-between gap-3">
-        <Link to={buildRawDocumentUrl(subjectId, doc.id)} className="flex min-w-0 flex-1 items-start gap-3">
+        <button onClick={() => onOpen(doc)} className="flex min-w-0 flex-1 items-start gap-3 text-left cursor-pointer">
           <div className="shrink-0 rounded-lg bg-muted p-2">{getFileIcon(doc.type)}</div>
           <div className="min-w-0">
             <p className="truncate text-sm font-semibold text-foreground">{doc.name}</p>
@@ -72,27 +67,16 @@ const RawDocCard = ({ doc, subjectId }) => {
               <p className="mt-1 truncate text-[11px] text-muted-foreground/80">{doc.sourceFolder}</p>
             )}
           </div>
-        </Link>
+        </button>
 
         <div className="flex shrink-0 items-center gap-1">
-          <Link
-            to={buildRawDocumentUrl(subjectId, doc.id)}
-            className="rounded-lg p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
-            title="View in app"
+          <button
+            onClick={() => onOpen(doc)}
+            className="rounded-lg p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary cursor-pointer"
+            title="Open document notice"
           >
-            <Eye size={16} />
-          </Link>
-          {doc.type.toLowerCase() === 'pdf' && (
-            <a
-              href={fileUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-lg p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
-              title="Open original file"
-            >
-              <ExternalLink size={16} />
-            </a>
-          )}
+            <ExternalLink size={16} />
+          </button>
           <a
             href={fileUrl}
             download
@@ -104,7 +88,7 @@ const RawDocCard = ({ doc, subjectId }) => {
           <button
             onClick={handleCopyLink}
             className="cursor-pointer rounded-lg p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
-            title="Copy viewer link"
+            title="Copy document link"
           >
             {copied ? <Check size={16} className="text-emerald-500" /> : <Copy size={16} />}
           </button>
@@ -133,6 +117,7 @@ const SubjectPage = () => {
   const { subjectId } = useParams();
   const subject = subjectsData.find((entry) => entry.id === subjectId);
   const navigation = navigationData[subjectId];
+  const [selectedDoc, setSelectedDoc] = React.useState(null);
 
   useEffect(() => {
     if (subject) {
@@ -155,10 +140,7 @@ const SubjectPage = () => {
     );
   }
 
-  const activeUnits = Object.entries(navigation?.units || {}).filter(
-    ([, unit]) => unit.topics && unit.topics.length > 0
-  );
-
+  const activeUnits = Object.entries(navigation?.units || {}).filter(([, unit]) => unit.topics && unit.topics.length > 0);
   const rawDocs = dumpData[subjectId] || [];
   const rawDocGroups = rawDocs.reduce((groups, doc) => {
     const category = doc.category || 'other';
@@ -169,7 +151,6 @@ const SubjectPage = () => {
 
   const hasRawDocs = rawDocs.length > 0;
   const hasActiveUnits = activeUnits.length > 0;
-  const hasActiveExtras = (navigation?.extras || []).length > 0;
   const isEnabled = isSubjectEnabled({ subject, navigation, dumpData });
 
   if (!isEnabled) {
@@ -184,6 +165,13 @@ const SubjectPage = () => {
   const totalExtraItems = navigation?.extras?.length || 0;
   const totalTopics = activeUnits.reduce((count, [, unit]) => count + (unit.topics?.length || 0), 0);
   const totalResources = totalTopics + totalExtraItems + rawDocs.length;
+  const selectedDocUrl = selectedDoc ? `${import.meta.env.BASE_URL || '/'}${selectedDoc.path}` : '';
+
+  const handleOpenSelectedDoc = () => {
+    if (!selectedDocUrl) return;
+    window.open(selectedDocUrl, '_blank', 'noopener,noreferrer');
+    setSelectedDoc(null);
+  };
 
   return (
     <div className="container mx-auto px-4 py-12 transition-theme">
@@ -268,7 +256,7 @@ const SubjectPage = () => {
                     </h3>
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                       {docs.map((doc) => (
-                        <RawDocCard key={doc.id} doc={doc} subjectId={subjectId} />
+                        <RawDocCard key={doc.id} doc={doc} onOpen={setSelectedDoc} />
                       ))}
                     </div>
                   </div>
@@ -309,6 +297,59 @@ const SubjectPage = () => {
           })}
         </aside>
       </div>
+
+      {selectedDoc && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 py-6 backdrop-blur-sm">
+          <div className="w-full max-w-lg rounded-[2rem] border border-border bg-background p-6 shadow-2xl">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-widest text-primary">External Document Notice</p>
+                <h2 className="mt-2 text-2xl font-black tracking-tight text-foreground">{selectedDoc.name}</h2>
+              </div>
+              <button
+                onClick={() => setSelectedDoc(null)}
+                className="rounded-xl p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                title="Close notice"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className="mt-5 rounded-2xl border border-amber-500/20 bg-amber-500/5 p-4 text-sm leading-relaxed text-amber-700">
+              <div className="mb-2 flex items-center gap-2 font-bold uppercase tracking-widest">
+                <TriangleAlert size={16} />
+                Before opening
+              </div>
+              <p>{RAW_DOCUMENT_NOTICE}</p>
+            </div>
+
+            <div className="mt-5 rounded-2xl border border-border bg-card/40 px-4 py-3 text-sm">
+              <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">What happens next</p>
+              <p className="mt-2 text-muted-foreground">
+                This file will open in a new browser tab or your browser&apos;s native document handler instead of inside the app.
+              </p>
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <button
+                onClick={handleOpenSelectedDoc}
+                className="inline-flex cursor-pointer items-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-bold text-primary-foreground transition-opacity hover:opacity-90"
+              >
+                <ExternalLink size={16} />
+                Open Document
+              </button>
+              <a
+                href={selectedDocUrl}
+                download
+                className="inline-flex items-center gap-2 rounded-xl border border-border px-4 py-3 text-sm font-bold text-foreground transition-colors hover:bg-muted"
+              >
+                <Download size={16} />
+                Download Instead
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

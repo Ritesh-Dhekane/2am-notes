@@ -109,6 +109,129 @@
       "category": "case-studies",
       "sourceFolder": ".",
       "addedAt": 1779820105.7732332
+    },
+    {
+      "id": "document-from-knox-creations",
+      "name": "Document from Knox Creations.pdf",
+      "path": "dump/ccms/Document from Knox Creations.pdf",
+      "relativePath": "Document from Knox Creations.pdf",
+      "type": "pdf",
+      "size": "348.3 KB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.076876
+    },
+    {
+      "id": "document-from-knox-creations-1",
+      "name": "Document from Knox Creations(1).pdf",
+      "path": "dump/ccms/Document from Knox Creations(1).pdf",
+      "relativePath": "Document from Knox Creations(1).pdf",
+      "type": "pdf",
+      "size": "688.7 KB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.0666583
+    },
+    {
+      "id": "document-from-knox-creations-2",
+      "name": "Document from Knox Creations(2).pdf",
+      "path": "dump/ccms/Document from Knox Creations(2).pdf",
+      "relativePath": "Document from Knox Creations(2).pdf",
+      "type": "pdf",
+      "size": "523.2 KB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.0971057
+    },
+    {
+      "id": "document-from-knox-creations-3",
+      "name": "Document from Knox Creations(3).pdf",
+      "path": "dump/ccms/Document from Knox Creations(3).pdf",
+      "relativePath": "Document from Knox Creations(3).pdf",
+      "type": "pdf",
+      "size": "397.3 KB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.0580835
+    },
+    {
+      "id": "document-from-knox-creations-4",
+      "name": "Document from Knox Creations(4).pdf",
+      "path": "dump/ccms/Document from Knox Creations(4).pdf",
+      "relativePath": "Document from Knox Creations(4).pdf",
+      "type": "pdf",
+      "size": "437.6 KB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.0839972
+    },
+    {
+      "id": "document-from-knox-creations-5",
+      "name": "Document from Knox Creations(5).pdf",
+      "path": "dump/ccms/Document from Knox Creations(5).pdf",
+      "relativePath": "Document from Knox Creations(5).pdf",
+      "type": "pdf",
+      "size": "91.8 KB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.0879745
+    }
+  ],
+  "cyber-security": [
+    {
+      "id": "cyber-security-1-1778647174741-copy",
+      "name": "Cyber security_1_1778647174741_copy.pdf",
+      "path": "dump/cyber-security/Cyber security_1_1778647174741_copy.pdf",
+      "relativePath": "Cyber security_1_1778647174741_copy.pdf",
+      "type": "pdf",
+      "size": "95.0 KB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.0180843
+    },
+    {
+      "id": "cyber-security-2-1778647583997-copy",
+      "name": "cyber security_2_1778647583997_copy.pdf",
+      "path": "dump/cyber-security/cyber security_2_1778647583997_copy.pdf",
+      "relativePath": "cyber security_2_1778647583997_copy.pdf",
+      "type": "pdf",
+      "size": "251.3 KB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.036771
+    },
+    {
+      "id": "cyber-security-3-1778654709708-copy",
+      "name": "cyber Security_3_1778654709708_copy.pdf",
+      "path": "dump/cyber-security/cyber Security_3_1778654709708_copy.pdf",
+      "relativePath": "cyber Security_3_1778654709708_copy.pdf",
+      "type": "pdf",
+      "size": "197.5 KB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.0315397
+    },
+    {
+      "id": "cyber-security-4-1778655591856-copy",
+      "name": "cyber security_4_1778655591856_copy.pdf",
+      "path": "dump/cyber-security/cyber security_4_1778655591856_copy.pdf",
+      "relativePath": "cyber security_4_1778655591856_copy.pdf",
+      "type": "pdf",
+      "size": "171.3 KB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.042883
+    },
+    {
+      "id": "cyber-security-5-1778647395126-copy",
+      "name": "Cyber security_5_1778647395126_copy.pdf",
+      "path": "dump/cyber-security/Cyber security_5_1778647395126_copy.pdf",
+      "relativePath": "Cyber security_5_1778647395126_copy.pdf",
+      "type": "pdf",
+      "size": "251.3 KB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.050253
     }
   ],
   "eccs": [
@@ -190,6 +313,17 @@
       "addedAt": 1779820106.9581277
     },
     {
+      "id": "photo-from-knox-creations",
+      "name": "Photo from Knox Creations.jpg",
+      "path": "dump/eccs/Photo from Knox Creations.jpg",
+      "relativePath": "Photo from Knox Creations.jpg",
+      "type": "jpg",
+      "size": "74.5 KB",
+      "category": "templates",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.011108
+    },
+    {
       "id": "sample-ans-sheet",
       "name": "Sample Ans Sheet.docx",
       "path": "dump/eccs/Sample Ans Sheet.docx",
@@ -199,6 +333,17 @@
       "category": "templates",
       "sourceFolder": ".",
       "addedAt": 1779820106.9893026
+    },
+    {
+      "id": "document-from-knox-creations",
+      "name": "Document from Knox Creations.docx",
+      "path": "dump/eccs/Document from Knox Creations.docx",
+      "relativePath": "Document from Knox Creations.docx",
+      "type": "docx",
+      "size": "46.3 KB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822480.9978247
     },
     {
       "id": "m-c-a-2024-pattern-june-july",
@@ -221,6 +366,30 @@
       "category": "other",
       "sourceFolder": ".",
       "addedAt": 1779820106.9769423
+    }
+  ],
+  "information-security": [
+    {
+      "id": "information-security-1-1777269855927-copy",
+      "name": "Information Security_1_1777269855927_copy.pdf",
+      "path": "dump/information-security/Information Security_1_1777269855927_copy.pdf",
+      "relativePath": "Information Security_1_1777269855927_copy.pdf",
+      "type": "pdf",
+      "size": "99.0 KB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.2661295
+    },
+    {
+      "id": "information-security-2-1777540113552-copy",
+      "name": "Information Security_2_1777540113552_copy.pdf",
+      "path": "dump/information-security/Information Security_2_1777540113552_copy.pdf",
+      "relativePath": "Information Security_2_1777540113552_copy.pdf",
+      "type": "pdf",
+      "size": "210.9 KB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.2563698
     }
   ],
   "java-programming": [
@@ -333,6 +502,151 @@
       "category": "assignments",
       "sourceFolder": ".",
       "addedAt": 1779820106.588003
+    },
+    {
+      "id": "document-from-knox-creations",
+      "name": "Document from Knox Creations.docx",
+      "path": "dump/java-programming/Document from Knox Creations.docx",
+      "relativePath": "Document from Knox Creations.docx",
+      "type": "docx",
+      "size": "94.8 KB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.127949
+    },
+    {
+      "id": "document-from-knox-creations-1",
+      "name": "Document from Knox Creations(1).docx",
+      "path": "dump/java-programming/Document from Knox Creations(1).docx",
+      "relativePath": "Document from Knox Creations(1).docx",
+      "type": "docx",
+      "size": "29.5 KB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.119798
+    },
+    {
+      "id": "document-from-knox-creations-2",
+      "name": "Document from Knox Creations(2).docx",
+      "path": "dump/java-programming/Document from Knox Creations(2).docx",
+      "relativePath": "Document from Knox Creations(2).docx",
+      "type": "docx",
+      "size": "20.8 KB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.1343849
+    },
+    {
+      "id": "document-from-knox-creations-3",
+      "name": "Document from Knox Creations(3).docx",
+      "path": "dump/java-programming/Document from Knox Creations(3).docx",
+      "relativePath": "Document from Knox Creations(3).docx",
+      "type": "docx",
+      "size": "51.7 KB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.125036
+    }
+  ],
+  "machine-learning-techniques": [
+    {
+      "id": "numerical-document-from-knox-creations",
+      "name": "Document from Knox Creations.pdf",
+      "path": "dump/machine-learning-techniques/Numerical/Document from Knox Creations.pdf",
+      "relativePath": "Numerical/Document from Knox Creations.pdf",
+      "type": "pdf",
+      "size": "281.4 KB",
+      "category": "other",
+      "sourceFolder": "Numerical",
+      "addedAt": 1779822481.1644077
+    },
+    {
+      "id": "numerical-document-from-knox-creations-1",
+      "name": "Document from Knox Creations(1).pdf",
+      "path": "dump/machine-learning-techniques/Numerical/Document from Knox Creations(1).pdf",
+      "relativePath": "Numerical/Document from Knox Creations(1).pdf",
+      "type": "pdf",
+      "size": "1001.0 KB",
+      "category": "other",
+      "sourceFolder": "Numerical",
+      "addedAt": 1779822481.1504257
+    },
+    {
+      "id": "numerical-document-from-knox-creations-2",
+      "name": "Document from Knox Creations(2).pdf",
+      "path": "dump/machine-learning-techniques/Numerical/Document from Knox Creations(2).pdf",
+      "relativePath": "Numerical/Document from Knox Creations(2).pdf",
+      "type": "pdf",
+      "size": "549.7 KB",
+      "category": "other",
+      "sourceFolder": "Numerical",
+      "addedAt": 1779822481.1801178
+    },
+    {
+      "id": "numerical-document-from-knox-creations-3",
+      "name": "Document from Knox Creations(3).pdf",
+      "path": "dump/machine-learning-techniques/Numerical/Document from Knox Creations(3).pdf",
+      "relativePath": "Numerical/Document from Knox Creations(3).pdf",
+      "type": "pdf",
+      "size": "549.7 KB",
+      "category": "other",
+      "sourceFolder": "Numerical",
+      "addedAt": 1779822481.157936
+    },
+    {
+      "id": "numerical-document-from-knox-creations-4",
+      "name": "Document from Knox Creations(4).pdf",
+      "path": "dump/machine-learning-techniques/Numerical/Document from Knox Creations(4).pdf",
+      "relativePath": "Numerical/Document from Knox Creations(4).pdf",
+      "type": "pdf",
+      "size": "567.9 KB",
+      "category": "other",
+      "sourceFolder": "Numerical",
+      "addedAt": 1779822481.2290719
+    },
+    {
+      "id": "numerical-document-from-knox-creations-5",
+      "name": "Document from Knox Creations(5).pdf",
+      "path": "dump/machine-learning-techniques/Numerical/Document from Knox Creations(5).pdf",
+      "relativePath": "Numerical/Document from Knox Creations(5).pdf",
+      "type": "pdf",
+      "size": "525.6 KB",
+      "category": "other",
+      "sourceFolder": "Numerical",
+      "addedAt": 1779822481.1725028
+    },
+    {
+      "id": "numerical-document-from-knox-creations-6",
+      "name": "Document from Knox Creations(6).pdf",
+      "path": "dump/machine-learning-techniques/Numerical/Document from Knox Creations(6).pdf",
+      "relativePath": "Numerical/Document from Knox Creations(6).pdf",
+      "type": "pdf",
+      "size": "1001.0 KB",
+      "category": "other",
+      "sourceFolder": "Numerical",
+      "addedAt": 1779822481.20627
+    },
+    {
+      "id": "numerical-document-from-knox-creations-7",
+      "name": "Document from Knox Creations(7).pdf",
+      "path": "dump/machine-learning-techniques/Numerical/Document from Knox Creations(7).pdf",
+      "relativePath": "Numerical/Document from Knox Creations(7).pdf",
+      "type": "pdf",
+      "size": "664.6 KB",
+      "category": "other",
+      "sourceFolder": "Numerical",
+      "addedAt": 1779822481.2169163
+    },
+    {
+      "id": "numerical-document-from-knox-creations-8",
+      "name": "Document from Knox Creations(8).pdf",
+      "path": "dump/machine-learning-techniques/Numerical/Document from Knox Creations(8).pdf",
+      "relativePath": "Numerical/Document from Knox Creations(8).pdf",
+      "type": "pdf",
+      "size": "273.2 KB",
+      "category": "other",
+      "sourceFolder": "Numerical",
+      "addedAt": 1779822481.1900005
     }
   ],
   "optimization-techniques": [
@@ -379,6 +693,61 @@
       "category": "question-papers",
       "sourceFolder": ".",
       "addedAt": 1779820106.524443
+    },
+    {
+      "id": "document-from-knox-creations",
+      "name": "Document from Knox Creations.pdf",
+      "path": "dump/optimization-techniques/Document from Knox Creations.pdf",
+      "relativePath": "Document from Knox Creations.pdf",
+      "type": "pdf",
+      "size": "2.6 MB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.406041
+    },
+    {
+      "id": "document-from-knox-creations-1",
+      "name": "Document from Knox Creations(1).pdf",
+      "path": "dump/optimization-techniques/Document from Knox Creations(1).pdf",
+      "relativePath": "Document from Knox Creations(1).pdf",
+      "type": "pdf",
+      "size": "3.6 MB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.3798957
+    },
+    {
+      "id": "document-from-knox-creations-2",
+      "name": "Document from Knox Creations(2).pdf",
+      "path": "dump/optimization-techniques/Document from Knox Creations(2).pdf",
+      "relativePath": "Document from Knox Creations(2).pdf",
+      "type": "pdf",
+      "size": "2.5 MB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.3478868
+    },
+    {
+      "id": "document-from-knox-creations-3",
+      "name": "Document from Knox Creations(3).pdf",
+      "path": "dump/optimization-techniques/Document from Knox Creations(3).pdf",
+      "relativePath": "Document from Knox Creations(3).pdf",
+      "type": "pdf",
+      "size": "9.1 MB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.4759748
+    },
+    {
+      "id": "document-from-knox-creations-4",
+      "name": "Document from Knox Creations(4).pdf",
+      "path": "dump/optimization-techniques/Document from Knox Creations(4).pdf",
+      "relativePath": "Document from Knox Creations(4).pdf",
+      "type": "pdf",
+      "size": "3.9 MB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.3179746
     },
     {
       "id": "mca-ot-2019-pattern",
@@ -436,6 +805,30 @@
       "addedAt": 1779820105.803911
     }
   ],
+  "power-bi": [
+    {
+      "id": "pbi-question-bank",
+      "name": "PBI question bank_.docx",
+      "path": "dump/power-bi/PBI question bank_.docx",
+      "relativePath": "PBI question bank_.docx",
+      "type": "docx",
+      "size": "13.6 KB",
+      "category": "question-papers",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.110904
+    },
+    {
+      "id": "document-from-knox-creations",
+      "name": "Document from Knox Creations.docx",
+      "path": "dump/power-bi/Document from Knox Creations.docx",
+      "relativePath": "Document from Knox Creations.docx",
+      "type": "docx",
+      "size": "19.4 KB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.1053686
+    }
+  ],
   "research-methodology": [
     {
       "id": "2chapter",
@@ -458,6 +851,17 @@
       "category": "unit-notes",
       "sourceFolder": ".",
       "addedAt": 1779820106.9258878
+    },
+    {
+      "id": "research-paper-example",
+      "name": "research paper example.pdf",
+      "path": "dump/research-methodology/research paper example.pdf",
+      "relativePath": "research paper example.pdf",
+      "type": "pdf",
+      "size": "45.4 KB",
+      "category": "question-papers",
+      "sourceFolder": ".",
+      "addedAt": 1779820106.8556852
     },
     {
       "id": "5-2-ethics",
@@ -513,17 +917,6 @@
       "category": "references",
       "sourceFolder": ".",
       "addedAt": 1779820106.8055348
-    },
-    {
-      "id": "research-paper-example",
-      "name": "research paper example.pdf",
-      "path": "dump/research-methodology/research paper example.pdf",
-      "relativePath": "research paper example.pdf",
-      "type": "pdf",
-      "size": "45.4 KB",
-      "category": "references",
-      "sourceFolder": ".",
-      "addedAt": 1779820106.8556852
     },
     {
       "id": "5-2-example",
