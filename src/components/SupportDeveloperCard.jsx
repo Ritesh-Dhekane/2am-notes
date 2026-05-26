@@ -15,7 +15,7 @@ const SupportDeveloperCard = () => {
   const upiLink = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(UPI_NAME)}&cu=INR${
     validAmount ? `&am=${encodeURIComponent(validAmount)}` : ''
   }`;
-  const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${encodeURIComponent(upiLink)}`;
+  const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=${encodeURIComponent(upiLink)}`;
 
   const handleCopy = async () => {
     try {
@@ -31,50 +31,49 @@ const SupportDeveloperCard = () => {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-border px-3 py-2 text-xs font-bold uppercase tracking-widest text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+        className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-border/80 bg-background/70 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground transition-all hover:border-primary/40 hover:text-primary"
       >
         <HeartHandshake size={14} />
         Support the Developer
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 py-6 backdrop-blur-sm">
-          <div className="w-full max-w-md rounded-[2rem] border border-border bg-background p-6 shadow-2xl">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <p className="text-xs font-bold uppercase tracking-widest text-primary">Support the Developer</p>
-                <h2 className="mt-2 text-2xl font-black tracking-tight text-foreground">Pay via UPI</h2>
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-slate-950/65 px-3 py-3 backdrop-blur-sm sm:items-center sm:px-4 sm:py-6">
+          <div className="w-full max-w-md overflow-hidden rounded-[2rem] border border-border/80 bg-background shadow-2xl">
+            <div className="bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.2),_transparent_45%),linear-gradient(180deg,rgba(255,255,255,0.03),transparent)] px-4 pb-4 pt-5 sm:px-6 sm:pb-5 sm:pt-6">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary">Support the Developer</p>
+                  <h2 className="mt-2 text-xl font-black tracking-tight text-foreground sm:text-2xl">Pay via UPI</h2>
+                  <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted-foreground">
+                    Choose an amount, scan the QR, or continue in your UPI app.
+                  </p>
+                </div>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="rounded-full border border-border/80 bg-background/80 p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                  title="Close support panel"
+                >
+                  <X size={18} />
+                </button>
               </div>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="rounded-xl p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                title="Close support panel"
-              >
-                <X size={18} />
-              </button>
-            </div>
 
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              Choose an amount, scan the QR, or open your UPI app directly.
-            </p>
-
-            <div className="mt-5">
-              <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">Amount (INR)</p>
-              <div className="mt-3 flex flex-wrap gap-2">
+              <div className="mt-5 flex flex-wrap gap-2">
                 {SUGGESTED_AMOUNTS.map((value) => (
                   <button
                     key={value}
                     onClick={() => setAmount(String(value))}
-                    className={`rounded-xl border px-3 py-2 text-sm font-bold transition-colors ${
+                    className={`rounded-full border px-3 py-2 text-xs font-bold transition-colors sm:text-sm ${
                       amount === String(value)
                         ? 'border-primary bg-primary text-primary-foreground'
-                        : 'border-border text-foreground hover:bg-muted'
+                        : 'border-border bg-background/80 text-foreground hover:bg-muted'
                     }`}
                   >
                     Rs. {value}
                   </button>
                 ))}
               </div>
+
               <input
                 type="number"
                 min="1"
@@ -82,42 +81,49 @@ const SupportDeveloperCard = () => {
                 value={amount}
                 onChange={(event) => setAmount(event.target.value)}
                 placeholder="Custom amount"
-                className="mt-3 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-primary"
+                className="mt-3 w-full rounded-2xl border border-border bg-background/80 px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-primary"
               />
             </div>
 
-            <div className="mt-5 rounded-[1.75rem] border border-border bg-card/40 p-4">
-              <div className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground">
-                <QrCode size={14} />
-                Scan to Pay
+            <div className="px-4 pb-5 pt-4 sm:px-6 sm:pb-6">
+              <div className="rounded-[1.75rem] border border-border bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01))] p-4 shadow-inner">
+                <div className="mb-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
+                  <QrCode size={14} />
+                  Scan to Pay
+                </div>
+                <div className="rounded-[1.5rem] bg-white p-3 shadow-[0_16px_40px_rgba(0,0,0,0.18)]">
+                  <img
+                    src={qrImageUrl}
+                    alt="UPI QR code for supporting the developer"
+                    className="mx-auto aspect-square w-full max-w-[280px] rounded-2xl object-cover"
+                  />
+                </div>
+                <p className="mt-3 text-center text-xs text-muted-foreground">
+                  {validAmount ? `Ready for Rs. ${validAmount}` : 'Enter an amount to generate a payment QR'}
+                </p>
               </div>
-              <img
-                src={qrImageUrl}
-                alt="UPI QR code for supporting the developer"
-                className="mx-auto aspect-square w-full max-w-[260px] rounded-2xl border border-border bg-white object-cover"
-              />
-            </div>
 
-            <div className="mt-5 rounded-2xl border border-border bg-card/40 px-4 py-3">
-              <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">UPI ID</p>
-              <p className="mt-1 break-all font-mono text-sm text-foreground">{UPI_ID}</p>
-            </div>
+              <div className="mt-4 rounded-2xl border border-border bg-card/40 px-4 py-3">
+                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">UPI ID</p>
+                <p className="mt-1 break-all font-mono text-sm text-foreground">{UPI_ID}</p>
+              </div>
 
-            <div className="mt-5 flex flex-wrap gap-3">
-              <a
-                href={upiLink}
-                className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-bold text-primary-foreground transition-opacity hover:opacity-90"
-              >
-                <Smartphone size={16} />
-                Open UPI App
-              </a>
-              <button
-                onClick={handleCopy}
-                className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-border px-4 py-3 text-sm font-bold text-foreground transition-colors hover:bg-muted"
-              >
-                <Copy size={16} />
-                {copied ? 'Copied' : 'Copy UPI ID'}
-              </button>
+              <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+                <a
+                  href={upiLink}
+                  className="inline-flex flex-1 items-center justify-center gap-2 rounded-2xl bg-primary px-4 py-3 text-sm font-bold text-primary-foreground transition-opacity hover:opacity-90"
+                >
+                  <Smartphone size={16} />
+                  Open UPI App
+                </a>
+                <button
+                  onClick={handleCopy}
+                  className="inline-flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-2xl border border-border px-4 py-3 text-sm font-bold text-foreground transition-colors hover:bg-muted"
+                >
+                  <Copy size={16} />
+                  {copied ? 'Copied' : 'Copy UPI ID'}
+                </button>
+              </div>
             </div>
           </div>
         </div>

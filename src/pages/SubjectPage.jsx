@@ -25,6 +25,10 @@ import { updatePageMetadata } from '../utils/seo';
 import { getRawDocumentCategoryLabel, RAW_DOCUMENT_NOTICE } from '../utils/rawDocuments';
 import { isSubjectEnabled } from '../utils/subjectAvailability';
 
+const DOC_NOTICE_DISMISS_KEY = '2am-notes-doc-notice-dismissed';
+const DOC_NOTICE_COUNTER_KEY = '2am-notes-doc-notice-counter';
+const DOC_NOTICE_REPEAT_INTERVAL = 5;
+
 const DisclaimerBox = () => (
   <div className="mb-6 rounded-2xl border border-amber-500/20 bg-amber-500/5 p-4 text-xs leading-relaxed text-amber-500/90">
     <p className="mb-1 font-bold">Copyright & Content Notice</p>
@@ -118,6 +122,10 @@ const SubjectPage = () => {
   const subject = subjectsData.find((entry) => entry.id === subjectId);
   const navigation = navigationData[subjectId];
   const [selectedDoc, setSelectedDoc] = React.useState(null);
+  const [skipDocNotice, setSkipDocNotice] = React.useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.localStorage.getItem(DOC_NOTICE_DISMISS_KEY) === 'true';
+  });
 
   useEffect(() => {
     if (subject) {
@@ -167,9 +175,43 @@ const SubjectPage = () => {
   const totalResources = totalTopics + totalExtraItems + rawDocs.length;
   const selectedDocUrl = selectedDoc ? `${import.meta.env.BASE_URL || '/'}${selectedDoc.path}` : '';
 
+  const trackDocumentOpen = () => {
+    if (typeof window === 'undefined') return;
+    const currentCount = Number(window.localStorage.getItem(DOC_NOTICE_COUNTER_KEY) || '0');
+    window.localStorage.setItem(DOC_NOTICE_COUNTER_KEY, String((currentCount + 1) % DOC_NOTICE_REPEAT_INTERVAL));
+  };
+
+  const shouldShowDocumentNotice = () => {
+    if (typeof window === 'undefined') return true;
+    if (window.localStorage.getItem(DOC_NOTICE_DISMISS_KEY) === 'true') return false;
+    const openCount = Number(window.localStorage.getItem(DOC_NOTICE_COUNTER_KEY) || '0');
+    return openCount === 0;
+  };
+
+  const requestOpenDoc = (doc) => {
+    if (!doc) return;
+
+    if (!shouldShowDocumentNotice()) {
+      const directUrl = `${import.meta.env.BASE_URL || '/'}${doc.path}`;
+      window.open(directUrl, '_blank', 'noopener,noreferrer');
+      trackDocumentOpen();
+      return;
+    }
+
+    setSelectedDoc(doc);
+  };
+
   const handleOpenSelectedDoc = () => {
     if (!selectedDocUrl) return;
+    if (typeof window !== 'undefined') {
+      if (skipDocNotice) {
+        window.localStorage.setItem(DOC_NOTICE_DISMISS_KEY, 'true');
+      } else {
+        window.localStorage.removeItem(DOC_NOTICE_DISMISS_KEY);
+      }
+    }
     window.open(selectedDocUrl, '_blank', 'noopener,noreferrer');
+    trackDocumentOpen();
     setSelectedDoc(null);
   };
 
@@ -256,7 +298,7 @@ const SubjectPage = () => {
                     </h3>
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                       {docs.map((doc) => (
-                        <RawDocCard key={doc.id} doc={doc} onOpen={setSelectedDoc} />
+                        <RawDocCard key={doc.id} doc={doc} onOpen={requestOpenDoc} />
                       ))}
                     </div>
                   </div>
@@ -331,6 +373,15 @@ const SubjectPage = () => {
             </div>
 
             <div className="mt-6 flex flex-wrap gap-3">
+              <label className="flex w-full items-center gap-2 text-sm text-muted-foreground">
+                <input
+                  type="checkbox"
+                  checked={skipDocNotice}
+                  onChange={(event) => setSkipDocNotice(event.target.checked)}
+                  className="h-4 w-4 rounded border-border"
+                />
+                Don&apos;t show this notice again
+              </label>
               <button
                 onClick={handleOpenSelectedDoc}
                 className="inline-flex cursor-pointer items-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-bold text-primary-foreground transition-opacity hover:opacity-90"
