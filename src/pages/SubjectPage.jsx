@@ -180,8 +180,9 @@ const SubjectPage = () => {
     { id: 'revision', title: 'Revision Notes', icon: <Zap size={20} className="text-amber-500" /> },
     { id: 'mindmaps', title: 'Concept Maps', icon: <Brain size={20} className="text-emerald-500" /> },
   ];
-
+  const totalExtraItems = navigation?.extras?.length || 0;
   const totalTopics = activeUnits.reduce((count, [, unit]) => count + (unit.topics?.length || 0), 0);
+  const totalResources = totalTopics + totalExtraItems + rawDocs.length;
 
   return (
     <div className="container mx-auto px-4 py-12 transition-theme">
@@ -198,7 +199,7 @@ const SubjectPage = () => {
           <div className="space-y-4">
             <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary">
               <BookOpen size={14} />
-              {totalTopics > 0 ? `${totalTopics} Topic Notes Available` : `${rawDocs.length} Source Files Available`}
+              {totalResources > 0 ? `${totalResources} Study Resources Available` : 'Workspace Initializing'}
             </div>
             <h1 className="text-4xl font-black tracking-tighter md:text-6xl">{subject.title}</h1>
             <p className="max-w-2xl text-xl leading-relaxed text-muted-foreground">{subject.description}</p>

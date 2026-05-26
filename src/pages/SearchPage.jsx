@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Search as SearchIcon, Book, ChevronRight, FileText, Command, Target, Brain, Code2, Search, BarChart2, CheckSquare } from 'lucide-react';
-import contentIndex from '../../data/content-index.json';
+import searchIndex from '../../data/search-index.json';
 import subjectsData from '../../data/subjects.json';
 import { trackSearchQuery } from '../utils/analytics';
 import { buildCleanUrl } from '../utils/path';
@@ -43,10 +43,9 @@ const SearchPage = () => {
     }
 
     const searchTerms = query.toLowerCase().split(/\s+/).filter(t => t.length > 0);
-    const filtered = contentIndex.filter(item => {
-      const contentToSearch = `${item.title} ${item.subjectId} ${item.unitId || ''} ${item.type}`.toLowerCase();
-      return searchTerms.every(term => contentToSearch.includes(term));
-    }).slice(0, 20); // Limit to 20 results for performance
+    const filtered = searchIndex
+      .filter((item) => searchTerms.every((term) => item.keywords.includes(term)))
+      .slice(0, 20);
 
     setResults(filtered);
 
@@ -103,18 +102,18 @@ const SearchPage = () => {
                       {result.unitId && (
                         <>
                           <ChevronRight size={12} className="mx-2 opacity-50" />
-                          <span>{result.unitId}</span>
+                          <span>{result.unitId.replace('unit', 'Unit ')}</span>
                         </>
                       )}
                       <ChevronRight size={12} className="mx-2 opacity-50" />
-                      <span className="text-primary">{result.type}</span>
+                      <span className="text-primary">{result.categoryLabel}</span>
                     </div>
                   </div>
                   <h3 className="text-2xl font-bold group-hover:text-primary transition-colors mb-1">
-                    {result.title.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
+                    {result.title}
                   </h3>
                   <p className="text-sm text-muted-foreground line-clamp-1 italic">
-                    Access {result.type} for {result.title} in {subject?.title}...
+                    {result.excerpt || `Access ${result.categoryLabel} for ${result.title} in ${subject?.title}.`}
                   </p>
                 </Link>
               );

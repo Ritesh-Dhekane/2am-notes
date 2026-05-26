@@ -142,7 +142,7 @@ const ContentViewer = () => {
         <div className="flex items-center justify-between mb-8 lg:hidden bg-muted/30 p-3 rounded-2xl border border-border">
           <button onClick={() => setIsSidebarOpen(true)} className="flex items-center gap-2 text-sm font-bold text-foreground">
             <Menu size={18} />
-            Explore Units
+            Explore Content
           </button>
           <Link to="/search" className="p-2 hover:bg-card rounded-full transition-colors"><Search size={18} /></Link>
         </div>
