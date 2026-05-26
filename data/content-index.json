@@ -4,5 +4,11 @@
     "title": "stqa-question-bank",
     "path": "content/software-testing-quality-assurance/revision/stqa-question-bank.md",
     "type": "revision"
+  },
+  {
+    "subjectId": "power-bi",
+    "title": "power-bi-pyq-apr-2025",
+    "path": "content/power-bi/pyq-solutions/power-bi-pyq-apr-2025.md",
+    "type": "pyq-solutions"
   }
 ]
