@@ -44,6 +44,10 @@ export const trackSupportInteraction = (action, label, value) => {
   trackEvent(action, 'Support', label, value);
 };
 
+export const trackPaymentFailureReport = (label, extras = {}) => {
+  trackEvent('support_payment_failed', 'Support', label, undefined, extras);
+};
+
 export const trackRawDocumentOpen = (subjectId, fileName, category) => {
   trackEvent('open_raw_document', 'Documents', `${subjectId}: ${fileName}`, undefined, {
     subject_id: subjectId,

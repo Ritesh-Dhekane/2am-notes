@@ -1,6 +1,6 @@
 import React from 'react';
 import { Copy, HeartHandshake, QrCode, Smartphone, Sparkles, X } from 'lucide-react';
-import { trackSupportInteraction } from '../utils/analytics';
+import { trackPaymentFailureReport, trackSupportInteraction } from '../utils/analytics';
 
 const UPI_ID = 'ritesh.you.may.not.know@slc';
 const UPI_NAME = 'Ritesh';
@@ -10,6 +10,7 @@ const SupportDeveloperCard = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [copied, setCopied] = React.useState(false);
   const [amount, setAmount] = React.useState('99');
+  const [failureHintShown, setFailureHintShown] = React.useState(false);
 
   const normalizedAmount = amount.trim();
   const validAmount = normalizedAmount && Number(normalizedAmount) > 0 ? normalizedAmount : '';
@@ -46,6 +47,15 @@ const SupportDeveloperCard = () => {
 
   const handleCustomAmountChange = (event) => {
     setAmount(event.target.value);
+  };
+
+  const handlePaymentFailed = () => {
+    setFailureHintShown(true);
+    trackPaymentFailureReport('support_modal_failure_report', {
+      receiver_upi_domain: 'slc',
+      receiver_bank: 'slice',
+      amount: Number(validAmount || 0) || undefined,
+    });
   };
 
   return (
@@ -135,6 +145,26 @@ const SupportDeveloperCard = () => {
               <div className="mt-4 rounded-2xl border border-border bg-card/40 px-4 py-3">
                 <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">UPI ID</p>
                 <p className="mt-1 break-all font-mono text-sm text-foreground">{UPI_ID}</p>
+              </div>
+
+              <div className="mt-4 rounded-2xl border border-amber-500/25 bg-amber-500/8 px-4 py-3">
+                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-amber-700 dark:text-amber-300">
+                  Payment Help
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  If Google Pay or Kotak blocks this payment, try Navi, another UPI app, or another bank account.
+                </p>
+                <button
+                  onClick={handlePaymentFailed}
+                  className="mt-3 inline-flex cursor-pointer items-center justify-center rounded-full border border-amber-500/30 bg-background/80 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.14em] text-foreground transition-colors hover:bg-amber-500/10"
+                >
+                  Payment failed?
+                </button>
+                {failureHintShown && (
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    Logged for analytics. This usually points to a sender bank or app restriction, not a broken receiver UPI ID.
+                  </p>
+                )}
               </div>
 
               <div className="mt-4 flex flex-col gap-2 sm:flex-row">
