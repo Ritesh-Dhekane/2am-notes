@@ -335,10 +335,10 @@
       "addedAt": 1779820106.9893026
     },
     {
-      "id": "document-from-knox-creations",
-      "name": "Document from Knox Creations.docx",
-      "path": "dump/eccs/Document from Knox Creations.docx",
-      "relativePath": "Document from Knox Creations.docx",
+      "id": "cloud-computing-cia-triad-answer",
+      "name": "cloud-computing-cia-triad-answer.docx",
+      "path": "dump/eccs/cloud-computing-cia-triad-answer.docx",
+      "relativePath": "cloud-computing-cia-triad-answer.docx",
       "type": "docx",
       "size": "46.3 KB",
       "category": "other",
@@ -504,32 +504,21 @@
       "addedAt": 1779820106.588003
     },
     {
-      "id": "document-from-knox-creations",
-      "name": "Document from Knox Creations.docx",
-      "path": "dump/java-programming/Document from Knox Creations.docx",
-      "relativePath": "Document from Knox Creations.docx",
+      "id": "java-jsp-overview-and-tags",
+      "name": "java-jsp-overview-and-tags.docx",
+      "path": "dump/java-programming/java-jsp-overview-and-tags.docx",
+      "relativePath": "java-jsp-overview-and-tags.docx",
       "type": "docx",
-      "size": "94.8 KB",
+      "size": "51.7 KB",
       "category": "other",
       "sourceFolder": ".",
-      "addedAt": 1779822481.127949
+      "addedAt": 1779822481.125036
     },
     {
-      "id": "document-from-knox-creations-1",
-      "name": "Document from Knox Creations(1).docx",
-      "path": "dump/java-programming/Document from Knox Creations(1).docx",
-      "relativePath": "Document from Knox Creations(1).docx",
-      "type": "docx",
-      "size": "29.5 KB",
-      "category": "other",
-      "sourceFolder": ".",
-      "addedAt": 1779822481.119798
-    },
-    {
-      "id": "document-from-knox-creations-2",
-      "name": "Document from Knox Creations(2).docx",
-      "path": "dump/java-programming/Document from Knox Creations(2).docx",
-      "relativePath": "Document from Knox Creations(2).docx",
+      "id": "java-servlet-life-cycle",
+      "name": "java-servlet-life-cycle.docx",
+      "path": "dump/java-programming/java-servlet-life-cycle.docx",
+      "relativePath": "java-servlet-life-cycle.docx",
       "type": "docx",
       "size": "20.8 KB",
       "category": "other",
@@ -537,15 +526,26 @@
       "addedAt": 1779822481.1343849
     },
     {
-      "id": "document-from-knox-creations-3",
-      "name": "Document from Knox Creations(3).docx",
-      "path": "dump/java-programming/Document from Knox Creations(3).docx",
-      "relativePath": "Document from Knox Creations(3).docx",
+      "id": "java-servlet-service-method",
+      "name": "java-servlet-service-method.docx",
+      "path": "dump/java-programming/java-servlet-service-method.docx",
+      "relativePath": "java-servlet-service-method.docx",
       "type": "docx",
-      "size": "51.7 KB",
+      "size": "29.5 KB",
       "category": "other",
       "sourceFolder": ".",
-      "addedAt": 1779822481.125036
+      "addedAt": 1779822481.119798
+    },
+    {
+      "id": "java-super-keyword-constructor-chaining",
+      "name": "java-super-keyword-constructor-chaining.docx",
+      "path": "dump/java-programming/java-super-keyword-constructor-chaining.docx",
+      "relativePath": "java-super-keyword-constructor-chaining.docx",
+      "type": "docx",
+      "size": "94.8 KB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.127949
     }
   ],
   "machine-learning-techniques": [
@@ -662,6 +662,61 @@
       "addedAt": 1779820105.8104722
     },
     {
+      "id": "ot-unit-1-notes",
+      "name": "ot-unit-1-notes.pdf",
+      "path": "dump/optimization-techniques/ot-unit-1-notes.pdf",
+      "relativePath": "ot-unit-1-notes.pdf",
+      "type": "pdf",
+      "size": "9.1 MB",
+      "category": "unit-notes",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.4759748
+    },
+    {
+      "id": "ot-unit-10-decision-theory",
+      "name": "ot-unit-10-decision-theory.pdf",
+      "path": "dump/optimization-techniques/ot-unit-10-decision-theory.pdf",
+      "relativePath": "ot-unit-10-decision-theory.pdf",
+      "type": "pdf",
+      "size": "3.9 MB",
+      "category": "unit-notes",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.3179746
+    },
+    {
+      "id": "ot-unit-2-notes",
+      "name": "ot-unit-2-notes.pdf",
+      "path": "dump/optimization-techniques/ot-unit-2-notes.pdf",
+      "relativePath": "ot-unit-2-notes.pdf",
+      "type": "pdf",
+      "size": "2.6 MB",
+      "category": "unit-notes",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.406041
+    },
+    {
+      "id": "ot-unit-4-pert-and-cpm",
+      "name": "ot-unit-4-pert-and-cpm.pdf",
+      "path": "dump/optimization-techniques/ot-unit-4-pert-and-cpm.pdf",
+      "relativePath": "ot-unit-4-pert-and-cpm.pdf",
+      "type": "pdf",
+      "size": "3.6 MB",
+      "category": "unit-notes",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.3798957
+    },
+    {
+      "id": "ot-unit-5-game-theory",
+      "name": "ot-unit-5-game-theory.pdf",
+      "path": "dump/optimization-techniques/ot-unit-5-game-theory.pdf",
+      "relativePath": "ot-unit-5-game-theory.pdf",
+      "type": "pdf",
+      "size": "2.5 MB",
+      "category": "unit-notes",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.3478868
+    },
+    {
       "id": "simplex-method-imp-notes",
       "name": "Simplex Method imp notes.pdf",
       "path": "dump/optimization-techniques/Simplex Method imp notes.pdf",
@@ -693,61 +748,6 @@
       "category": "question-papers",
       "sourceFolder": ".",
       "addedAt": 1779820106.524443
-    },
-    {
-      "id": "document-from-knox-creations",
-      "name": "Document from Knox Creations.pdf",
-      "path": "dump/optimization-techniques/Document from Knox Creations.pdf",
-      "relativePath": "Document from Knox Creations.pdf",
-      "type": "pdf",
-      "size": "2.6 MB",
-      "category": "other",
-      "sourceFolder": ".",
-      "addedAt": 1779822481.406041
-    },
-    {
-      "id": "document-from-knox-creations-1",
-      "name": "Document from Knox Creations(1).pdf",
-      "path": "dump/optimization-techniques/Document from Knox Creations(1).pdf",
-      "relativePath": "Document from Knox Creations(1).pdf",
-      "type": "pdf",
-      "size": "3.6 MB",
-      "category": "other",
-      "sourceFolder": ".",
-      "addedAt": 1779822481.3798957
-    },
-    {
-      "id": "document-from-knox-creations-2",
-      "name": "Document from Knox Creations(2).pdf",
-      "path": "dump/optimization-techniques/Document from Knox Creations(2).pdf",
-      "relativePath": "Document from Knox Creations(2).pdf",
-      "type": "pdf",
-      "size": "2.5 MB",
-      "category": "other",
-      "sourceFolder": ".",
-      "addedAt": 1779822481.3478868
-    },
-    {
-      "id": "document-from-knox-creations-3",
-      "name": "Document from Knox Creations(3).pdf",
-      "path": "dump/optimization-techniques/Document from Knox Creations(3).pdf",
-      "relativePath": "Document from Knox Creations(3).pdf",
-      "type": "pdf",
-      "size": "9.1 MB",
-      "category": "other",
-      "sourceFolder": ".",
-      "addedAt": 1779822481.4759748
-    },
-    {
-      "id": "document-from-knox-creations-4",
-      "name": "Document from Knox Creations(4).pdf",
-      "path": "dump/optimization-techniques/Document from Knox Creations(4).pdf",
-      "relativePath": "Document from Knox Creations(4).pdf",
-      "type": "pdf",
-      "size": "3.9 MB",
-      "category": "other",
-      "sourceFolder": ".",
-      "addedAt": 1779822481.3179746
     },
     {
       "id": "mca-ot-2019-pattern",
@@ -807,26 +807,26 @@
   ],
   "power-bi": [
     {
-      "id": "pbi-question-bank",
-      "name": "PBI question bank_.docx",
-      "path": "dump/power-bi/PBI question bank_.docx",
-      "relativePath": "PBI question bank_.docx",
-      "type": "docx",
-      "size": "13.6 KB",
-      "category": "question-papers",
-      "sourceFolder": ".",
-      "addedAt": 1779822481.110904
-    },
-    {
-      "id": "document-from-knox-creations",
-      "name": "Document from Knox Creations.docx",
-      "path": "dump/power-bi/Document from Knox Creations.docx",
-      "relativePath": "Document from Knox Creations.docx",
+      "id": "power-bi-unit-wise-question-bank",
+      "name": "power-bi-unit-wise-question-bank.docx",
+      "path": "dump/power-bi/power-bi-unit-wise-question-bank.docx",
+      "relativePath": "power-bi-unit-wise-question-bank.docx",
       "type": "docx",
       "size": "19.4 KB",
-      "category": "other",
+      "category": "unit-notes",
       "sourceFolder": ".",
       "addedAt": 1779822481.1053686
+    },
+    {
+      "id": "power-bi-question-bank",
+      "name": "power-bi-question-bank.docx",
+      "path": "dump/power-bi/power-bi-question-bank.docx",
+      "relativePath": "power-bi-question-bank.docx",
+      "type": "docx",
+      "size": "13.6 KB",
+      "category": "other",
+      "sourceFolder": ".",
+      "addedAt": 1779822481.110904
     }
   ],
   "research-methodology": [
