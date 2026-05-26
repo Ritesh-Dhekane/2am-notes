@@ -6,6 +6,7 @@ import navigationData from '../../data/navigation.json';
 import dumpData from '../../data/dump-index.json';
 import { Terminal, Database } from 'lucide-react';
 import { updatePageMetadata } from '../utils/seo';
+import { isSubjectEnabled } from '../utils/subjectAvailability';
 
 const HomePage = () => {
   useEffect(() => {
@@ -16,13 +17,9 @@ const HomePage = () => {
   }, []);
   const totalRealItems = contentIndex.length;
   const totalSubjects = subjectsData.length;
-  const activeSubjects = subjectsData.filter((subject) => {
-    const nav = navigationData[subject.id];
-    const hasTopics = nav?.units && Object.values(nav.units).some(unit => unit.topics && unit.topics.length > 0);
-    const hasExtras = nav?.extras && nav.extras.length > 0;
-    const hasRawDocs = (dumpData[subject.id] || []).length > 0;
-    return hasTopics || hasExtras || hasRawDocs;
-  }).length;
+  const activeSubjects = subjectsData.filter((subject) =>
+    isSubjectEnabled({ subject, navigation: navigationData[subject.id], dumpData })
+  ).length;
   const rawDocCount = Object.values(dumpData).reduce((count, docs) => count + docs.length, 0);
 
   const isWorkspaceEmpty = totalRealItems === 0 && rawDocCount === 0;

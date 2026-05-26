@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 import * as Icons from 'lucide-react';
 import navigationData from '../../data/navigation.json';
 import dumpData from '../../data/dump-index.json';
+import { isSubjectEnabled } from '../utils/subjectAvailability';
 
 const SubjectCard = ({ subject }) => {
   const Icon = Icons[subject.icon] || Icons.Book;
 
   const nav = navigationData[subject.id];
-  const hasTopics = nav?.units && Object.values(nav.units).some(unit => unit.topics && unit.topics.length > 0);
-  const hasExtras = nav?.extras && nav.extras.length > 0;
   const hasRawDocs = (dumpData[subject.id] || []).length > 0;
-  const isEnabled = hasTopics || hasExtras || hasRawDocs;
+  const hasExtras = nav?.extras && nav.extras.length > 0;
+  const isEnabled = isSubjectEnabled({ subject, navigation: nav, dumpData });
 
   const cardContent = (
     <div className={`h-full rounded-2xl border bg-card p-6 shadow-sm transition-all duration-300 ${
@@ -46,7 +46,7 @@ const SubjectCard = ({ subject }) => {
       <div className="mt-6 flex items-center text-sm font-medium">
         {isEnabled ? (
           <>
-            <span className="text-primary">{hasTopics || hasExtras ? 'Explore Notes' : 'Open Library'}</span>
+            <span className="text-primary">{hasExtras ? 'Explore Notes' : hasRawDocs ? 'Open Library' : 'Open Subject'}</span>
             <Icons.ArrowRight size={16} className="ml-2 text-primary transition-transform group-hover:translate-x-1" />
           </>
         ) : (

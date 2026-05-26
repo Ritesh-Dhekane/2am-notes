@@ -124,5 +124,12 @@
     "path": "content/machine-learning-techniques/pyq-solutions/machine-learning-techniques-pyq-apr-2025.md",
     "type": "pyq-solutions",
     "sourceTitle": "Machine Learning Techniques PYQ - APR 2025"
+  },
+  {
+    "subjectId": "power-bi",
+    "title": "PYQ APR 2025",
+    "path": "content/power-bi/pyq-solutions/power-bi-pyq-apr-2025.md",
+    "type": "pyq-solutions",
+    "sourceTitle": "Power BI PYQ - APR 2025"
   }
 ]

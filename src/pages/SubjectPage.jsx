@@ -26,6 +26,7 @@ import {
   getRawDocumentCategoryLabel,
   RAW_DOCUMENT_NOTICE,
 } from '../utils/rawDocuments';
+import { isSubjectEnabled } from '../utils/subjectAvailability';
 
 const DisclaimerBox = () => (
   <div className="mb-6 rounded-2xl border border-amber-500/20 bg-amber-500/5 p-4 text-xs leading-relaxed text-amber-500/90">
@@ -169,7 +170,7 @@ const SubjectPage = () => {
   const hasRawDocs = rawDocs.length > 0;
   const hasActiveUnits = activeUnits.length > 0;
   const hasActiveExtras = (navigation?.extras || []).length > 0;
-  const isEnabled = hasActiveUnits || hasActiveExtras || hasRawDocs;
+  const isEnabled = isSubjectEnabled({ subject, navigation, dumpData });
 
   if (!isEnabled) {
     return <Navigate to="/" replace />;

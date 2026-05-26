@@ -178,9 +178,11 @@
     "extras": [
       {
         "id": "power-bi-pyq-apr-2025",
-        "title": "Power Bi Pyq Apr 2025",
+        "title": "PYQ APR 2025",
+        "shortTitle": "PYQ APR 2025",
         "path": "content/power-bi/pyq-solutions/power-bi-pyq-apr-2025.md",
-        "category": "pyq-solutions"
+        "category": "pyq-solutions",
+        "sourceTitle": "Power BI PYQ - APR 2025"
       }
     ]
   },

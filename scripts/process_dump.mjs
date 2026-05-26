@@ -3,6 +3,7 @@ import path from 'node:path';
 
 const BASE_DIR = process.cwd();
 const DUMP_DIR = path.join(BASE_DIR, 'source-material', 'dump');
+const SOURCE_MATERIAL_DIR = path.join(BASE_DIR, 'source-material');
 const EXTRACTED_DIR = path.join(BASE_DIR, 'source-material', 'dump-extracted');
 const PUBLIC_DUMP_DIR = path.join(BASE_DIR, 'public', 'dump');
 const DATA_INDEX_FILE = path.join(BASE_DIR, 'data', 'dump-index.json');
@@ -76,6 +77,15 @@ const ensureDir = async (dirPath) => {
   await fs.mkdir(dirPath, { recursive: true });
 };
 
+const removeDirContents = async (dirPath) => {
+  await ensureDir(dirPath);
+  const entries = await fs.readdir(dirPath, { withFileTypes: true });
+
+  for (const entry of entries) {
+    await fs.rm(path.join(dirPath, entry.name), { recursive: true, force: true });
+  }
+};
+
 const walkFiles = async (dirPath) => {
   const entries = await fs.readdir(dirPath, { withFileTypes: true });
   const files = [];
@@ -93,67 +103,99 @@ const walkFiles = async (dirPath) => {
   return files;
 };
 
+const collectArchiveRoots = async () => {
+  const roots = [{ dirPath: DUMP_DIR, subjectId: null }];
+  const entries = await fs.readdir(SOURCE_MATERIAL_DIR, { withFileTypes: true });
+
+  for (const entry of entries) {
+    if (!entry.isDirectory()) continue;
+    const subjectId = SUBJECT_ALIASES[slugify(entry.name)];
+    if (!subjectId) continue;
+
+    const archiveDir = path.join(SOURCE_MATERIAL_DIR, entry.name, 'dump-archive');
+    try {
+      const stat = await fs.stat(archiveDir);
+      if (stat.isDirectory()) {
+        roots.push({ dirPath: archiveDir, subjectId });
+      }
+    } catch {
+      // No archive for this subject yet.
+    }
+  }
+
+  return roots;
+};
+
 const processDump = async () => {
   await ensureDir(DUMP_DIR);
   await ensureDir(EXTRACTED_DIR);
   await ensureDir(PUBLIC_DUMP_DIR);
+  await removeDirContents(PUBLIC_DUMP_DIR);
 
   const metadata = {};
-  const dumpFiles = await walkFiles(DUMP_DIR);
+  const scanRoots = await collectArchiveRoots();
 
-  for (const filePath of dumpFiles) {
-    const relativeDumpPath = path.relative(DUMP_DIR, filePath);
-    const relativeParts = relativeDumpPath.split(path.sep);
-    const subjectId = normalizeSubjectId(relativeParts.slice(0, -1));
+  for (const { dirPath, subjectId: forcedSubjectId } of scanRoots) {
+    const dumpFiles = await walkFiles(dirPath);
 
-    if (!subjectId) {
-      console.warn(`[Warning] Skipping unmapped file: ${relativeDumpPath}`);
-      continue;
+    for (const filePath of dumpFiles) {
+      const relativeDumpPath = path.relative(dirPath, filePath);
+      const relativeParts = relativeDumpPath.split(path.sep);
+      const subjectId = forcedSubjectId || normalizeSubjectId(relativeParts.slice(0, -1));
+
+      if (!subjectId) {
+        console.warn(`[Warning] Skipping unmapped file: ${relativeDumpPath}`);
+        continue;
+      }
+
+      let relAfterSubject = relativeParts;
+
+      if (!forcedSubjectId) {
+        let subjectIndex = 0;
+        while (
+          subjectIndex < relativeParts.length - 1 &&
+          SUBJECT_ALIASES[slugify(relativeParts[subjectIndex])] !== subjectId
+        ) {
+          subjectIndex += 1;
+        }
+        relAfterSubject = relativeParts.slice(subjectIndex + 1);
+      }
+
+      const relativePublicPath = relAfterSubject.join('/');
+      const fileName = path.basename(filePath);
+      const fileStat = await fs.stat(filePath);
+      const category = classifyFile(fileName);
+      const docId = slugify(relativePublicPath.replace(/\.[^/.]+$/, ''));
+      const ext = path.extname(fileName).replace('.', '').trim().toLowerCase() || 'unknown';
+
+      const publicDestination = path.join(PUBLIC_DUMP_DIR, subjectId, ...relAfterSubject);
+      await ensureDir(path.dirname(publicDestination));
+      await fs.copyFile(filePath, publicDestination);
+
+      if (ext === 'txt') {
+        const extractedDestination = path.join(
+          EXTRACTED_DIR,
+          subjectId,
+          relativePublicPath.replace(/\.[^/.]+$/, '.txt')
+        );
+        await ensureDir(path.dirname(extractedDestination));
+        const text = await fs.readFile(filePath, 'utf8');
+        await fs.writeFile(extractedDestination, text, 'utf8');
+      }
+
+      metadata[subjectId] ||= [];
+      metadata[subjectId].push({
+        id: docId,
+        name: fileName,
+        path: `dump/${subjectId}/${relativePublicPath}`,
+        relativePath: relativePublicPath,
+        type: ext,
+        size: formatSize(fileStat.size),
+        category,
+        sourceFolder: path.dirname(relativePublicPath).replaceAll('\\', '/') || '.',
+        addedAt: fileStat.mtimeMs / 1000,
+      });
     }
-
-    let subjectIndex = 0;
-    while (
-      subjectIndex < relativeParts.length - 1 &&
-      SUBJECT_ALIASES[slugify(relativeParts[subjectIndex])] !== subjectId
-    ) {
-      subjectIndex += 1;
-    }
-
-    const relAfterSubject = relativeParts.slice(subjectIndex + 1);
-    const relativePublicPath = relAfterSubject.join('/');
-    const fileName = path.basename(filePath);
-    const fileStat = await fs.stat(filePath);
-    const category = classifyFile(fileName);
-    const docId = slugify(relativePublicPath.replace(/\.[^/.]+$/, ''));
-    const ext = path.extname(fileName).replace('.', '').trim().toLowerCase() || 'unknown';
-
-    const publicDestination = path.join(PUBLIC_DUMP_DIR, subjectId, ...relAfterSubject);
-    await ensureDir(path.dirname(publicDestination));
-    await fs.copyFile(filePath, publicDestination);
-
-    if (ext === 'txt') {
-      const extractedDestination = path.join(
-        EXTRACTED_DIR,
-        subjectId,
-        relativePublicPath.replace(/\.[^/.]+$/, '.txt')
-      );
-      await ensureDir(path.dirname(extractedDestination));
-      const text = await fs.readFile(filePath, 'utf8');
-      await fs.writeFile(extractedDestination, text, 'utf8');
-    }
-
-    metadata[subjectId] ||= [];
-    metadata[subjectId].push({
-      id: docId,
-      name: fileName,
-      path: `dump/${subjectId}/${relativePublicPath}`,
-      relativePath: relativePublicPath,
-      type: ext,
-      size: formatSize(fileStat.size),
-      category,
-      sourceFolder: path.dirname(relativePublicPath).replaceAll('\\', '/') || '.',
-      addedAt: fileStat.mtimeMs / 1000,
-    });
   }
 
   for (const docs of Object.values(metadata)) {
