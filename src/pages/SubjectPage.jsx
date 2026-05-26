@@ -2,57 +2,174 @@ import React, { useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import subjectsData from '../../data/subjects.json';
 import navigationData from '../../data/navigation.json';
-import { ArrowLeft, BookOpen, ChevronRight, GraduationCap, Zap, Brain, FileText, Lock } from 'lucide-react';
+import dumpData from '../../data/dump-index.json';
+import {
+  ArrowLeft,
+  BookOpen,
+  ChevronRight,
+  GraduationCap,
+  Zap,
+  Brain,
+  FileText,
+  Lock,
+  FolderDown,
+  Download,
+  ExternalLink,
+  Copy,
+  Check,
+  Eye,
+} from 'lucide-react';
 import { buildCleanUrl } from '../utils/path';
 import { updatePageMetadata } from '../utils/seo';
+import {
+  buildRawDocumentUrl,
+  getRawDocumentCategoryLabel,
+  RAW_DOCUMENT_NOTICE,
+} from '../utils/rawDocuments';
 
-const TopicCard = ({ subjectId, topic }) => (
+const DisclaimerBox = () => (
+  <div className="mb-6 rounded-2xl border border-amber-500/20 bg-amber-500/5 p-4 text-xs leading-relaxed text-amber-500/90">
+    <p className="mb-1 font-bold">Copyright & Content Notice</p>
+    <p>{RAW_DOCUMENT_NOTICE}</p>
+  </div>
+);
+
+const RawDocCard = ({ doc, subjectId }) => {
+  const [copied, setCopied] = React.useState(false);
+  const fileUrl = `${import.meta.env.BASE_URL || '/'}${doc.path}`;
+
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(
+        `${window.location.origin}${import.meta.env.BASE_URL || '/'}#${buildRawDocumentUrl(subjectId, doc.id)}`
+      );
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy link:', err);
+    }
+  };
+
+  const getFileIcon = (type) => {
+    const loweredType = type.toLowerCase();
+    if (loweredType === 'pdf') return <GraduationCap size={18} className="text-purple-500" />;
+    if (['doc', 'docx', 'txt'].includes(loweredType)) return <FileText size={18} className="text-blue-500" />;
+    return <FileText size={18} className="text-zinc-500" />;
+  };
+
+  return (
+    <div className="rounded-xl border bg-card/50 p-4 transition-all hover:border-primary/50 hover:bg-card hover:shadow-md">
+      <div className="flex items-start justify-between gap-3">
+        <Link to={buildRawDocumentUrl(subjectId, doc.id)} className="flex min-w-0 flex-1 items-start gap-3">
+          <div className="shrink-0 rounded-lg bg-muted p-2">{getFileIcon(doc.type)}</div>
+          <div className="min-w-0">
+            <p className="truncate text-sm font-semibold text-foreground">{doc.name}</p>
+            <p className="mt-1 text-[10px] uppercase tracking-wider text-muted-foreground">
+              {getRawDocumentCategoryLabel(doc.category)} • {doc.type} • {doc.size}
+            </p>
+            {doc.sourceFolder !== '.' && (
+              <p className="mt-1 truncate text-[11px] text-muted-foreground/80">{doc.sourceFolder}</p>
+            )}
+          </div>
+        </Link>
+
+        <div className="flex shrink-0 items-center gap-1">
+          <Link
+            to={buildRawDocumentUrl(subjectId, doc.id)}
+            className="rounded-lg p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+            title="View in app"
+          >
+            <Eye size={16} />
+          </Link>
+          {doc.type.toLowerCase() === 'pdf' && (
+            <a
+              href={fileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-lg p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+              title="Open original file"
+            >
+              <ExternalLink size={16} />
+            </a>
+          )}
+          <a
+            href={fileUrl}
+            download
+            className="rounded-lg p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+            title="Download raw file"
+          >
+            <Download size={16} />
+          </a>
+          <button
+            onClick={handleCopyLink}
+            className="cursor-pointer rounded-lg p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+            title="Copy viewer link"
+          >
+            {copied ? <Check size={16} className="text-emerald-500" /> : <Copy size={16} />}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const TopicCard = ({ topic }) => (
   <Link
     to={buildCleanUrl(topic.path)}
-    className="group flex items-center justify-between p-4 rounded-xl border bg-card hover:border-primary/50 hover:shadow-md transition-all active:scale-[0.98]"
+    className="group flex items-center justify-between rounded-xl border bg-card p-4 transition-all hover:border-primary/50 hover:shadow-md active:scale-[0.98]"
   >
     <div className="flex items-center gap-3 overflow-hidden">
-      <div className="p-2 rounded-lg bg-muted text-muted-foreground group-hover:bg-primary group-hover:text-primary-foreground transition-colors shrink-0">
+      <div className="shrink-0 rounded-lg bg-muted p-2 text-muted-foreground transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
         <FileText size={18} />
       </div>
-      <span className="font-medium truncate group-hover:text-primary transition-colors">{topic.title}</span>
+      <span className="truncate font-medium transition-colors group-hover:text-primary">{topic.title}</span>
     </div>
-    <ChevronRight size={18} className="text-muted-foreground/30 group-hover:text-primary group-hover:translate-x-1 transition-all shrink-0" />
+    <ChevronRight size={18} className="shrink-0 text-muted-foreground/30 transition-all group-hover:translate-x-1 group-hover:text-primary" />
   </Link>
 );
 
 const SubjectPage = () => {
   const { subjectId } = useParams();
-  const subject = subjectsData.find((s) => s.id === subjectId);
+  const subject = subjectsData.find((entry) => entry.id === subjectId);
   const navigation = navigationData[subjectId];
 
   useEffect(() => {
     if (subject) {
       updatePageMetadata({
         title: subject.title,
-        description: `Unlock high-yield exam preparation keys for "${subject.title}" at 2AM Notes. Revise unit-wise notes, download solved previous year papers (PYQs), and master concept maps.`,
-        subjectTitle: 'Subject Hub'
+        description: `Unlock high-yield exam preparation resources for ${subject.title} at 2AM Notes.`,
+        subjectTitle: 'Subject Hub',
       });
     }
-  }, [subjectId, subject]);
+  }, [subject, subjectId]);
 
   if (!subject) {
     return (
       <div className="container mx-auto px-4 py-20 text-center">
         <h2 className="text-2xl font-bold">Subject not found</h2>
-        <Link to="/" className="text-primary hover:underline mt-4 inline-block">Back to home</Link>
+        <Link to="/" className="mt-4 inline-block text-primary hover:underline">
+          Back to home
+        </Link>
       </div>
     );
   }
 
-  // Get active units that actually have topics indexed in navigation
   const activeUnits = Object.entries(navigation?.units || {}).filter(
-    ([_, unit]) => unit.topics && unit.topics.length > 0
+    ([, unit]) => unit.topics && unit.topics.length > 0
   );
-  
+
+  const rawDocs = dumpData[subjectId] || [];
+  const rawDocGroups = rawDocs.reduce((groups, doc) => {
+    const category = doc.category || 'other';
+    groups[category] = groups[category] || [];
+    groups[category].push(doc);
+    return groups;
+  }, {});
+
+  const hasRawDocs = rawDocs.length > 0;
   const hasActiveUnits = activeUnits.length > 0;
-  const hasActiveExtras = navigation?.extras && navigation.extras.length > 0;
-  const isEnabled = hasActiveUnits || hasActiveExtras;
+  const hasActiveExtras = (navigation?.extras || []).length > 0;
+  const isEnabled = hasActiveUnits || hasActiveExtras || hasRawDocs;
 
   if (!isEnabled) {
     return <Navigate to="/" replace />;
@@ -63,28 +180,28 @@ const SubjectPage = () => {
     { id: 'revision', title: 'Revision Notes', icon: <Zap size={20} className="text-amber-500" /> },
     { id: 'mindmaps', title: 'Concept Maps', icon: <Brain size={20} className="text-emerald-500" /> },
   ];
-  
-  // Total available notes topics
-  const totalTopics = activeUnits.reduce((acc, [_, unit]) => acc + (unit.topics?.length || 0), 0);
+
+  const totalTopics = activeUnits.reduce((count, [, unit]) => count + (unit.topics?.length || 0), 0);
 
   return (
     <div className="container mx-auto px-4 py-12 transition-theme">
-      <Link to="/" className="inline-flex items-center text-sm font-bold text-muted-foreground hover:text-primary mb-12 group transition-colors">
+      <Link
+        to="/"
+        className="group mb-12 inline-flex items-center text-sm font-bold text-muted-foreground transition-colors hover:text-primary"
+      >
         <ArrowLeft size={16} className="mr-2 transition-transform group-hover:-translate-x-1" />
         All Subjects
       </Link>
 
       <header className="mb-16">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div className="space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary">
               <BookOpen size={14} />
-              {totalTopics} Topic Notes Available
+              {totalTopics > 0 ? `${totalTopics} Topic Notes Available` : `${rawDocs.length} Source Files Available`}
             </div>
-            <h1 className="text-4xl md:text-6xl font-black tracking-tighter">{subject.title}</h1>
-            <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
-              {subject.description}
-            </p>
+            <h1 className="text-4xl font-black tracking-tighter md:text-6xl">{subject.title}</h1>
+            <p className="max-w-2xl text-xl leading-relaxed text-muted-foreground">{subject.description}</p>
           </div>
         </div>
       </header>
@@ -95,66 +212,92 @@ const SubjectPage = () => {
             <div className="space-y-12">
               {activeUnits.map(([unitId, unit]) => (
                 <section key={unitId} className="relative">
-                  <div className="sticky top-20 z-10 bg-background/80 backdrop-blur-sm py-4 mb-6">
-                    <h2 className="text-2xl font-black tracking-tight flex items-center gap-3">
-                      <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground text-sm font-bold">
+                  <div className="sticky top-20 z-10 mb-6 bg-background/80 py-4 backdrop-blur-sm">
+                    <h2 className="flex items-center gap-3 text-2xl font-black tracking-tight">
+                      <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-sm font-bold text-primary-foreground">
                         {unitId.replace('unit', '')}
                       </span>
                       {unit.title}
                     </h2>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     {unit.topics.map((topic) => (
-                      <TopicCard key={topic.id} subjectId={subject.id} topic={topic} />
+                      <TopicCard key={topic.id} topic={topic} />
                     ))}
                   </div>
                 </section>
               ))}
             </div>
           ) : (
-            <div className="rounded-3xl border border-dashed border-border p-8 md:p-12 bg-muted/10 relative overflow-hidden">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div className="relative overflow-hidden rounded-3xl border border-dashed border-border bg-muted/10 p-8 md:p-12">
+              <div className="flex flex-col justify-between gap-6 md:flex-row md:items-center">
                 <div>
-                  <h3 className="text-xl font-bold mb-1 flex items-center gap-2 text-foreground">
+                  <h3 className="mb-1 flex items-center gap-2 text-xl font-bold text-foreground">
                     <span className="relative flex h-3 w-3">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-75"></span>
+                      <span className="relative inline-flex h-3 w-3 rounded-full bg-amber-500"></span>
                     </span>
                     Knowledge Pipeline Initializing
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    Study resources are being structured and verified. Notes and PYQ solutions will appear here shortly.
+                    Notes are still being structured. Raw documents below are already sorted and ready to review.
                   </p>
                 </div>
-                <div className="text-xs font-bold uppercase tracking-wider text-amber-500 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 shrink-0 self-start md:self-auto flex items-center gap-1">
+                <div className="flex items-center gap-1 self-start rounded-full border border-amber-500/20 bg-amber-500/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-amber-500 md:self-auto">
                   <Lock size={12} />
                   In Progress
                 </div>
               </div>
             </div>
           )}
+
+          {hasRawDocs && (
+            <section className="mt-16 border-t border-border pt-12">
+              <h2 className="mb-6 flex items-center gap-2 text-2xl font-black tracking-tight">
+                <FolderDown className="text-primary" size={24} />
+                Source Material Library
+              </h2>
+              <DisclaimerBox />
+              <div className="space-y-8">
+                {Object.entries(rawDocGroups).map(([category, docs]) => (
+                  <div key={category}>
+                    <h3 className="mb-4 text-sm font-bold uppercase tracking-widest text-muted-foreground">
+                      {getRawDocumentCategoryLabel(category)}
+                    </h3>
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                      {docs.map((doc) => (
+                        <RawDocCard key={doc.id} doc={doc} subjectId={subjectId} />
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
         </div>
 
         <aside className="space-y-8">
-          {sections.map(section => {
-            const items = navigation?.extras?.filter(e => e.category === section.id) || [];
+          {sections.map((section) => {
+            const items = navigation?.extras?.filter((entry) => entry.category === section.id) || [];
             if (items.length === 0) return null;
 
             return (
               <div key={section.id} className="rounded-3xl border bg-card p-6 shadow-sm">
-                <h3 className="font-bold flex items-center gap-2 mb-6 px-1 text-foreground">
+                <h3 className="mb-6 flex items-center gap-2 px-1 font-bold text-foreground">
                   {section.icon}
                   {section.title}
                 </h3>
                 <ul className="space-y-2">
                   {items.map((item) => (
                     <li key={item.id}>
-                      <Link 
+                      <Link
                         to={buildCleanUrl(item.path)}
-                        className="flex items-center justify-between p-3 rounded-xl hover:bg-muted text-sm font-medium transition-all group"
+                        className="group flex items-center justify-between rounded-xl p-3 text-sm font-medium transition-all hover:bg-muted"
                       >
-                        <span className="line-clamp-1 group-hover:text-primary transition-colors text-foreground">{item.title}</span>
-                        <ChevronRight size={14} className="opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-1" />
+                        <span className="line-clamp-1 text-foreground transition-colors group-hover:text-primary">
+                          {item.title}
+                        </span>
+                        <ChevronRight size={14} className="opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
                       </Link>
                     </li>
                   ))}
@@ -162,7 +305,6 @@ const SubjectPage = () => {
               </div>
             );
           })}
-          
         </aside>
       </div>
     </div>

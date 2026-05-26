@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import * as Icons from 'lucide-react';
 import navigationData from '../../data/navigation.json';
+import dumpData from '../../data/dump-index.json';
 
 const SubjectCard = ({ subject }) => {
   const Icon = Icons[subject.icon] || Icons.Book;
@@ -9,7 +10,8 @@ const SubjectCard = ({ subject }) => {
   const nav = navigationData[subject.id];
   const hasTopics = nav?.units && Object.values(nav.units).some(unit => unit.topics && unit.topics.length > 0);
   const hasExtras = nav?.extras && nav.extras.length > 0;
-  const isEnabled = hasTopics || hasExtras;
+  const hasRawDocs = (dumpData[subject.id] || []).length > 0;
+  const isEnabled = hasTopics || hasExtras || hasRawDocs;
 
   const cardContent = (
     <div className={`h-full rounded-2xl border bg-card p-6 shadow-sm transition-all duration-300 ${
@@ -44,7 +46,7 @@ const SubjectCard = ({ subject }) => {
       <div className="mt-6 flex items-center text-sm font-medium">
         {isEnabled ? (
           <>
-            <span className="text-primary">Explore Notes</span>
+            <span className="text-primary">{hasTopics || hasExtras ? 'Explore Notes' : 'Open Library'}</span>
             <Icons.ArrowRight size={16} className="ml-2 text-primary transition-transform group-hover:translate-x-1" />
           </>
         ) : (

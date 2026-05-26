@@ -1,0 +1,4 @@
+Java Programming Lecture Notes.
+We cover topics like Objects, Classes, Interfaces, Inheritance, and Polymorphism.
+Java is a strongly typed, class-based object-oriented programming language designed to have as few implementation dependencies as possible.
+This is a raw reference document for testing the 2AM Notes ingestion pipeline.

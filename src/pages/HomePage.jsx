@@ -3,6 +3,7 @@ import SubjectCard from '../components/SubjectCard';
 import subjectsData from '../../data/subjects.json';
 import contentIndex from '../../data/content-index.json';
 import navigationData from '../../data/navigation.json';
+import dumpData from '../../data/dump-index.json';
 import { Terminal, Database } from 'lucide-react';
 import { updatePageMetadata } from '../utils/seo';
 
@@ -15,14 +16,16 @@ const HomePage = () => {
   }, []);
   const totalRealItems = contentIndex.length;
   const totalSubjects = subjectsData.length;
-  const activeSubjects = Object.keys(navigationData).filter(subId => {
-    const nav = navigationData[subId];
+  const activeSubjects = subjectsData.filter((subject) => {
+    const nav = navigationData[subject.id];
     const hasTopics = nav?.units && Object.values(nav.units).some(unit => unit.topics && unit.topics.length > 0);
     const hasExtras = nav?.extras && nav.extras.length > 0;
-    return hasTopics || hasExtras;
+    const hasRawDocs = (dumpData[subject.id] || []).length > 0;
+    return hasTopics || hasExtras || hasRawDocs;
   }).length;
+  const rawDocCount = Object.values(dumpData).reduce((count, docs) => count + docs.length, 0);
 
-  const isWorkspaceEmpty = totalRealItems === 0;
+  const isWorkspaceEmpty = totalRealItems === 0 && rawDocCount === 0;
 
   return (
     <div className="container mx-auto px-6 py-24 transition-theme max-w-6xl">
@@ -92,7 +95,7 @@ const HomePage = () => {
             <div className="border border-border/60 bg-muted/20 p-4 rounded-xl flex flex-col justify-between min-w-[160px]">
               <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground/60 block mb-1">Active Logs</span>
               <span className="text-xs font-bold text-foreground">
-                {totalRealItems} Files Indexed
+                {totalRealItems + rawDocCount} Files Indexed
               </span>
             </div>
           </div>

@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import SubjectPage from './pages/SubjectPage';
 import TopicPage from './pages/TopicPage';
 import ContentViewer from './pages/ContentViewer';
+import DocumentViewer from './pages/DocumentViewer';
 import SearchPage from './pages/SearchPage';
 import NotFoundPage from './pages/NotFoundPage';
 import AnalyticsTracker from './components/AnalyticsTracker';
@@ -22,6 +23,7 @@ function App() {
           <Route path="subject/:subjectId/topic/:topicId" element={<TopicPage />} />
           <Route path="subject/:subjectId/units/:unitId/topics/:topicId" element={<ContentViewer />} />
           <Route path="subject/:subjectId/:category/:itemId" element={<ContentViewer />} />
+          <Route path="subject/:subjectId/documents/:docId" element={<DocumentViewer />} />
           <Route path="subject/:subjectId/viewer" element={<ContentViewer />} />
           <Route path="search" element={<SearchPage />} />
           <Route path="*" element={<NotFoundPage />} />

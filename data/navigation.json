@@ -42,5 +42,15 @@
         "category": "pyq-solutions"
       }
     ]
+  },
+  "ccms": {
+    "title": "CCMS",
+    "units": {},
+    "extras": []
+  },
+  "eccs": {
+    "title": "ECCS",
+    "units": {},
+    "extras": []
   }
 }

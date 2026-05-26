@@ -596,5 +596,35 @@
       "books": [],
       "handwritten": []
     }
+  },
+  {
+    "id": "ccms",
+    "title": "CCMS",
+    "icon": "Cloud",
+    "description": "Centralized source materials and study documents for CCMS.",
+    "unitCount": 5,
+    "units": [],
+    "sourceMapping": {
+      "syllabus": [],
+      "pyqs": [],
+      "references": [],
+      "books": [],
+      "handwritten": []
+    }
+  },
+  {
+    "id": "eccs",
+    "title": "ECCS",
+    "icon": "ShieldCheck",
+    "description": "Centralized source materials and study documents for ECCS.",
+    "unitCount": 5,
+    "units": [],
+    "sourceMapping": {
+      "syllabus": [],
+      "pyqs": [],
+      "references": [],
+      "books": [],
+      "handwritten": []
+    }
   }
 ]
