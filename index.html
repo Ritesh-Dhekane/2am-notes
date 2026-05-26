@@ -26,7 +26,12 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-GSST9PH2Q1', { send_page_view: false });
+      gtag('config', 'G-GSST9PH2Q1', {
+        send_page_view: false,
+        anonymize_ip: true,
+        allow_google_signals: true,
+        allow_ad_personalization_signals: false
+      });
     </script>
   </head>
   <body>

@@ -24,6 +24,7 @@ import { buildCleanUrl } from '../utils/path';
 import { updatePageMetadata } from '../utils/seo';
 import { getRawDocumentCategoryLabel, RAW_DOCUMENT_NOTICE } from '../utils/rawDocuments';
 import { isSubjectEnabled } from '../utils/subjectAvailability';
+import { trackRawDocumentOpen } from '../utils/analytics';
 
 const DOC_NOTICE_DISMISS_KEY = '2am-notes-doc-notice-dismissed';
 const DOC_NOTICE_COUNTER_KEY = '2am-notes-doc-notice-counter';
@@ -210,6 +211,7 @@ const SubjectPage = () => {
         window.localStorage.removeItem(DOC_NOTICE_DISMISS_KEY);
       }
     }
+    trackRawDocumentOpen(subjectId, selectedDoc.name, selectedDoc.category);
     window.open(selectedDocUrl, '_blank', 'noopener,noreferrer');
     trackDocumentOpen();
     setSelectedDoc(null);
