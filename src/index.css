@@ -200,3 +200,56 @@
 .transition-theme {
   transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
 }
+
+@keyframes supportHaloPulse {
+  0%, 100% {
+    transform: scale(0.98);
+    opacity: 0.28;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.6;
+  }
+}
+
+@keyframes supportSparkFloat {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translateY(-3px);
+    opacity: 0.95;
+  }
+}
+
+.support-button {
+  overflow: visible;
+}
+
+.support-button__halo {
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.22), rgba(59, 130, 246, 0.04) 60%, transparent 72%);
+  animation: supportHaloPulse 2.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.support-button__spark {
+  position: absolute;
+  top: -8px;
+  display: inline-flex;
+  color: hsl(var(--primary));
+  animation: supportSparkFloat 2.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.support-button__spark--left {
+  left: 10px;
+}
+
+.support-button__spark--right {
+  right: 10px;
+  animation-delay: 1.2s;
+}

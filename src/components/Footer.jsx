@@ -1,6 +1,7 @@
 import React from 'react';
 import { Globe, Share2 } from 'lucide-react';
 import SupportDeveloperCard from './SupportDeveloperCard';
+import { trackShareAction } from '../utils/analytics';
 
 const Footer = () => {
   const handleShare = async () => {
@@ -13,8 +14,10 @@ const Footer = () => {
     try {
       if (navigator.share) {
         await navigator.share(shareData);
+        trackShareAction('native_share');
       } else {
         await navigator.clipboard.writeText(window.location.origin);
+        trackShareAction('copy_link_fallback');
         alert('Link copied to clipboard!');
       }
     } catch (err) {

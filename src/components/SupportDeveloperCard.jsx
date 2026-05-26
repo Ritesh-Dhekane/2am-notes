@@ -1,5 +1,6 @@
 import React from 'react';
-import { Copy, HeartHandshake, QrCode, Smartphone, X } from 'lucide-react';
+import { Copy, HeartHandshake, QrCode, Smartphone, Sparkles, X } from 'lucide-react';
+import { trackSupportInteraction } from '../utils/analytics';
 
 const UPI_ID = 'ritesh.you.may.not.know@slc';
 const UPI_NAME = 'Ritesh';
@@ -17,24 +18,51 @@ const SupportDeveloperCard = () => {
   }`;
   const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=${encodeURIComponent(upiLink)}`;
 
+  const openSupport = () => {
+    setIsOpen(true);
+    trackSupportInteraction('support_open', 'footer_support');
+  };
+
+  const closeSupport = () => {
+    setIsOpen(false);
+    trackSupportInteraction('support_close', 'footer_support');
+  };
+
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(UPI_ID);
       setCopied(true);
+      trackSupportInteraction('support_copy_upi', 'upi_id_copy');
       setTimeout(() => setCopied(false), 2000);
     } catch (error) {
       console.error('Unable to copy UPI ID', error);
     }
   };
 
+  const handleAmountSelect = (value) => {
+    setAmount(String(value));
+    trackSupportInteraction('support_amount_select', `amount_${value}`, value);
+  };
+
+  const handleCustomAmountChange = (event) => {
+    setAmount(event.target.value);
+  };
+
   return (
     <>
       <button
-        onClick={() => setIsOpen(true)}
-        className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-border/80 bg-background/70 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground transition-all hover:border-primary/40 hover:text-primary"
+        onClick={openSupport}
+        className="support-button group relative inline-flex cursor-pointer items-center gap-2 rounded-full border border-border/80 bg-background/70 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground transition-all hover:border-primary/40 hover:text-primary"
       >
-        <HeartHandshake size={14} />
-        Support the Developer
+        <span className="support-button__halo" aria-hidden="true" />
+        <span className="support-button__spark support-button__spark--left" aria-hidden="true">
+          <Sparkles size={10} />
+        </span>
+        <span className="support-button__spark support-button__spark--right" aria-hidden="true">
+          <Sparkles size={10} />
+        </span>
+        <HeartHandshake size={14} className="relative z-[1]" />
+        <span className="relative z-[1]">Support the Developer</span>
       </button>
 
       {isOpen && (
@@ -50,7 +78,7 @@ const SupportDeveloperCard = () => {
                   </p>
                 </div>
                 <button
-                  onClick={() => setIsOpen(false)}
+                  onClick={closeSupport}
                   className="rounded-full border border-border/80 bg-background/80 p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                   title="Close support panel"
                 >
@@ -62,7 +90,7 @@ const SupportDeveloperCard = () => {
                 {SUGGESTED_AMOUNTS.map((value) => (
                   <button
                     key={value}
-                    onClick={() => setAmount(String(value))}
+                    onClick={() => handleAmountSelect(value)}
                     className={`rounded-full border px-3 py-2 text-xs font-bold transition-colors sm:text-sm ${
                       amount === String(value)
                         ? 'border-primary bg-primary text-primary-foreground'
@@ -79,7 +107,8 @@ const SupportDeveloperCard = () => {
                 min="1"
                 step="1"
                 value={amount}
-                onChange={(event) => setAmount(event.target.value)}
+                onChange={handleCustomAmountChange}
+                onBlur={() => trackSupportInteraction('support_amount_custom', `amount_${validAmount || 'empty'}`, Number(validAmount || 0))}
                 placeholder="Custom amount"
                 className="mt-3 w-full rounded-2xl border border-border bg-background/80 px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-primary"
               />
@@ -111,6 +140,7 @@ const SupportDeveloperCard = () => {
               <div className="mt-4 flex flex-col gap-2 sm:flex-row">
                 <a
                   href={upiLink}
+                  onClick={() => trackSupportInteraction('support_open_upi', `amount_${validAmount || 'empty'}`, Number(validAmount || 0))}
                   className="inline-flex flex-1 items-center justify-center gap-2 rounded-2xl bg-primary px-4 py-3 text-sm font-bold text-primary-foreground transition-opacity hover:opacity-90"
                 >
                   <Smartphone size={16} />
