@@ -2,8 +2,26 @@ import React from 'react';
 import { Copy, HeartHandshake, QrCode, Smartphone, Sparkles, X } from 'lucide-react';
 import { trackPaymentFailureReport, trackSupportInteraction } from '../utils/analytics';
 
-const UPI_ID = 'ritesh.you.may.not.know@slc';
-const UPI_NAME = 'Ritesh';
+const PAYMENT_OPTIONS = [
+  {
+    id: 'primary',
+    label: 'Primary UPI',
+    upiId: 'krishnadhaval@upi',
+    upiName: 'Ritesh',
+    bank: 'upi',
+    domain: 'upi',
+    helper: 'Recommended payment route',
+  },
+  {
+    id: 'secondary',
+    label: 'Fallback UPI',
+    upiId: 'ritesh.you.may.not.know@slc',
+    upiName: 'Ritesh',
+    bank: 'slice',
+    domain: 'slc',
+    helper: 'Use this if your app prefers the Slice handle',
+  },
+];
 const SUGGESTED_AMOUNTS = [49, 99, 199, 499];
 
 const SupportDeveloperCard = () => {
@@ -11,16 +29,20 @@ const SupportDeveloperCard = () => {
   const [copied, setCopied] = React.useState(false);
   const [amount, setAmount] = React.useState('99');
   const [failureHintShown, setFailureHintShown] = React.useState(false);
+  const [activePaymentId, setActivePaymentId] = React.useState(PAYMENT_OPTIONS[0].id);
+
+  const activePayment = PAYMENT_OPTIONS.find((option) => option.id === activePaymentId) ?? PAYMENT_OPTIONS[0];
 
   const normalizedAmount = amount.trim();
   const validAmount = normalizedAmount && Number(normalizedAmount) > 0 ? normalizedAmount : '';
-  const upiLink = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(UPI_NAME)}&cu=INR${
+  const upiLink = `upi://pay?pa=${encodeURIComponent(activePayment.upiId)}&pn=${encodeURIComponent(activePayment.upiName)}&cu=INR${
     validAmount ? `&am=${encodeURIComponent(validAmount)}` : ''
   }`;
   const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=${encodeURIComponent(upiLink)}`;
 
   const openSupport = () => {
     setIsOpen(true);
+    setFailureHintShown(false);
     trackSupportInteraction('support_open', 'footer_support');
   };
 
@@ -31,9 +53,9 @@ const SupportDeveloperCard = () => {
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(UPI_ID);
+      await navigator.clipboard.writeText(activePayment.upiId);
       setCopied(true);
-      trackSupportInteraction('support_copy_upi', 'upi_id_copy');
+      trackSupportInteraction('support_copy_upi', `${activePayment.id}_upi_id_copy`);
       setTimeout(() => setCopied(false), 2000);
     } catch (error) {
       console.error('Unable to copy UPI ID', error);
@@ -49,11 +71,19 @@ const SupportDeveloperCard = () => {
     setAmount(event.target.value);
   };
 
+  const handlePaymentOptionChange = (optionId) => {
+    setActivePaymentId(optionId);
+    setCopied(false);
+    setFailureHintShown(false);
+    trackSupportInteraction('support_payment_route_select', optionId);
+  };
+
   const handlePaymentFailed = () => {
     setFailureHintShown(true);
     trackPaymentFailureReport('support_modal_failure_report', {
-      receiver_upi_domain: 'slc',
-      receiver_bank: 'slice',
+      payment_route: activePayment.id,
+      receiver_upi_domain: activePayment.domain,
+      receiver_bank: activePayment.bank,
       amount: Number(validAmount || 0) || undefined,
     });
   };
@@ -122,6 +152,33 @@ const SupportDeveloperCard = () => {
                 placeholder="Custom amount"
                 className="mt-3 w-full rounded-2xl border border-border bg-background/80 px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-primary"
               />
+
+              <div className="mt-4 grid gap-2">
+                {PAYMENT_OPTIONS.map((option) => (
+                  <button
+                    key={option.id}
+                    onClick={() => handlePaymentOptionChange(option.id)}
+                    className={`rounded-2xl border px-4 py-3 text-left transition-colors ${
+                      activePayment.id === option.id
+                        ? 'border-primary bg-primary/10'
+                        : 'border-border bg-background/60 hover:bg-muted'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <div>
+                        <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">{option.label}</p>
+                        <p className="mt-1 break-all font-mono text-sm text-foreground">{option.upiId}</p>
+                      </div>
+                      {activePayment.id === option.id && (
+                        <span className="rounded-full bg-primary px-2 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-primary-foreground">
+                          Active
+                        </span>
+                      )}
+                    </div>
+                    <p className="mt-2 text-xs text-muted-foreground">{option.helper}</p>
+                  </button>
+                ))}
+              </div>
             </div>
 
             <div className="px-4 pb-5 pt-4 sm:px-6 sm:pb-6">
@@ -143,8 +200,10 @@ const SupportDeveloperCard = () => {
               </div>
 
               <div className="mt-4 rounded-2xl border border-border bg-card/40 px-4 py-3">
-                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">UPI ID</p>
-                <p className="mt-1 break-all font-mono text-sm text-foreground">{UPI_ID}</p>
+                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
+                  {activePayment.label}
+                </p>
+                <p className="mt-1 break-all font-mono text-sm text-foreground">{activePayment.upiId}</p>
               </div>
 
               <div className="mt-4 rounded-2xl border border-amber-500/25 bg-amber-500/8 px-4 py-3">
@@ -152,7 +211,7 @@ const SupportDeveloperCard = () => {
                   Payment Help
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  If Google Pay or Kotak blocks this payment, try Navi, another UPI app, or another bank account.
+                  If Google Pay or Kotak blocks the current route, switch to the other UPI option or try another app or bank account.
                 </p>
                 <button
                   onClick={handlePaymentFailed}
@@ -170,7 +229,13 @@ const SupportDeveloperCard = () => {
               <div className="mt-4 flex flex-col gap-2 sm:flex-row">
                 <a
                   href={upiLink}
-                  onClick={() => trackSupportInteraction('support_open_upi', `amount_${validAmount || 'empty'}`, Number(validAmount || 0))}
+                  onClick={() =>
+                    trackSupportInteraction(
+                      'support_open_upi',
+                      `${activePayment.id}_amount_${validAmount || 'empty'}`,
+                      Number(validAmount || 0)
+                    )
+                  }
                   className="inline-flex flex-1 items-center justify-center gap-2 rounded-2xl bg-primary px-4 py-3 text-sm font-bold text-primary-foreground transition-opacity hover:opacity-90"
                 >
                   <Smartphone size={16} />
