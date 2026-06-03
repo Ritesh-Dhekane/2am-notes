@@ -14,5 +14,30 @@
   "display": "standalone",
   "theme_color": "#1d4ed8",
   "background_color": "#000000",
-  "orientation": "portrait"
+  "orientation": "portrait",
+  "shortcuts": [
+    {
+      "name": "Java Syllabus",
+      "short_name": "Java",
+      "description": "View Java Programming notes",
+      "url": "/?subject=java-programming",
+      "icons": [{ "src": "icon.svg", "sizes": "192x192" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "form_factor": "wide",
+      "label": "2AM Notes Dashboard"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "form_factor": "narrow",
+      "label": "2AM Notes Mobile View"
+    }
+  ]
 }

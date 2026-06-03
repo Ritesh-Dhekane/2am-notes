@@ -253,8 +253,17 @@ const AudioReader = ({ content, title, subject }) => {
     }
   };
 
-  const handlePlayPause = () => {
+  const handlePlayPause = async () => {
     if (chunks.length === 0) return;
+
+    // Ask for native notification permissions (Android 13+ requires this for some notification types)
+    if ('Notification' in window && Notification.permission === 'default') {
+      try {
+        await Notification.requestPermission();
+      } catch (err) {
+        console.error("Failed to request notification permission:", err);
+      }
+    }
 
     if (isPlaying) {
       if (isPaused) {

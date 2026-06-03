@@ -78,3 +78,52 @@ self.addEventListener('fetch', (event) => {
     })
   );
 });
+
+self.addEventListener('push', (event) => {
+  const data = event.data ? event.data.json() : { title: '2AM Notes', body: 'Time to study!' };
+  event.waitUntil(
+    self.registration.showNotification(data.title, {
+      body: data.body,
+      icon: './icon.svg',
+      badge: './icon.svg'
+    })
+  );
+});
+
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clientList) => {
+      if (clientList.length > 0) {
+        let client = clientList[0];
+        for (let i = 0; i < clientList.length; i++) {
+          if (clientList[i].focused) {
+            client = clientList[i];
+          }
+        }
+        return client.focus();
+      }
+      return clients.openWindow('/');
+    })
+  );
+});
+
+self.addEventListener('sync', (event) => {
+  if (event.tag === 'sync-notes') {
+    event.waitUntil(
+      // Perform background sync tasks here
+      Promise.resolve()
+    );
+  }
+});
+
+self.addEventListener('periodicsync', (event) => {
+  if (event.tag === 'daily-study-reminder') {
+    event.waitUntil(
+      self.registration.showNotification('Daily Reminder', {
+        body: 'Time for your daily 2AM study session!',
+        icon: './icon.svg'
+      })
+    );
+  }
+});

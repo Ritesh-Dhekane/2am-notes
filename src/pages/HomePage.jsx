@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import SubjectCard from '../components/SubjectCard';
 import subjectsData from '../../data/subjects.json';
 import contentIndex from '../../data/content-index.json';
 import navigationData from '../../data/navigation.json';
 import dumpData from '../../data/dump-index.json';
-import { Terminal, Database } from 'lucide-react';
+import { Terminal, Database, Bell } from 'lucide-react';
 import { updatePageMetadata } from '../utils/seo';
 import { isSubjectEnabled } from '../utils/subjectAvailability';
 
@@ -24,8 +24,52 @@ const HomePage = () => {
 
   const isWorkspaceEmpty = totalRealItems === 0 && rawDocCount === 0;
 
+  const [showNotificationPrompt, setShowNotificationPrompt] = useState(false);
+
+  useEffect(() => {
+    if ('Notification' in window && Notification.permission === 'default') {
+      setShowNotificationPrompt(true);
+    }
+  }, []);
+
+  const requestNotificationPermission = () => {
+    Notification.requestPermission().then((permission) => {
+      setShowNotificationPrompt(false);
+      if (permission === 'granted') {
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.ready.then(registration => {
+            if ('periodicSync' in registration) {
+              registration.periodicSync.register('daily-study-reminder', {
+                minInterval: 24 * 60 * 60 * 1000,
+              }).catch(console.error);
+            }
+          });
+        }
+      }
+    });
+  };
+
   return (
     <div className="container mx-auto px-6 py-24 transition-theme max-w-6xl">
+      {/* Notification Prompt */}
+      {showNotificationPrompt && (
+        <div className="mb-8 p-4 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-between animate-in fade-in slide-in-from-top-4 duration-500">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-primary/20 rounded-lg text-primary">
+              <Bell size={18} />
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-foreground">Enable Study Reminders</h3>
+              <p className="text-xs text-muted-foreground">Get notified about daily revision and new content.</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <button onClick={() => setShowNotificationPrompt(false)} className="text-xs text-muted-foreground hover:text-foreground transition-colors px-2 py-1">Dismiss</button>
+            <button onClick={requestNotificationPermission} className="text-xs bg-primary text-primary-foreground px-4 py-2 rounded-lg font-bold hover:bg-primary/90 transition-colors">Enable</button>
+          </div>
+        </div>
+      )}
+
       {/* Elegant Header / Hero */}
       <div className="flex flex-col items-start mb-24 relative max-w-3xl">
         <div className="absolute top-0 left-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl -z-10 animate-pulse"></div>
