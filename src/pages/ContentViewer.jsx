@@ -170,7 +170,11 @@ const ContentViewer = () => {
 
           {/* Audio Reader Playback Controls */}
           {!loading && !error && content && (
-            <AudioReader content={content} />
+            <AudioReader 
+              content={content} 
+              title={docMeta.title} 
+              subject={subject.title} 
+            />
           )}
 
           <div className="min-h-[500px]">

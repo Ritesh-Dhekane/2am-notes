@@ -59,7 +59,7 @@ const getChunks = (text) => {
   return chunks;
 };
 
-const AudioReader = ({ content }) => {
+const AudioReader = ({ content, title, subject }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [rate, setRate] = useState(1.0);
@@ -75,6 +75,13 @@ const AudioReader = ({ content }) => {
   const voiceRef = useRef(null);
   const playingRef = useRef(isPlaying);
   const pausedRef = useRef(isPaused);
+  const silentAudioRef = useRef(null);
+
+  // References for Media Session action handlers to prevent stale closure states
+  const playPauseRef = useRef(null);
+  const stopRef = useRef(null);
+  const nextRef = useRef(null);
+  const prevRef = useRef(null);
 
   useEffect(() => {
     rateRef.current = rate;
@@ -88,16 +95,49 @@ const AudioReader = ({ content }) => {
     pausedRef.current = isPaused;
   }, [isPaused]);
 
+  // Initialize loop silent audio wakelock to maintain audio focus in PWA background
+  useEffect(() => {
+    // 1-second silent WAV track
+    const audio = new Audio("data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA");
+    audio.loop = true;
+    silentAudioRef.current = audio;
+
+    return () => {
+      if (silentAudioRef.current) {
+        silentAudioRef.current.pause();
+      }
+    };
+  }, []);
+
+  // Sync Media Session metadata
+  useEffect(() => {
+    if ('mediaSession' in navigator && title && subject) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: title,
+        artist: '2AM Notes',
+        album: subject,
+        artwork: [
+          { src: 'icon.svg', sizes: '512x512', type: 'image/svg+xml' }
+        ]
+      });
+    }
+  }, [title, subject]);
+
+  // Sync Media Session playback state
+  useEffect(() => {
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.playbackState = isPlaying ? (isPaused ? 'paused' : 'playing') : 'none';
+    }
+  }, [isPlaying, isPaused]);
+
   // Load browser voices
   useEffect(() => {
     const loadVoices = () => {
       const allVoices = window.speechSynthesis.getVoices();
-      // Filter for English voices by default, but fallback to all if none exist
       const englishVoices = allVoices.filter(v => v.lang.toLowerCase().startsWith('en'));
       const list = englishVoices.length > 0 ? englishVoices : allVoices;
       setVoices(list);
       
-      // Default to standard system voice or first English voice
       if (list.length > 0 && !selectedVoiceName) {
         const defaultVoice = list.find(v => v.default) || list[0];
         setSelectedVoiceName(defaultVoice.name);
@@ -121,6 +161,9 @@ const AudioReader = ({ content }) => {
       setIsPlaying(false);
       setIsPaused(false);
       setCurrentChunkIndex(0);
+      if (silentAudioRef.current) {
+        silentAudioRef.current.pause();
+      }
       return;
     }
 
@@ -138,18 +181,19 @@ const AudioReader = ({ content }) => {
     };
 
     utterance.onend = () => {
-      // Speak next chunk if playing is still active and we are not paused
       if (playingRef.current && !pausedRef.current) {
         speakChunk(index + 1, chunkList);
       }
     };
 
     utterance.onerror = (e) => {
-      // Don't treat manual interrupts as failure
       if (e.error !== 'interrupted') {
         console.error("Speech synthesis error:", e);
         setIsPlaying(false);
         setIsPaused(false);
+        if (silentAudioRef.current) {
+          silentAudioRef.current.pause();
+        }
       }
     };
 
@@ -161,22 +205,28 @@ const AudioReader = ({ content }) => {
 
     if (isPlaying) {
       if (isPaused) {
-        // Resume
         setIsPaused(false);
         pausedRef.current = false;
+        if (silentAudioRef.current) {
+          silentAudioRef.current.play().catch(err => console.log("Silent audio play error:", err));
+        }
         speakChunk(currentChunkIndex, chunks);
       } else {
-        // Pause
         setIsPaused(true);
         pausedRef.current = true;
+        if (silentAudioRef.current) {
+          silentAudioRef.current.pause();
+        }
         window.speechSynthesis.cancel();
       }
     } else {
-      // Start fresh
       setIsPlaying(true);
       setIsPaused(false);
       playingRef.current = true;
       pausedRef.current = false;
+      if (silentAudioRef.current) {
+        silentAudioRef.current.play().catch(err => console.log("Silent audio play error:", err));
+      }
       speakChunk(currentChunkIndex, chunks);
     }
   };
@@ -187,6 +237,9 @@ const AudioReader = ({ content }) => {
     playingRef.current = false;
     pausedRef.current = false;
     setCurrentChunkIndex(0);
+    if (silentAudioRef.current) {
+      silentAudioRef.current.pause();
+    }
     window.speechSynthesis.cancel();
   };
 
@@ -196,7 +249,6 @@ const AudioReader = ({ content }) => {
     rateRef.current = newRate;
 
     if (isPlaying && !isPaused) {
-      // Dynamic speed update by restarting current chunk
       speakChunk(currentChunkIndex, chunks);
     }
   };
@@ -208,10 +260,59 @@ const AudioReader = ({ content }) => {
     voiceRef.current = voiceObj || null;
 
     if (isPlaying && !isPaused) {
-      // Dynamic voice changer update by restarting current chunk
       speakChunk(currentChunkIndex, chunks);
     }
   };
+
+  // Sync action trigger refs
+  useEffect(() => {
+    playPauseRef.current = handlePlayPause;
+    stopRef.current = handleStop;
+  }, [currentChunkIndex, isPlaying, isPaused, rate, selectedVoiceName, voices, chunks]);
+
+  useEffect(() => {
+    nextRef.current = () => {
+      if (currentChunkIndex + 1 < chunks.length) {
+        speakChunk(currentChunkIndex + 1, chunks);
+      }
+    };
+    prevRef.current = () => {
+      if (currentChunkIndex - 1 >= 0) {
+        speakChunk(currentChunkIndex - 1, chunks);
+      }
+    };
+  }, [currentChunkIndex, chunks]);
+
+  // Hook up Media Session action event handlers
+  useEffect(() => {
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.setActionHandler('play', () => {
+        if (playPauseRef.current) playPauseRef.current();
+      });
+      navigator.mediaSession.setActionHandler('pause', () => {
+        if (playPauseRef.current) playPauseRef.current();
+      });
+      navigator.mediaSession.setActionHandler('stop', () => {
+        if (stopRef.current) stopRef.current();
+      });
+      navigator.mediaSession.setActionHandler('previoustrack', () => {
+        if (prevRef.current) prevRef.current();
+      });
+      navigator.mediaSession.setActionHandler('nexttrack', () => {
+        if (nextRef.current) nextRef.current();
+      });
+    }
+
+    return () => {
+      if ('mediaSession' in navigator) {
+        navigator.mediaSession.setActionHandler('play', null);
+        navigator.mediaSession.setActionHandler('pause', null);
+        navigator.mediaSession.setActionHandler('stop', null);
+        navigator.mediaSession.setActionHandler('previoustrack', null);
+        navigator.mediaSession.setActionHandler('nexttrack', null);
+      }
+    };
+  }, []);
 
   const speedOptions = [0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 3.0];
 
@@ -219,7 +320,6 @@ const AudioReader = ({ content }) => {
 
   return (
     <div className="mb-8 p-4 rounded-2xl border bg-card/30 backdrop-blur-md shadow-sm relative overflow-hidden transition-theme">
-      {/* Visualizer and inline styles for audio animations */}
       <style>{`
         @keyframes wave-pulse {
           0%, 100% { transform: scaleY(0.3); }
@@ -232,11 +332,10 @@ const AudioReader = ({ content }) => {
       `}</style>
 
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
-        {/* Playback Controls & Status */}
         <div className="flex items-center gap-3">
           <button
             onClick={handlePlayPause}
-            className={`flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground hover:opacity-90 shadow-sm transition-all active:scale-95 cursor-pointer`}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground hover:opacity-90 shadow-sm transition-all active:scale-95 cursor-pointer"
             title={isPlaying && !isPaused ? "Pause" : "Play"}
           >
             {isPlaying && !isPaused ? <Pause size={18} /> : <Play size={18} />}
@@ -245,7 +344,7 @@ const AudioReader = ({ content }) => {
           <button
             onClick={handleStop}
             disabled={!isPlaying}
-            className={`flex h-10 w-10 items-center justify-center rounded-full border bg-background text-foreground hover:bg-muted transition-all active:scale-95 disabled:opacity-40 disabled:pointer-events-none cursor-pointer`}
+            className="flex h-10 w-10 items-center justify-center rounded-full border bg-background text-foreground hover:bg-muted transition-all active:scale-95 disabled:opacity-40 disabled:pointer-events-none cursor-pointer"
             title="Stop"
           >
             <Square size={16} />
@@ -258,7 +357,6 @@ const AudioReader = ({ content }) => {
             </span>
           </div>
 
-          {/* Dynamic visualizer bars when audio is playing */}
           {isPlaying && !isPaused && (
             <div className="flex items-end gap-0.5 h-4 w-6 px-1">
               <div className="w-0.5 h-full bg-primary rounded-full animate-wave-1"></div>
@@ -269,9 +367,7 @@ const AudioReader = ({ content }) => {
           )}
         </div>
 
-        {/* Speed Controls & Voice Changer */}
         <div className="flex items-center justify-end gap-3 flex-wrap">
-          {/* Settings Toggle (Dropdown view) */}
           <button
             onClick={() => setShowSettings(!showSettings)}
             className={`p-2 border rounded-xl flex items-center gap-1.5 text-xs font-bold bg-background/50 hover:bg-muted transition-all cursor-pointer ${showSettings ? 'border-primary/50 text-primary' : 'text-muted-foreground'}`}
@@ -283,10 +379,8 @@ const AudioReader = ({ content }) => {
         </div>
       </div>
 
-      {/* Settings Panel */}
       {showSettings && (
         <div className="mt-4 pt-4 border-t grid grid-cols-1 sm:grid-cols-2 gap-4 animate-in fade-in slide-in-from-top-2 duration-200">
-          {/* Speed Selector */}
           <div className="space-y-1.5">
             <label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground block">
               Reading Speed
@@ -307,7 +401,6 @@ const AudioReader = ({ content }) => {
             </div>
           </div>
 
-          {/* Voice Changer (System voice dropdown list) */}
           <div className="space-y-1.5">
             <label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground block">
               Voice Changer
@@ -330,21 +423,18 @@ const AudioReader = ({ content }) => {
         </div>
       )}
 
-      {/* Playback Progress Indicator */}
       {isPlaying && (
         <div className="mt-3 pt-3 border-t flex flex-col gap-1.5 animate-in fade-in duration-300">
           <div className="flex justify-between items-center text-[10px] font-mono text-muted-foreground uppercase tracking-widest">
             <span>Reading progress</span>
             <span>{currentChunkIndex + 1} / {chunks.length} sentences</span>
           </div>
-          {/* Progress bar */}
           <div className="w-full h-1 bg-muted rounded-full overflow-hidden">
             <div 
               className="h-full bg-primary transition-all duration-300"
               style={{ width: `${((currentChunkIndex + 1) / chunks.length) * 100}%` }}
             ></div>
           </div>
-          {/* Live read out preview text */}
           <p className="text-xs text-muted-foreground/80 italic line-clamp-2 mt-1">
             "{chunks[currentChunkIndex]}"
           </p>
