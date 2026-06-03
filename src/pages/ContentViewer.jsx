@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useLocation, Link, Navigate } from 'react-router-dom';
 import MarkdownRenderer from '../renderer/MarkdownRenderer';
 import ContentSidebar from '../components/ContentSidebar';
+import AudioReader from '../components/AudioReader';
 import subjectsData from '../../data/subjects.json';
 import navigationData from '../../data/navigation.json';
 import { Menu, Search, Share2, Printer, Bookmark, ChevronRight } from 'lucide-react';
@@ -166,6 +167,11 @@ const ContentViewer = () => {
                <button className="p-2 hover:bg-muted rounded-full transition-colors" title="Print" onClick={() => window.print()}><Printer size={20} /></button>
             </div>
           </div>
+
+          {/* Audio Reader Playback Controls */}
+          {!loading && !error && content && (
+            <AudioReader content={content} />
+          )}
 
           <div className="min-h-[500px]">
             {loading ? (
