@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Play, Pause, Square, Volume2, ChevronDown, Sliders } from 'lucide-react';
+import { Play, Pause, Square, Volume2, ChevronDown, Sliders, AlignLeft, Sparkles } from 'lucide-react';
 
 const stripMarkdown = (markdown) => {
   if (!markdown) return "";
@@ -59,6 +59,27 @@ const getChunks = (text) => {
   return chunks;
 };
 
+const sortVoices = (voiceList) => {
+  return [...voiceList].sort((a, b) => {
+    const nameA = a.name.toLowerCase();
+    const nameB = b.name.toLowerCase();
+    
+    // 1. Prioritize natural / neural voices
+    const isNaturalA = nameA.includes('natural') || nameA.includes('neural');
+    const isNaturalB = nameB.includes('natural') || nameB.includes('neural');
+    if (isNaturalA && !isNaturalB) return -1;
+    if (!isNaturalA && isNaturalB) return 1;
+    
+    // 2. Prioritize standard high-quality systems (Google, Microsoft, Siri)
+    const isHighQualityA = nameA.includes('google') || nameA.includes('microsoft') || nameA.includes('siri');
+    const isHighQualityB = nameB.includes('google') || nameB.includes('microsoft') || nameB.includes('siri');
+    if (isHighQualityA && !isHighQualityB) return -1;
+    if (!isHighQualityA && isHighQualityB) return 1;
+    
+    return 0;
+  });
+};
+
 const AudioReader = ({ content, title, subject }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
@@ -67,6 +88,7 @@ const AudioReader = ({ content, title, subject }) => {
   const [selectedVoiceName, setSelectedVoiceName] = useState('');
   const [currentChunkIndex, setCurrentChunkIndex] = useState(0);
   const [showSettings, setShowSettings] = useState(false);
+  const [showLyrics, setShowLyrics] = useState(false);
 
   const chunks = React.useMemo(() => getChunks(content), [content]);
 
@@ -75,7 +97,9 @@ const AudioReader = ({ content, title, subject }) => {
   const voiceRef = useRef(null);
   const playingRef = useRef(isPlaying);
   const pausedRef = useRef(isPaused);
+  const currentChunkIndexRef = useRef(currentChunkIndex);
   const silentAudioRef = useRef(null);
+  const lyricsContainerRef = useRef(null);
 
   // References for Media Session action handlers to prevent stale closure states
   const playPauseRef = useRef(null);
@@ -95,10 +119,24 @@ const AudioReader = ({ content, title, subject }) => {
     pausedRef.current = isPaused;
   }, [isPaused]);
 
+  useEffect(() => {
+    currentChunkIndexRef.current = currentChunkIndex;
+  }, [currentChunkIndex]);
+
+  // Scroll active lyrics sentence into center of view (Spotify style)
+  useEffect(() => {
+    if (showLyrics && lyricsContainerRef.current) {
+      const activeEl = lyricsContainerRef.current.querySelector('[data-active="true"]');
+      if (activeEl) {
+        activeEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+  }, [currentChunkIndex, showLyrics]);
+
   // Initialize loop silent audio wakelock to maintain audio focus in PWA background
   useEffect(() => {
-    // 1-second silent WAV track
-    const audio = new Audio("data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA");
+    const base = import.meta.env.BASE_URL || '/';
+    const audio = new Audio(`${base}assets/silence.wav`);
     audio.loop = true;
     silentAudioRef.current = audio;
 
@@ -130,16 +168,19 @@ const AudioReader = ({ content, title, subject }) => {
     }
   }, [isPlaying, isPaused]);
 
-  // Load browser voices
+  // Load and sort browser voices
   useEffect(() => {
     const loadVoices = () => {
       const allVoices = window.speechSynthesis.getVoices();
       const englishVoices = allVoices.filter(v => v.lang.toLowerCase().startsWith('en'));
       const list = englishVoices.length > 0 ? englishVoices : allVoices;
-      setVoices(list);
       
-      if (list.length > 0 && !selectedVoiceName) {
-        const defaultVoice = list.find(v => v.default) || list[0];
+      // Sort voices to move high-quality natural/neural/Google/Microsoft/Siri voices to the top
+      const sorted = sortVoices(list);
+      setVoices(sorted);
+      
+      if (sorted.length > 0 && !selectedVoiceName) {
+        const defaultVoice = sorted.find(v => v.default) || sorted[0];
         setSelectedVoiceName(defaultVoice.name);
         voiceRef.current = defaultVoice;
       }
@@ -156,48 +197,60 @@ const AudioReader = ({ content, title, subject }) => {
     };
   }, []);
 
-  const speakChunk = (index, chunkList) => {
-    if (index >= chunkList.length) {
+  // Queue all remaining utterances in C++ SpeechSynthesis queue. 
+  // This native batch queue continues executing even if browser JS execution gets suspended when locking phone.
+  const speakAll = (startIndex) => {
+    window.speechSynthesis.cancel();
+
+    if (startIndex >= chunks.length) {
       setIsPlaying(false);
       setIsPaused(false);
       setCurrentChunkIndex(0);
+      currentChunkIndexRef.current = 0;
       if (silentAudioRef.current) {
         silentAudioRef.current.pause();
       }
       return;
     }
 
-    window.speechSynthesis.cancel();
-
-    const utterance = new SpeechSynthesisUtterance(chunkList[index]);
-    utterance.rate = rateRef.current;
-    
-    if (voiceRef.current) {
-      utterance.voice = voiceRef.current;
+    if (silentAudioRef.current) {
+      silentAudioRef.current.play().catch(err => console.log("Silent audio play error:", err));
     }
 
-    utterance.onstart = () => {
-      setCurrentChunkIndex(index);
-    };
-
-    utterance.onend = () => {
-      if (playingRef.current && !pausedRef.current) {
-        speakChunk(index + 1, chunkList);
+    for (let i = startIndex; i < chunks.length; i++) {
+      const utterance = new SpeechSynthesisUtterance(chunks[i]);
+      utterance.rate = rateRef.current;
+      
+      if (voiceRef.current) {
+        utterance.voice = voiceRef.current;
       }
-    };
 
-    utterance.onerror = (e) => {
-      if (e.error !== 'interrupted') {
-        console.error("Speech synthesis error:", e);
-        setIsPlaying(false);
-        setIsPaused(false);
-        if (silentAudioRef.current) {
-          silentAudioRef.current.pause();
+      utterance.onstart = () => {
+        setCurrentChunkIndex(i);
+        currentChunkIndexRef.current = i;
+      };
+
+      if (i === chunks.length - 1) {
+        utterance.onend = () => {
+          // Playback finished completely
+          setIsPlaying(false);
+          setIsPaused(false);
+          setCurrentChunkIndex(0);
+          currentChunkIndexRef.current = 0;
+          if (silentAudioRef.current) {
+            silentAudioRef.current.pause();
+          }
+        };
+      }
+
+      utterance.onerror = (e) => {
+        if (e.error !== 'interrupted') {
+          console.error("Speech synthesis error on utterance:", i, e);
         }
-      }
-    };
+      };
 
-    window.speechSynthesis.speak(utterance);
+      window.speechSynthesis.speak(utterance);
+    }
   };
 
   const handlePlayPause = () => {
@@ -207,10 +260,7 @@ const AudioReader = ({ content, title, subject }) => {
       if (isPaused) {
         setIsPaused(false);
         pausedRef.current = false;
-        if (silentAudioRef.current) {
-          silentAudioRef.current.play().catch(err => console.log("Silent audio play error:", err));
-        }
-        speakChunk(currentChunkIndex, chunks);
+        speakAll(currentChunkIndex);
       } else {
         setIsPaused(true);
         pausedRef.current = true;
@@ -224,10 +274,7 @@ const AudioReader = ({ content, title, subject }) => {
       setIsPaused(false);
       playingRef.current = true;
       pausedRef.current = false;
-      if (silentAudioRef.current) {
-        silentAudioRef.current.play().catch(err => console.log("Silent audio play error:", err));
-      }
-      speakChunk(currentChunkIndex, chunks);
+      speakAll(currentChunkIndex);
     }
   };
 
@@ -237,6 +284,7 @@ const AudioReader = ({ content, title, subject }) => {
     playingRef.current = false;
     pausedRef.current = false;
     setCurrentChunkIndex(0);
+    currentChunkIndexRef.current = 0;
     if (silentAudioRef.current) {
       silentAudioRef.current.pause();
     }
@@ -249,7 +297,7 @@ const AudioReader = ({ content, title, subject }) => {
     rateRef.current = newRate;
 
     if (isPlaying && !isPaused) {
-      speakChunk(currentChunkIndex, chunks);
+      speakAll(currentChunkIndexRef.current);
     }
   };
 
@@ -260,7 +308,15 @@ const AudioReader = ({ content, title, subject }) => {
     voiceRef.current = voiceObj || null;
 
     if (isPlaying && !isPaused) {
-      speakChunk(currentChunkIndex, chunks);
+      speakAll(currentChunkIndexRef.current);
+    }
+  };
+
+  const handleJumpToChunk = (index) => {
+    setCurrentChunkIndex(index);
+    currentChunkIndexRef.current = index;
+    if (isPlaying && !isPaused) {
+      speakAll(index);
     }
   };
 
@@ -272,16 +328,18 @@ const AudioReader = ({ content, title, subject }) => {
 
   useEffect(() => {
     nextRef.current = () => {
-      if (currentChunkIndex + 1 < chunks.length) {
-        speakChunk(currentChunkIndex + 1, chunks);
+      const nextIdx = currentChunkIndexRef.current + 1;
+      if (nextIdx < chunks.length) {
+        handleJumpToChunk(nextIdx);
       }
     };
     prevRef.current = () => {
-      if (currentChunkIndex - 1 >= 0) {
-        speakChunk(currentChunkIndex - 1, chunks);
+      const prevIdx = currentChunkIndexRef.current - 1;
+      if (prevIdx >= 0) {
+        handleJumpToChunk(prevIdx);
       }
     };
-  }, [currentChunkIndex, chunks]);
+  }, [chunks]);
 
   // Hook up Media Session action event handlers
   useEffect(() => {
@@ -329,6 +387,9 @@ const AudioReader = ({ content, title, subject }) => {
         .animate-wave-2 { animation: wave-pulse 1.2s ease-in-out infinite 0.2s; transform-origin: bottom; }
         .animate-wave-3 { animation: wave-pulse 0.8s ease-in-out infinite 0.4s; transform-origin: bottom; }
         .animate-wave-4 { animation: wave-pulse 1.1s ease-in-out infinite 0.1s; transform-origin: bottom; }
+        .lyrics-scrollbar::-webkit-scrollbar { width: 4px; }
+        .lyrics-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .lyrics-scrollbar::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 9999px; }
       `}</style>
 
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
@@ -367,10 +428,20 @@ const AudioReader = ({ content, title, subject }) => {
           )}
         </div>
 
-        <div className="flex items-center justify-end gap-3 flex-wrap">
+        {/* Speed Controls, Voice Changer & Lyrics Toggles */}
+        <div className="flex items-center justify-end gap-2.5 flex-wrap">
+          {/* Follow Along Toggle */}
+          <button
+            onClick={() => setShowLyrics(!showLyrics)}
+            className={`p-2 border rounded-xl flex items-center gap-1.5 text-xs font-bold bg-background/50 hover:bg-muted transition-all cursor-pointer ${showLyrics ? 'border-primary/50 text-primary bg-primary/5' : 'text-muted-foreground'}`}
+          >
+            <AlignLeft size={14} />
+            <span>Follow Along</span>
+          </button>
+
           <button
             onClick={() => setShowSettings(!showSettings)}
-            className={`p-2 border rounded-xl flex items-center gap-1.5 text-xs font-bold bg-background/50 hover:bg-muted transition-all cursor-pointer ${showSettings ? 'border-primary/50 text-primary' : 'text-muted-foreground'}`}
+            className={`p-2 border rounded-xl flex items-center gap-1.5 text-xs font-bold bg-background/50 hover:bg-muted transition-all cursor-pointer ${showSettings ? 'border-primary/50 text-primary bg-primary/5' : 'text-muted-foreground'}`}
           >
             <Sliders size={14} />
             <span>Voice Options</span>
@@ -379,6 +450,7 @@ const AudioReader = ({ content, title, subject }) => {
         </div>
       </div>
 
+      {/* Voice Settings Panel */}
       {showSettings && (
         <div className="mt-4 pt-4 border-t grid grid-cols-1 sm:grid-cols-2 gap-4 animate-in fade-in slide-in-from-top-2 duration-200">
           <div className="space-y-1.5">
@@ -402,8 +474,9 @@ const AudioReader = ({ content, title, subject }) => {
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground block">
+            <label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground block flex items-center gap-1">
               Voice Changer
+              <Sparkles size={10} className="text-yellow-500 animate-pulse" />
             </label>
             <div className="relative">
               <select
@@ -411,11 +484,18 @@ const AudioReader = ({ content, title, subject }) => {
                 onChange={handleVoiceChange}
                 className="w-full text-xs font-medium border bg-background rounded-xl p-2.5 outline-none appearance-none focus:border-primary/50"
               >
-                {voices.map(voice => (
-                  <option key={voice.name} value={voice.name}>
-                    {voice.name} ({voice.lang})
-                  </option>
-                ))}
+                {voices.map(voice => {
+                  const isPremium = voice.name.toLowerCase().includes('natural') || 
+                                    voice.name.toLowerCase().includes('neural') ||
+                                    voice.name.toLowerCase().includes('siri') ||
+                                    voice.name.toLowerCase().includes('google') ||
+                                    voice.name.toLowerCase().includes('microsoft');
+                  return (
+                    <option key={voice.name} value={voice.name}>
+                      {isPremium ? "⭐ " : ""}{voice.name} ({voice.lang})
+                    </option>
+                  );
+                })}
               </select>
               <ChevronDown size={14} className="absolute right-3 top-3.5 text-muted-foreground/60 pointer-events-none" />
             </div>
@@ -423,7 +503,37 @@ const AudioReader = ({ content, title, subject }) => {
         </div>
       )}
 
-      {isPlaying && (
+      {/* Spotify-style Lyrics Viewport */}
+      {showLyrics && (
+        <div className="mt-4 pt-4 border-t flex flex-col gap-2 animate-in fade-in slide-in-from-top-2 duration-300">
+          <div className="flex justify-between items-center text-[10px] font-mono text-muted-foreground uppercase tracking-widest px-1">
+            <span>FOLLOW ALONG SYNC (SPOTIFY STYLE)</span>
+            <span>TAP ANY LINE TO JUMP</span>
+          </div>
+          
+          <div 
+            ref={lyricsContainerRef}
+            className="max-h-56 overflow-y-auto space-y-4 py-20 px-4 rounded-xl bg-background/40 border border-border/60 lyrics-scrollbar relative"
+          >
+            {chunks.map((chunk, idx) => {
+              const isActive = idx === currentChunkIndex;
+              return (
+                <p
+                  key={idx}
+                  data-active={isActive}
+                  onClick={() => handleJumpToChunk(idx)}
+                  className={`text-sm font-semibold transition-all duration-300 cursor-pointer hover:text-foreground/90 py-1.5 ${isActive ? 'text-primary text-base scale-[1.03] font-black pl-3 border-l-2 border-primary' : 'text-muted-foreground/45'}`}
+                >
+                  {chunk}
+                </p>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Playback Progress Indicator (Shown only when not in lyrics mode, to keep UI clean) */}
+      {isPlaying && !showLyrics && (
         <div className="mt-3 pt-3 border-t flex flex-col gap-1.5 animate-in fade-in duration-300">
           <div className="flex justify-between items-center text-[10px] font-mono text-muted-foreground uppercase tracking-widest">
             <span>Reading progress</span>
