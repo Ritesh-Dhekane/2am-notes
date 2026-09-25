@@ -22,7 +22,6 @@
 - `/content`: Pure Markdown notes organized by subject and unit.
 - `/src`: The rendering engine and UI components.
 - `/data`: JSON metadata for navigation and search.
-- `/prompts`: AI prompts for generating new content.
 
 ## 📖 Getting Started
 1. Clone the repo.
@@ -30,12 +29,8 @@
 3. Run `npm run dev`.
 4. Visit `http://localhost:5173`.
 
-## 📄 Documentation
-- [Architecture Decisions](ARCHITECTURE_DECISIONS.md)
-- [System Philosophy](AI_CONTEXT_SYSTEM.md)
-- [Contributing with AI](CONTRIBUTING_AI.md)
-- [Content Guidelines](CONTENT_GUIDELINES.md)
-- [Deployment Guide](DEPLOYMENT.md)
+## 🚢 Deployment
+Pushing to `main` builds and deploys to GitHub Pages via `.github/workflows/deploy.yml`. Routing uses `HashRouter`, so no 404 redirect is needed.
 
 ---
 Built with ❤️ for students.
